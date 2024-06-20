@@ -139,7 +139,7 @@ def t_NEWDATATYPE(t):
     return t
 
 def t_FUNCTION(t):
-    r'[a-zA-Z]+\w*\(\w*\)'
+    r'[^main][a-zA-Z]+\w*\(\w*\)'
     t.type = reserved.get(t.value, 'FUNCTION')
     return t
 
