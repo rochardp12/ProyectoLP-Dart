@@ -95,7 +95,6 @@ tokens = (
     'INTERNDATATYPE',
     'NUMBERINT',
     'DATAATTRIBUTE',
-    'DATAFUNCTION',
     'FUNCTION'
 ) + tuple(reserved.values())
 
@@ -142,11 +141,6 @@ def t_NEWDATATYPE(t):
 def t_FUNCTION(t):
     r'[a-zA-Z]+\w*\(\w*\)'
     t.type = reserved.get(t.value, 'FUNCTION')
-    return t
-
-def t_DATAFUNCTION(t):
-    r'\.[a-zA-Z]+\w*\(\w*\)'
-    t.type = reserved.get(t.value, 'DATAFUNCTION')
     return t
 
 #Roberto Encalada
