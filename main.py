@@ -1,63 +1,56 @@
 import ply.yacc as yacc
 from lexico import tokens
 
+import os
+from datetime import datetime
+
 def p_cuerpo(p):
-    '''cuerpo : expresion
-             | impresion 
-             | tupla
-             | declaracion
-             | sentencia'''
+    '''cuerpo : switch
+            | NUMBER '''
 
-def p_expresion(p):
-  'expresion : valor operador valor'
 
-def p_sentenciaIfElse(p):
-    'sentencia : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE'
+#-----------------SWITCH-----------------------------------
+def p_sentenciaSwitch(p):
+    '''switch : SWITCH LPAREN valor RPAREN LBRACE caso RBRACE'''
 
-def p_condicion(p):
-    'condicion : valor operadorComp valor'
 
-def p_operadorComp(p):
-    '''operadorComp : LESSTHAN
-                | MORETHAN'''
+def p_casos(p):
+    '''caso : CASE valor TWODOTS cuerpo BREAK caso 
+            | CASE valor TWODOTS cuerpo BREAK'''
 
-def p_declaracion(p):
-    '''declaracion : VARIABLE ASSIGN valor
-                   | VARIABLE ASSIGN tupla'''
-
-def p_operador(p):
-    '''operador : PLUS
-                | MINUS
-            | TIMES
-            | DIVIDE
-    '''
-
-def p_impresion(p):
-    'impresion : PRINT LPAREN valores RPAREN'
-
-def p_impresion_vacia(p):
-    'impresion : PRINT LPAREN RPAREN'
-
-def p_tupla(p):
-    'tupla : LPAREN valores RPAREN'
-
-def p_valores(p):
-    '''valores : valor
-            | valor COMMA valores'''
 
 def p_valor(p):
     '''valor : VARIABLE
-            | INT
+            | NUMBER
             | FLOAT
-            | expresion
+            | TRUE
+            | FALSE
     '''
 
 # Error rule for syntax errors
+#def p_error(p):
+   # print("Syntax error in input!")
+log_dir = "logs"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
+log_filename = f"sintactico-rochardp12-{current_time}.txt"
+log_filepath = os.path.join(log_dir, log_filename)
+
+
+
 def p_error(p):
-    print("Syntax error in input!")
+    print(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
+    with open(log_filepath, 'a') as f:
+        f.write(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}\n")
+
+
+
 
 # Build the parser
 parser = yacc.yacc()
+
 
 while True:
    try:

@@ -1,6 +1,6 @@
 import ply.lex as lex
-import os
-from datetime import datetime
+#import os
+#from datetime import datetime
 
 # List of token names.   This is always required
 reserved = {
@@ -54,7 +54,8 @@ reserved = {
     "var": "VAR",
     "in": "IN",
     "break": "BREAK",
-    "List": "LIST"
+    "List": "LIST",
+    "boolean": "BOOLEAN"
     }
 tokens = (
     #Katherine Tumbaco
@@ -108,8 +109,8 @@ t_LBRACE  = r'\{'
 t_RBRACE  = r'\}'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+t_LPAREN  = r'\('
+t_RPAREN  = r'\)'
 t_DOTCOMMA = r';'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
@@ -137,11 +138,11 @@ def t_NEWDATATYPE(t):
     r'[A-Z][_a-zA-Z0-9]*'
     t.type = reserved.get(t.value, 'NEWDATATYPE')
     return t
-
+'''
 def t_FUNCTION(t):
-    r'[^main][a-zA-Z]+\w*\(\w*\)'
+    r'[^main][^print][a-zA-Z]+\w*\(\w*\)'
     t.type = reserved.get(t.value, 'FUNCTION')
-    return t
+    return t'''
 
 #Roberto Encalada
 def t_INTERNDATATYPE(t):
@@ -149,10 +150,11 @@ def t_INTERNDATATYPE(t):
     t.type = reserved.get(t.value, 'INTERNDATATYPE')
     return t
 
+'''
 def t_DATAATTRIBUTE(t):
     r'\.[a-zA-Z_]+\w*'
     t.type = reserved.get(t.value, 'DATAATTRIBUTE')
-    return t
+    return t'''
 
 #Katherine Tumbaco
 def t_FLOAT(t):
@@ -345,7 +347,7 @@ public class TestClass {
 algoritmos = [algoritmoKatherine, algoritmoRichard, AlgoritmoRoberto]
 # Build the lexer
 lexer = lex.lex()
-
+'''
 #Generate logs
 log_dir = "logs"
 if not os.path.exists(log_dir):
@@ -366,4 +368,4 @@ for i in range(len(algoritmos)):
         if not tok: 
             break      # No more input
         print(tok)
-        log_file.write(f"{tok}\n")
+        log_file.write(f"{tok}\n")'''
