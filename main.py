@@ -7,6 +7,7 @@ from datetime import datetime
 def p_cuerpo(p):
     '''cuerpo : switch
             | flecha
+            | crearConjunto
             | NUMBER '''
 
 
@@ -24,7 +25,16 @@ def p_funcionflecha(p):
     'flecha : tipoDato valorVariable LPAREN parametros RPAREN ARROWFUNCTION cuerpo'
 #----------------------------------------------------------
 
+#----------------CONJUNTOS---------------------------------
+def p_crearConjunto(p):
+    '''crearConjunto : SET VARIABLE EQUALS conjunto
+                    | SET LANGLE tipoDato RANGLE VARIABLE EQUALS conjunto'''
 
+def p_conjunto(p):
+    '''conjunto : LBRACE parametros RBRACE
+                | LBRACE RBRACE '''
+#----------------------------------------------------------
+    
 def p_valorNumerico(p):
     '''valorNumerico : NUMBER
                     | FLOAT '''
@@ -53,7 +63,7 @@ def p_tipoDato(p):
 
 def p_parametros(p):
     '''parametros : valoresTotales
-                | valoresTotales COMMA valoresTotales'''
+                | valoresTotales COMMA parametros'''
     
 # Error rule for syntax errors
 #def p_error(p):
