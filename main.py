@@ -7,8 +7,20 @@ from datetime import datetime
 def p_cuerpo(p):
     '''cuerpo : switch
             | flecha
-            | crearConjunto
+            | declaracion
             | NUMBER '''
+    
+def p_declaracion(p):
+    '''declaracion : INT VARIABLE EQUALS NUMBER
+                   | DOUBLE VARIABLE EQUALS FLOAT 
+                   | BOOLEAN VARIABLE EQUALS valorBooleano
+                   | STRING VARIABLE EQUALS CHAINCHAR
+                   | crearConjunto
+                   | VAR VARIABLE EQUALS valoresTotales'''
+    
+def p_operacion(p):
+  'operacion : valorNumerico operador valorNumerico'
+
 
 
 #-----------------SWITCH-----------------------------------
@@ -20,10 +32,12 @@ def p_casos(p):
             | CASE valoresTotales TWODOTS cuerpo BREAK'''
 #----------------------------------------------------------
 
+
 #----------------FUNCION FLECHA-----------------------------
 def p_funcionflecha(p):
     'flecha : tipoDato valorVariable LPAREN parametros RPAREN ARROWFUNCTION cuerpo'
 #----------------------------------------------------------
+
 
 #----------------CONJUNTOS---------------------------------
 def p_crearConjunto(p):
@@ -59,12 +73,21 @@ def p_tipoDato(p):
                 | SET
                 | LIST
                 | BOOLEAN
-                | NEWDATATYPE '''
+                | NEWDATATYPE 
+                | VAR '''
 
 def p_parametros(p):
     '''parametros : valoresTotales
                 | valoresTotales COMMA parametros'''
-    
+
+def p_operador(p):
+    '''operador : PLUS
+                | MINUS
+                | TIMES
+                | DIVIDE '''
+
+
+
 # Error rule for syntax errors
 #def p_error(p):
    # print("Syntax error in input!")

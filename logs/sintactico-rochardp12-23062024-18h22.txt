@@ -1,0 +1,9 @@
+Error sintactico en el token '5.9' en la linea 1, posicion 10
+Error sintactico en el token 'valor' en la linea 1, posicion 10
+Error sintactico en el token ''cadena'' en la linea 1, posicion 10
+Error sintactico en el token '7' en la linea 1, posicion 13
+Error sintactico en el token 'true' en la linea 1, posicion 14
+Error sintactico en el token '7' en la linea 1, posicion 14
+Error sintactico en el token 'string' en la linea 1, posicion 0
+Error sintactico en el token 'string' en la linea 1, posicion 0
+Error sintactico en el token 'cadena' en la linea 1, posicion 16

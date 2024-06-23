@@ -1,0 +1,2 @@
+Error sintactico en el token 'TRUE' en la linea 1, posicion 7
+Error sintactico en el token '}' en la linea 1, posicion 18
