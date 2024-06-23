@@ -6,27 +6,55 @@ from datetime import datetime
 
 def p_cuerpo(p):
     '''cuerpo : switch
+            | flecha
             | NUMBER '''
 
 
 #-----------------SWITCH-----------------------------------
 def p_sentenciaSwitch(p):
-    '''switch : SWITCH LPAREN valor RPAREN LBRACE caso RBRACE'''
-
+    'switch : SWITCH LPAREN valoresTotales RPAREN LBRACE caso RBRACE'
 
 def p_casos(p):
-    '''caso : CASE valor TWODOTS cuerpo BREAK caso 
-            | CASE valor TWODOTS cuerpo BREAK'''
+    '''caso : CASE valoresTotales TWODOTS cuerpo BREAK caso 
+            | CASE valoresTotales TWODOTS cuerpo BREAK'''
+#----------------------------------------------------------
+
+#----------------FUNCION FLECHA-----------------------------
+def p_funcionflecha(p):
+    'flecha : tipoDato valorVariable LPAREN parametros RPAREN ARROWFUNCTION cuerpo'
+#----------------------------------------------------------
 
 
-def p_valor(p):
-    '''valor : VARIABLE
-            | NUMBER
-            | FLOAT
-            | TRUE
-            | FALSE
-    '''
+def p_valorNumerico(p):
+    '''valorNumerico : NUMBER
+                    | FLOAT '''
+    
+def p_valorVariable(p):
+    'valorVariable : VARIABLE'
 
+def p_valorBooleano(p):
+    '''valorBooleano : TRUE
+                    | FALSE '''
+
+def p_valoresTotales(p):
+    '''valoresTotales : valorBooleano
+                    | valorNumerico
+                    | valorVariable '''
+
+def p_tipoDato(p):
+   '''tipoDato : MAP
+                | DOUBLE
+                | STRING
+                | INT
+                | SET
+                | LIST
+                | BOOLEAN
+                | NEWDATATYPE '''
+
+def p_parametros(p):
+    '''parametros : valoresTotales
+                | valoresTotales COMMA valoresTotales'''
+    
 # Error rule for syntax errors
 #def p_error(p):
    # print("Syntax error in input!")
@@ -38,14 +66,10 @@ current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 log_filename = f"sintactico-rochardp12-{current_time}.txt"
 log_filepath = os.path.join(log_dir, log_filename)
 
-
-
 def p_error(p):
     print(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
     with open(log_filepath, 'a') as f:
         f.write(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}\n")
-
-
 
 
 # Build the parser
