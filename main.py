@@ -7,6 +7,7 @@ from datetime import datetime
 def p_cuerpo(p):
     '''cuerpo : switch
             | declaracion
+            | operacion
             | flecha
             | NUMBER '''
     
@@ -15,7 +16,11 @@ def p_declaracion(p):
     'declaracion : tipoDato VARIABLE EQUALS valoresDatos'
     
 def p_operacion(p):
-  'operacion : valorNumerico operador valorNumerico'
+  'operacion : valorNumerico operador numeroSiguiente'
+
+def p_numeroSiguiente(p):
+    '''numeroSiguiente : valorNumerico operador numeroSiguiente
+                    | valorNumerico '''
 
 def p_sentencia(p):
     '''sentencia : declaracion
