@@ -105,7 +105,7 @@ def p_operador(p):
 # Error rule for syntax errors
 #def p_error(p):
    # print("Syntax error in input!")
-log_dir = "logs"
+log_dir = "logs_sintactico"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
