@@ -1,0 +1,52 @@
+WARNING: Token 'ABSTRACT' defined, but not used
+WARNING: Token 'ADMIRATION' defined, but not used
+WARNING: Token 'AND' defined, but not used
+WARNING: Token 'AS' defined, but not used
+WARNING: Token 'CATCH' defined, but not used
+WARNING: Token 'CLASS' defined, but not used
+WARNING: Token 'DATAATTRIBUTE' defined, but not used
+WARNING: Token 'DEF' defined, but not used
+WARNING: Token 'DEFAULT' defined, but not used
+WARNING: Token 'DOLLAR' defined, but not used
+WARNING: Token 'ELIF' defined, but not used
+WARNING: Token 'ENUM' defined, but not used
+WARNING: Token 'EXTENDS' defined, but not used
+WARNING: Token 'FINALLY' defined, but not used
+WARNING: Token 'FUNCTION' defined, but not used
+WARNING: Token 'IN' defined, but not used
+WARNING: Token 'INTEGERDIVISION' defined, but not used
+WARNING: Token 'INTERFACE' defined, but not used
+WARNING: Token 'INTERNDATATYPE' defined, but not used
+WARNING: Token 'IS' defined, but not used
+WARNING: Token 'MAIN' defined, but not used
+WARNING: Token 'METHOD' defined, but not used
+WARNING: Token 'MOD' defined, but not used
+WARNING: Token 'MODULE' defined, but not used
+WARNING: Token 'NEW' defined, but not used
+WARNING: Token 'NEWDATATYPE' defined, but not used
+WARNING: Token 'NULL' defined, but not used
+WARNING: Token 'NUMBERINT' defined, but not used
+WARNING: Token 'OR' defined, but not used
+WARNING: Token 'PRIVATE' defined, but not used
+WARNING: Token 'PROTECTED' defined, but not used
+WARNING: Token 'PUBLIC' defined, but not used
+WARNING: Token 'STATIC' defined, but not used
+WARNING: Token 'SUPER' defined, but not used
+WARNING: Token 'THIS' defined, but not used
+WARNING: Token 'TRY' defined, but not used
+WARNING: Token 'TYPEDEF' defined, but not used
+WARNING: Token 'WHILE' defined, but not used
+WARNING: Token 'commentBlock' defined, but not used
+WARNING: Token 'commentLine' defined, but not used
+WARNING: There are 40 unused tokens
+Generating LALR tables
+Traceback (most recent call last):
+  File "c:\Users\rober\OneDrive\Escritorio\archivos\ESPOL\2024\PAO 1S\Lenguajes de Programación\Proyecto1P\ProyectoLP-Dart\main.py", line 192, in <module>     
+    parser = yacc.yacc()
+  File "c:\Users\rober\OneDrive\Escritorio\archivos\ESPOL\2024\PAO 1S\Lenguajes de Programación\Proyecto1P\ProyectoLP-Dart\ply\yacc.py", line 3438, in yacc    
+    lr = LRGeneratedTable(grammar, method, debuglog)
+  File "c:\Users\rober\OneDrive\Escritorio\archivos\ESPOL\2024\PAO 1S\Lenguajes de Programación\Proyecto1P\ProyectoLP-Dart\ply\yacc.py", line 2135, in __init__
+    self.lr_parse_table()
+  File "c:\Users\rober\OneDrive\Escritorio\archivos\ESPOL\2024\PAO 1S\Lenguajes de Programación\Proyecto1P\ProyectoLP-Dart\ply\yacc.py", line 2628, in lr_parse_table
+    raise LALRError('Unknown conflict in state %d' % st)
+ply.yacc.LALRError: Unknown conflict in state 1

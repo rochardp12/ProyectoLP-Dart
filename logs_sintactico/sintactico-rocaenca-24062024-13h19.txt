@@ -1,0 +1,35 @@
+Syntax error at EOF
+Input: var fun_anonima = (par1, par2, par3) {if(3>0) {print(4);}; for(int i = 0 ; i < 10; i++) {print("hola");}}
+Result: None
+
+Syntax error at EOF
+Input: var fun_anonima = (par1, par2, par3) {if(3>0) {print(4);}; for(int i = 0 ; i < 10; i++) {print("hola");}}
+Result: None
+
+Syntax error at EOF
+Input: var fun_anonima = (par1, par2, par3) {if (3 >0) {print(4);}; for(int i = 0 ; i < 10; i++) {print("hola");}}
+Result: None
+
+Syntax error at EOF
+Input: var fun_anonima = (par1, par2, par3) {if (3 > 0) {print(4);}; for(int i = 0 ; i < 10; i++) {print("hola");}}
+Result: None
+
+Input: var fun_anonima = (par1, par2, par3) {if(3>0) {print(4);}; for(int i = 0 ; i < 10; i++) {print("hola");}};
+Result: None
+
+Syntax error at '<'
+Input: map <String, int> diccionario = {"Roberto":21, "Katherine":22};
+Result: None
+
+Syntax error at '<'
+Input: map <String, int> diccionario = {};
+Result: None
+
+Syntax error at '<'
+Input: map <String,int> diccionario = {};
+Result: None
+
+Syntax error at '<'
+Input: map<String,int> diccionario = {};
+Result: None
+

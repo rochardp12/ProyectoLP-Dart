@@ -1,0 +1,13 @@
+Input: var nombres = ("Roberto", "Carlos");
+Result: None
+
+Input: var nombres = ("Roberto", "Carlos") {/*lineas de codigo*/}; 
+Result: None
+
+Input: (par1, par2, par3) {print(3);};
+Result: None
+
+Syntax error at '/'
+Input: (par1, par2, par3) {//comentario};
+Result: None
+

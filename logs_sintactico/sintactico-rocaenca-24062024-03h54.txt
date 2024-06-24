@@ -1,0 +1,7 @@
+Syntax error at '}'
+Input: var nombre_variable = (par1, par2,par3) {};
+Result: None
+
+Input: var nombre_variable = (par1, par2,par3) {print(2);};
+Result: None
+

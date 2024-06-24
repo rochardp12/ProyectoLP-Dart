@@ -1,0 +1,4 @@
+Syntax error at ';'
+Input: var nombre_variable = (a,3,p31);
+Result: None
+

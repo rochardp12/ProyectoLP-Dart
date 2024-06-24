@@ -1,0 +1,9 @@
+Input: String i = o;
+Result: None
+
+Input: int i = 0;
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0;};}
+Result: None
+

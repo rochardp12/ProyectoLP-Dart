@@ -1,0 +1,149 @@
+Input: for (int i = 0; i < 10; i++) {print(23,3,a);}
+Result: None
+
+Syntax error at ';'
+Input: for (String i = "jp;a ; i
+Result: None
+
+Syntax error at '"a"'
+Syntax error at '('
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += "a") {if (a != b) {print((1,23);} else{a = 10; print(a);};}
+Result: None
+
+Syntax error at '"a"'
+Syntax error at '('
+Input: for (String i = "hola" ; i == "hola" ; i += "a") {if (a != b) {print((1,23);} else {a = 10;};}
+Result: None
+
+Syntax error at '('
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print((1,23);} else {a = 10;};}
+Result: None
+
+Syntax error at '('
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != 10) {print((1,23);} else {a = 10;};}
+Result: None
+
+Syntax error at '('
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b){print((1,23);} else {a = 10;};}
+Result: None
+
+Syntax error at '('
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b){print((1,23));} else {a = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b){print(5,9);} else {a = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {a = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int a = 10;};}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {final num = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int num = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int num = 10;};}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {const num = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {double num = 10;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int num = 110;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int num == 110;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int num = 110;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {int num = "gola";};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {boolean num = 0;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {map num = 0;};}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {var num = 0;};}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {dynamic num = 0;};}
+Result: None
+
+Syntax error at 'num'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {list num = 0;};}
+Result: None
+
+Syntax error at 'c'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {list c  = 0;};}
+Result: None
+
+Syntax error at 'cero'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {list cero  = 0;};}
+Result: None
+
+Syntax error at 'cero'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {list cero = 0;};}
+Result: None
+
+Syntax error at 'cero'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {list cero=0;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String cero = "hola";};}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {print(a);};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0;};}
+Result: None
+
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0;};}
+Result: None
+
+Syntax error at '='
+Input: String o = 0;
+Result: None
+
+Syntax error at '='
+Input: int i = 0
+Result: None
+
+Syntax error at '='
+Input: String i = "hola"
+Result: None
+
+Syntax error at '='
+Input: String i = "hola";
+Result: None
+

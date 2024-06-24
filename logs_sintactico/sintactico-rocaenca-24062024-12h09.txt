@@ -1,0 +1,20 @@
+Syntax error at ';'
+Input: var variable = (1,23,4);
+Result: None
+
+Syntax error at '"c:/Users/rober/OneDrive/Escritorio/archivos/ESPOL/2024/PAO 1S/Lenguajes de Programación/Proyecto1P/ProyectoLP-Dart/main.py"'
+Input: & "C:/Program Files/Python310/python.exe" "c:/Users/rober/OneDrive/Escritorio/archivos/ESPOL/2024/PAO 1S/Lenguajes de Programación/Proyecto1P/ProyectoLP-Dart/main.py"
+Result: None
+
+Syntax error at ';'
+Input: var variable = (1,23,4);
+Result: None
+
+Syntax error at ';'
+Input: var variabl = (1,23,4);
+Result: None
+
+Syntax error at ';'
+Input: var variabl = (1, 23, 4);
+Result: None
+

@@ -1,0 +1,13 @@
+Input: print('hola');
+Result: None
+
+Input: print("hola");
+Result: None
+
+Input: const tuplas = (3,3,4);
+Result: None
+
+Syntax error at ';'
+Input: var tuplas = (3,3,4);
+Result: None
+

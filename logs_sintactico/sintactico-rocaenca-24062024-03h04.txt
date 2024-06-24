@@ -1,0 +1,4 @@
+Syntax error at '='
+Input: String o = 0;
+Result: None
+

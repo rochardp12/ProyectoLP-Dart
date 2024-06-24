@@ -1,0 +1,49 @@
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);}else{if (a > 0) {final i = 0;}}}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);}else{if (a > 0) {final i = 0;}}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {if (a > 0) {final i = 0;}}}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {if (a > 0) {final i = 0;}};}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {if (a > 0) {final i = 0;}};}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { if (a > 0) {final i = 0;}};}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { if (a > 0) { final i = 0; } }; }
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { if (a > 0) { final i = 0; } }; }}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { if (a > 0) { print(3,4); } }; }}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { print(3,4); }; }
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { if(2>3) {print(3,4);} }; }
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else { if(2>3) {print(3,4);}; }; }
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0;};}
+Result: None
+

@@ -1,0 +1,8 @@
+Syntax error at '// Código de la función};'
+Input: var nombre_variable = (par1, par2, par3) {// Código de la función};
+Result: None
+
+Syntax error at '//Codigo de la funcion};'
+Input: var nombre_variable = (par1, par2, par3) {//Codigo de la funcion};
+Result: None
+

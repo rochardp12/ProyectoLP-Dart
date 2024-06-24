@@ -1,0 +1,46 @@
+Input: final c = 0;
+Result: None
+
+Input: List<String> nombres = ["Roberto", "Carlos"];
+Result: None
+
+Syntax error at '='
+Input: int i = 0;
+Result: None
+
+Syntax error at '='
+Input: int numero = 0;
+Result: None
+
+Syntax error at '='
+Input: int numero == 0;
+Result: None
+
+Syntax error at '>'
+Input: int numero > 0;
+Result: None
+
+Syntax error at '+'
+Input: int numero + 0;
+Result: None
+
+Syntax error at '='
+Syntax error at ';'
+Input: int numero = 2+ 0;
+Result: None
+
+Syntax error at '='
+Syntax error at ')'
+Input: int numero = 2+ 0 +(3);
+Result: None
+
+Syntax error at '='
+Syntax error at ';'
+Input: int numero = 2+ 0 +(3*1);
+Result: None
+
+Syntax error at '='
+Syntax error at ';'
+Input: int numero = 2+ 0 +(3*1);
+Result: None
+

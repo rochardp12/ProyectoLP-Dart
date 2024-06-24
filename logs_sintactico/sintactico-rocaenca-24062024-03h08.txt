@@ -1,0 +1,17 @@
+Syntax error at '='
+Syntax error at ';'
+Input: int numero = 2+ 0 +(3*1);
+Result: None
+
+Syntax error at '='
+Input: int numero = 2;
+Result: None
+
+Syntax error at '='
+Input: String numero = 2;
+Result: None
+
+Syntax error at '='
+Input: String numero = "g";
+Result: None
+

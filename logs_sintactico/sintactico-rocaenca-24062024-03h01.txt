@@ -1,0 +1,34 @@
+Syntax error at '='
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0;};}
+Result: None
+
+Syntax error at '='
+Input: String o = 0;
+Result: None
+
+Syntax error at '='
+Input: String i = "hola;
+Result: None
+
+Syntax error at '='
+Input: String i = "hola";
+Result: None
+
+Input: for (int i = 0; i< 0; i++) {print(a);}
+Result: None
+
+Syntax error at '='
+Input: String saludo = "hola";
+Result: None
+
+Syntax error at '='
+Input: String saludo="hola";
+Result: None
+
+Input: final saludo = "hola";
+Result: None
+
+Syntax error at '='
+Input: String saludo = "hola";
+Result: None
+

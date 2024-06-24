@@ -1,0 +1,85 @@
+Syntax error at ';'
+Input: var t = (1,3);
+Result: None
+
+Syntax error at 't'
+Syntax error at ';'
+Input: tuple t = (1,3);
+Result: None
+
+Syntax error at 't'
+Syntax error at ';'
+Input: list t = (1,3);
+Result: None
+
+Input: String t = (1,3);
+Result: None
+
+Input: List t = (1,3);
+Result: None
+
+Syntax error at 't'
+Syntax error at ';'
+Input: Mpa t = (1,3);
+Result: None
+
+Syntax error at 't'
+Syntax error at ';'
+Input: Map t = (1,3);
+Result: None
+
+Input: map t = (1,3);
+Result: None
+
+Input: double t = (1,3);
+Result: None
+
+Input: String t = (1,3);
+Result: None
+
+Input: int t = (1,3);
+Result: None
+
+Syntax error at '('
+Input: Set t = (1,3);
+Result: None
+
+Syntax error at ';'
+Input: Set t = {1,3};
+Result: None
+
+Syntax error at '('
+Input: Set t = (1,3);
+Result: None
+
+Input: Set t = {1,3}
+Result: None
+
+Input: List t = (1,3);
+Result: None
+
+Syntax error at 't'
+Syntax error at ';'
+Input: Boolean t = (1,3);
+Result: None
+
+Input: boolean t = (1,3);
+Result: None
+
+Input: final t = (1,3);
+Result: None
+
+Input: const t = (1,3);
+Result: None
+
+Input: dynamic t = (1,3);
+Result: None
+
+Syntax error at ';'
+Input: var t = (1,3);
+Result: None
+
+Syntax error at ';'
+Input: var t = (1,3);
+Result: None
+

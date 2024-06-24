@@ -1,0 +1,11 @@
+Syntax error at '='
+Input: int i = 0;
+Result: None
+
+Input: final con = "hola";
+Result: None
+
+Syntax error at '='
+Input: int con = "hola";
+Result: None
+

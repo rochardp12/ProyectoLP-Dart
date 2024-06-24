@@ -1,0 +1,7 @@
+Input: map <String, int> diccionario = {};
+Result: None
+
+Syntax error at '}'
+Input: map <String, int> diccionario = {"Roberto": 21, "Katherine": 22, "Richard":22};
+Result: None
+

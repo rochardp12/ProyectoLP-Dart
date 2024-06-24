@@ -1,0 +1,14 @@
+Syntax error at '"Roberto"'
+Input: var nombre = "Roberto";
+Result: None
+
+Input: String nombre = "Roberto";
+Result: None
+
+Syntax error at '='
+Input: nombre = "Roberto";
+Result: None
+
+Input: String nombre = "Roberto";
+Result: None
+

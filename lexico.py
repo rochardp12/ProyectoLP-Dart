@@ -87,16 +87,11 @@ tokens = (
     'DOLLAR',
     'OR',
     'AND',
-    'commentLine',
-    'commentBlock',
+    'COMMENTLINE',
+    'COMMENTBLOCK',
     'CHAINCHAR',
     #Richard Perez
     'ARROWFUNCTION',
-    'NEWDATATYPE',
-    'INTERNDATATYPE',
-    'NUMBERINT',
-    'DATAATTRIBUTE',
-    'FUNCTION'
 ) + tuple(reserved.values())
 
 # Regular expression rules for simple tokens
@@ -122,8 +117,8 @@ t_ADMIRATION = r'!'
 t_DOLLAR = r'\$'
 t_OR = r'\|\|'
 t_AND = r'&&'
-t_commentLine = r'//.*'
-t_commentBlock = r'/\*(.|\n)*?\*/'
+t_COMMENTLINE = r'^(//)\w*\W*\n$'
+t_COMMENTBLOCK = r'/\*(.|\n)*?\*/'
 t_CHAINCHAR = r'(\'[^\']*\'|\"[^\"]*\")'
 #Richard Perez
 t_MOD     = r'\%'

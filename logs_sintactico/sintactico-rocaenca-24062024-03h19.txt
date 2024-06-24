@@ -1,0 +1,79 @@
+Syntax error at 'if'
+Syntax error at 'print'
+Syntax error at ';'
+Syntax error at 'print'
+Syntax error at ';'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9); if(a > 0){final i = 0; print(23,4);}} else {String o = 0; print("hola");};}
+Result: None
+
+Syntax error at 'if'
+Syntax error at 'print'
+Syntax error at ';'
+Syntax error at 'print'
+Syntax error at ';'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9); if (a > 0) {final i = 0; print(23,4);}} else {String o = 0; print("hola");};}
+Result: None
+
+Syntax error at 'if'
+Syntax error at '}'
+Syntax error at 'print'
+Syntax error at ';'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9); if (a > 0) {final i = 0;}} else {String o = 0; print("hola");};}
+Result: None
+
+Syntax error at 'print'
+Syntax error at ';'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);} else {String o = 0; print("hola");};}
+Result: None
+
+Syntax error at 'print'
+Syntax error at ';'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56,9);} else {String o = 0; print("hola");};}
+Result: None
+
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56,9);} else {String o = 0;};}
+Result: None
+
+Syntax error at 'print'
+Input: int i = 0; print(i+1)
+Result: None
+
+Syntax error at 'print'
+Syntax error at ';'
+Input: int i = 0; print(i+1);
+Result: None
+
+Input: int i = 0; 
+Result: None
+
+Syntax error at ';'
+Input: int i = 0;;
+Result: None
+
+Input: print(i+1);
+Result: None
+
+Syntax error at 'if'
+Syntax error at '}'
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9); if (a > 0) {final i = 0;}} else {String o = 0;};}
+Result: None
+
+Syntax error at '}'
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);}else{if (a > 0) {final i = 0;}} else {String o = 0;};}
+Result: None
+
+Syntax error at '}'
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);}else{if (a > 0) {final i = 0;}}String o = 0;}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);}else{if (a > 0) {final i = 0;}}}
+Result: None
+
+Syntax error at '}'
+Input: for (String i = "hola" ; i == "hola" ; i += 8) {if (a != b) {print(56+9);}else{if (a > 0) {final i = 0;}}
+Result: None
+

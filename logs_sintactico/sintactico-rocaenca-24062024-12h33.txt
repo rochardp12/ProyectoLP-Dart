@@ -1,0 +1,26 @@
+Syntax error at EOF
+Input: if (a >0 || b == 9) {// comentario};
+Result: None
+
+Input: if (a >0 || b == 9) {print(2);};
+Result: None
+
+Input: // comentario de una linea
+Result: None
+
+Syntax error at EOF
+Input: if (a >0 || b == 9) {// comentario};
+Result: None
+
+Syntax error at EOF
+Input: if (a >0 || b == 9) {//comentario;};
+Result: None
+
+Syntax error at EOF
+Input: if (a >0 || b == 9) {//comentario} else{// otro comentario};
+Result: None
+
+Syntax error at EOF
+Input: if (a >0 || b == 9) {//comentario} else{// otro comentario};
+Result: None
+

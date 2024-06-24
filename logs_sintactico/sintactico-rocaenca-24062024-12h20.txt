@@ -1,0 +1,4 @@
+Syntax error at ';'
+Input: var nombres = ("Roberto", "Carlos");
+Result: None
+

@@ -1,0 +1,8 @@
+Syntax error at '='
+Input: String o = "hola@
+Result: None
+
+Syntax error at '='
+Input: String o = "hola@";
+Result: None
+
