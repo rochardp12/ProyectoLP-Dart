@@ -1,0 +1,3 @@
+Error sintactico en el token ',' en la linea 1, posicion 18
+Error sintactico en el token ',' en la linea 1, posicion 18
+Error sintactico en el token ',' en la linea 1, posicion 18

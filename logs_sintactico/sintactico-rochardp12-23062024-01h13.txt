@@ -1,0 +1,3 @@
+Error sintactico en el token 'print' en la linea 1, posicion 0
+Error sintactico en el token '+' en la linea 1, posicion 1
+Error sintactico en el token '*' en la linea 1, posicion 1

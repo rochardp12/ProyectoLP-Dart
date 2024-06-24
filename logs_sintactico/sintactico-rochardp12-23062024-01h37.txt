@@ -1,0 +1,2 @@
+Error sintactico en el token 'int' en la linea 1, posicion 0
+Error sintactico en el token 'String' en la linea 1, posicion 0

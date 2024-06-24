@@ -1,0 +1,2 @@
+Error sintactico en el token 'set' en la linea 1, posicion 0
+Error sintactico en el token '}' en la linea 1, posicion 11
