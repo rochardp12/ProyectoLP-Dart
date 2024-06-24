@@ -6,8 +6,8 @@ Grupo 7
 
 Integrantes:
 
--Katherine Tumbaco
+-Katherine Tumbaco - If-else, List, Funcion sin retorno Void
 
--Roberto Encalada
+-Roberto Encalada - For, funcion anónima, Diccionarios - Map
 
--Richard Pérez
+-Richard Pérez - Switch, Set, Funcion flecha
