@@ -1,0 +1,4 @@
+Syntax error at '='
+Input: Set con = {}
+Result: None
+

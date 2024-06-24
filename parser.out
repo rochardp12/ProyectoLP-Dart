@@ -5,26 +5,16 @@ Unused terminals:
     ABSTRACT
     ADMIRATION
     AND
-    ARROWFUNCTION
     AS
-    BREAK
-    CASE
     CATCH
-    CHAINCHAR
     CLASS
-    CONST
     DATAATTRIBUTE
     DEF
     DEFAULT
     DOLLAR
-    DOT
-    DOUBLE
-    DYNAMIC
     ELIF
     ENUM
     EXTENDS
-    FALSE
-    FINAL
     FINALLY
     FOR
     FUNCTION
@@ -34,7 +24,6 @@ Unused terminals:
     INTERNDATATYPE
     IS
     MAIN
-    MAP
     METHOD
     MOD
     MODULE
@@ -46,17 +35,11 @@ Unused terminals:
     PRIVATE
     PROTECTED
     PUBLIC
-    RETURN
-    SET
     STATIC
     SUPER
-    SWITCH
     THIS
-    TRUE
     TRY
-    TWODOTS
     TYPEDEF
-    VAR
     WHILE
     commentBlock
     commentLine
@@ -64,133 +47,159 @@ Unused terminals:
 Grammar
 
 Rule 0     S' -> cuerpo
-Rule 1     cuerpo -> expresion
-Rule 2     cuerpo -> impresion
-Rule 3     cuerpo -> tupla
-Rule 4     cuerpo -> declaracion
-Rule 5     cuerpo -> sentenciaIfElse
-Rule 6     cuerpo -> estructuraList
-Rule 7     cuerpo -> funcionVoid
-Rule 8     expresion -> valor operador valor
-Rule 9     declaracion -> VARIABLE EQUALS valor
-Rule 10    declaracion -> VARIABLE EQUALS tupla
-Rule 11    impresion -> PRINT LPAREN valores RPAREN DOTCOMMA
-Rule 12    impresion -> PRINT LPAREN expresion RPAREN DOTCOMMA
-Rule 13    impresion -> PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-Rule 14    impresion -> PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA
-Rule 15    sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-Rule 16    sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-Rule 17    estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-Rule 18    funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-Rule 19    condicion -> valor operadorComp valor
-Rule 20    operadorComp -> EQUALS
-Rule 21    operadorComp -> LANGLE
-Rule 22    operadorComp -> RANGLE
-Rule 23    operadorComp -> NEQ
-Rule 24    tupla -> LPAREN valores RPAREN
-Rule 25    impresion -> PRINT LPAREN RPAREN DOTCOMMA
-Rule 26    impresion -> <empty>
-Rule 27    valores -> valor
-Rule 28    valores -> valor COMMA valores
-Rule 29    operador -> PLUS
-Rule 30    operador -> MINUS
-Rule 31    operador -> TIMES
-Rule 32    operador -> DIVIDE
+Rule 1     cuerpo -> impresion
+Rule 2     cuerpo -> tupla
+Rule 3     cuerpo -> declaracion
+Rule 4     cuerpo -> sentenciaIf
+Rule 5     cuerpo -> estructuraList
+Rule 6     cuerpo -> funcionVoid
+Rule 7     cuerpo -> switch
+Rule 8     cuerpo -> operacion
+Rule 9     cuerpo -> flecha
+Rule 10    cuerpo -> RETURN VARIABLE
+Rule 11    cuerpo -> funcion
+Rule 12    cuerpo -> funcionData
+Rule 13    cuerpo -> crearConjunto
+Rule 14    impresion -> PRINT LPAREN valores RPAREN DOTCOMMA
+Rule 15    impresion -> PRINT LPAREN operacion RPAREN DOTCOMMA
+Rule 16    sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+Rule 17    sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+Rule 18    condicion -> valor operadorComp valor
+Rule 19    else -> ELSE LBRACE cuerpo RBRACE DOTCOMMA
+Rule 20    estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+Rule 21    funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+Rule 22    operadorComp -> EQUALS
+Rule 23    operadorComp -> LANGLE
+Rule 24    operadorComp -> RANGLE
+Rule 25    operadorComp -> NEQ
+Rule 26    tupla -> LPAREN valores RPAREN
+Rule 27    impresion -> PRINT LPAREN RPAREN DOTCOMMA
+Rule 28    impresion -> <empty>
+Rule 29    valores -> valor
+Rule 30    valores -> valor COMMA valores
+Rule 31    Bool -> TRUE
+Rule 32    Bool -> FALSE
 Rule 33    valor -> VARIABLE
-Rule 34    valor -> INT
-Rule 35    valor -> FLOAT
-Rule 36    valor -> BOOL
-Rule 37    valor -> expresion
-Rule 38    valor -> NUMBER
-Rule 39    type -> INT
-Rule 40    type -> STRING
-Rule 41    type -> BOOL
+Rule 34    valor -> FLOAT
+Rule 35    valor -> Bool
+Rule 36    valor -> operacion
+Rule 37    valor -> NUMBER
+Rule 38    valor -> CHAINCHAR
+Rule 39    type -> MAP
+Rule 40    type -> DOUBLE
+Rule 41    type -> STRING
+Rule 42    type -> INT
+Rule 43    type -> SET
+Rule 44    type -> LIST
+Rule 45    type -> BOOLEAN
+Rule 46    tipoVariable -> type
+Rule 47    tipoVariable -> FINAL
+Rule 48    tipoVariable -> CONST
+Rule 49    tipoVariable -> VAR
+Rule 50    tipoVariable -> DYNAMIC
+Rule 51    declaracion -> tipoVariable VARIABLE EQUALS valor
+Rule 52    operacion -> valor operador numeroSiguiente
+Rule 53    numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN
+Rule 54    numeroSiguiente -> valor
+Rule 55    funcion -> VARIABLE LPAREN valores RPAREN
+Rule 56    funcionData -> VARIABLE DOT VARIABLE LPAREN valores RPAREN
+Rule 57    switch -> SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+Rule 58    caso -> CASE valor TWODOTS cuerpo BREAK caso
+Rule 59    caso -> CASE valor TWODOTS cuerpo BREAK
+Rule 60    flecha -> type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+Rule 61    crearConjunto -> SET VARIABLE EQUALS conjunto
+Rule 62    crearConjunto -> SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+Rule 63    conjunto -> LBRACE valores RBRACE
+Rule 64    conjunto -> LBRACE RBRACE
+Rule 65    operador -> PLUS
+Rule 66    operador -> MINUS
+Rule 67    operador -> TIMES
+Rule 68    operador -> DIVIDE
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 ADMIRATION           : 
 AND                  : 
-ARROWFUNCTION        : 
+ARROWFUNCTION        : 60
 AS                   : 
-BOOL                 : 36 41
-BREAK                : 
-CASE                 : 
+BOOLEAN              : 45
+BREAK                : 58 59
+CASE                 : 58 59
 CATCH                : 
-CHAINCHAR            : 
+CHAINCHAR            : 38
 CLASS                : 
-COMMA                : 28
-CONST                : 
+COMMA                : 30
+CONST                : 48
 DATAATTRIBUTE        : 
 DEF                  : 
 DEFAULT              : 
-DIVIDE               : 32
+DIVIDE               : 68
 DOLLAR               : 
-DOT                  : 
-DOTCOMMA             : 11 12 13 14 15 16 17 18 25
-DOUBLE               : 
-DQUOTES              : 13 13 14 14
-DYNAMIC              : 
+DOT                  : 56
+DOTCOMMA             : 14 15 17 19 20 21 27
+DOUBLE               : 40
+DYNAMIC              : 50
 ELIF                 : 
-ELSE                 : 15
+ELSE                 : 19
 ENUM                 : 
-EQUALS               : 9 10 17 20
+EQUALS               : 20 22 51 61 62
 EXTENDS              : 
-FALSE                : 
-FINAL                : 
+FALSE                : 32
+FINAL                : 47
 FINALLY              : 
-FLOAT                : 35
+FLOAT                : 34
 FOR                  : 
 FUNCTION             : 
-IF                   : 15 16
+IF                   : 16 17
 IN                   : 
-INT                  : 34 39
+INT                  : 42
 INTEGERDIVISION      : 
 INTERFACE            : 
 INTERNDATATYPE       : 
 IS                   : 
-LANGLE               : 17 21
-LBRACE               : 15 15 16 18
-LBRACKET             : 17
-LIST                 : 17
-LPAREN               : 11 12 13 14 15 16 18 24 25
+LANGLE               : 20 23 62
+LBRACE               : 16 17 19 21 57 63 64
+LBRACKET             : 20
+LIST                 : 20 44
+LPAREN               : 14 15 16 17 21 26 27 53 55 56 57 60
 MAIN                 : 
-MAP                  : 
+MAP                  : 39
 METHOD               : 
-MINUS                : 30
+MINUS                : 66
 MOD                  : 
 MODULE               : 
-NEQ                  : 23
+NEQ                  : 25
 NEW                  : 
 NEWDATATYPE          : 
 NULL                 : 
-NUMBER               : 38
+NUMBER               : 37
 NUMBERINT            : 
 OR                   : 
-PLUS                 : 29
-PRINT                : 11 12 13 14 25
+PLUS                 : 65
+PRINT                : 14 15 27
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
-RANGLE               : 17 22
-RBRACE               : 15 15 16 18
-RBRACKET             : 17
-RETURN               : 
-RPAREN               : 11 12 13 14 15 16 18 24 25
-SET                  : 
+RANGLE               : 20 24 62
+RBRACE               : 16 17 19 21 57 63 64
+RBRACKET             : 20
+RETURN               : 10
+RPAREN               : 14 15 16 17 21 26 27 53 55 56 57 60
+SET                  : 43 61 62
 STATIC               : 
-STRING               : 40
+STRING               : 41
 SUPER                : 
-SWITCH               : 
+SWITCH               : 57
 THIS                 : 
-TIMES                : 31
-TRUE                 : 
+TIMES                : 67
+TRUE                 : 31
 TRY                  : 
-TWODOTS              : 
+TWODOTS              : 58 59
 TYPEDEF              : 
-VAR                  : 
-VARIABLE             : 9 10 17 18 33
-VOID                 : 18
+VAR                  : 49
+VARIABLE             : 10 20 21 33 51 55 56 56 60 61 62
+VOID                 : 21
 WHILE                : 
 commentBlock         : 
 commentLine          : 
@@ -198,75 +207,130 @@ error                :
 
 Nonterminals, with rules where they appear
 
-condicion            : 15 16
-cuerpo               : 15 15 16 18 0
-declaracion          : 4
-estructuraList       : 6
-expresion            : 1 12 13 37
-funcionVoid          : 7
-impresion            : 2
-operador             : 8
-operadorComp         : 19
-sentenciaIfElse      : 5
-tupla                : 3 10
-type                 : 17
-valor                : 8 8 9 19 19 27 28
-valores              : 11 14 17 18 24 28
+Bool                 : 35
+caso                 : 57 58
+condicion            : 16 17
+conjunto             : 61 62
+crearConjunto        : 13
+cuerpo               : 16 17 19 21 58 59 60 0
+declaracion          : 3
+else                 : 16
+estructuraList       : 5
+flecha               : 9
+funcion              : 11
+funcionData          : 12
+funcionVoid          : 6
+impresion            : 1
+numeroSiguiente      : 52 53
+operacion            : 8 15 36
+operador             : 52 53
+operadorComp         : 18
+sentenciaIf          : 4
+switch               : 7
+tipoVariable         : 51
+tupla                : 2
+type                 : 20 46 60 62
+valor                : 18 18 29 30 51 52 53 54 57 58 59
+valores              : 14 20 21 26 30 55 56 60 63
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . cuerpo
-    (1) cuerpo -> . expresion
-    (2) cuerpo -> . impresion
-    (3) cuerpo -> . tupla
-    (4) cuerpo -> . declaracion
-    (5) cuerpo -> . sentenciaIfElse
-    (6) cuerpo -> . estructuraList
-    (7) cuerpo -> . funcionVoid
-    (8) expresion -> . valor operador valor
-    (11) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
-    (12) impresion -> . PRINT LPAREN expresion RPAREN DOTCOMMA
-    (13) impresion -> . PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> . PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA
-    (25) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
-    (26) impresion -> .
-    (24) tupla -> . LPAREN valores RPAREN
-    (9) declaracion -> . VARIABLE EQUALS valor
-    (10) declaracion -> . VARIABLE EQUALS tupla
-    (15) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (17) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-    (18) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (1) cuerpo -> . impresion
+    (2) cuerpo -> . tupla
+    (3) cuerpo -> . declaracion
+    (4) cuerpo -> . sentenciaIf
+    (5) cuerpo -> . estructuraList
+    (6) cuerpo -> . funcionVoid
+    (7) cuerpo -> . switch
+    (8) cuerpo -> . operacion
+    (9) cuerpo -> . flecha
+    (10) cuerpo -> . RETURN VARIABLE
+    (11) cuerpo -> . funcion
+    (12) cuerpo -> . funcionData
+    (13) cuerpo -> . crearConjunto
+    (14) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> . PRINT LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
+    (28) impresion -> .
+    (26) tupla -> . LPAREN valores RPAREN
+    (51) declaracion -> . tipoVariable VARIABLE EQUALS valor
+    (16) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (20) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (21) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (57) switch -> . SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+    (52) operacion -> . valor operador numeroSiguiente
+    (60) flecha -> . type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (55) funcion -> . VARIABLE LPAREN valores RPAREN
+    (56) funcionData -> . VARIABLE DOT VARIABLE LPAREN valores RPAREN
+    (61) crearConjunto -> . SET VARIABLE EQUALS conjunto
+    (62) crearConjunto -> . SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (46) tipoVariable -> . type
+    (47) tipoVariable -> . FINAL
+    (48) tipoVariable -> . CONST
+    (49) tipoVariable -> . VAR
+    (50) tipoVariable -> . DYNAMIC
     (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
 
-    PRINT           shift and go to state 10
-    $end            reduce using rule 26 (impresion -> .)
-    LPAREN          shift and go to state 11
+    RETURN          shift and go to state 11
+    PRINT           shift and go to state 16
+    $end            reduce using rule 28 (impresion -> .)
+    LPAREN          shift and go to state 17
+    IF              shift and go to state 20
+    LIST            shift and go to state 21
+    VOID            shift and go to state 23
+    SWITCH          shift and go to state 24
     VARIABLE        shift and go to state 12
-    IF              shift and go to state 13
-    LIST            shift and go to state 14
-    VOID            shift and go to state 15
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    SET             shift and go to state 25
+    FINAL           shift and go to state 26
+    CONST           shift and go to state 27
+    VAR             shift and go to state 28
+    DYNAMIC         shift and go to state 29
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    BOOLEAN         shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
     cuerpo                         shift and go to state 1
-    expresion                      shift and go to state 2
-    impresion                      shift and go to state 3
-    tupla                          shift and go to state 4
-    declaracion                    shift and go to state 5
-    sentenciaIfElse                shift and go to state 6
-    estructuraList                 shift and go to state 7
-    funcionVoid                    shift and go to state 8
-    valor                          shift and go to state 9
+    impresion                      shift and go to state 2
+    tupla                          shift and go to state 3
+    declaracion                    shift and go to state 4
+    sentenciaIf                    shift and go to state 5
+    estructuraList                 shift and go to state 6
+    funcionVoid                    shift and go to state 7
+    switch                         shift and go to state 8
+    operacion                      shift and go to state 9
+    flecha                         shift and go to state 10
+    funcion                        shift and go to state 13
+    funcionData                    shift and go to state 14
+    crearConjunto                  shift and go to state 15
+    tipoVariable                   shift and go to state 18
+    valor                          shift and go to state 19
+    type                           shift and go to state 22
+    Bool                           shift and go to state 31
 
 state 1
 
@@ -276,121 +340,105 @@ state 1
 
 state 2
 
-    (1) cuerpo -> expresion .
-    (37) valor -> expresion .
+    (1) cuerpo -> impresion .
 
-    $end            reduce using rule 1 (cuerpo -> expresion .)
-    RBRACE          reduce using rule 1 (cuerpo -> expresion .)
-    PLUS            reduce using rule 37 (valor -> expresion .)
-    MINUS           reduce using rule 37 (valor -> expresion .)
-    TIMES           reduce using rule 37 (valor -> expresion .)
-    DIVIDE          reduce using rule 37 (valor -> expresion .)
+    $end            reduce using rule 1 (cuerpo -> impresion .)
+    RBRACE          reduce using rule 1 (cuerpo -> impresion .)
+    BREAK           reduce using rule 1 (cuerpo -> impresion .)
 
 
 state 3
 
-    (2) cuerpo -> impresion .
+    (2) cuerpo -> tupla .
 
-    $end            reduce using rule 2 (cuerpo -> impresion .)
-    RBRACE          reduce using rule 2 (cuerpo -> impresion .)
+    $end            reduce using rule 2 (cuerpo -> tupla .)
+    RBRACE          reduce using rule 2 (cuerpo -> tupla .)
+    BREAK           reduce using rule 2 (cuerpo -> tupla .)
 
 
 state 4
 
-    (3) cuerpo -> tupla .
+    (3) cuerpo -> declaracion .
 
-    $end            reduce using rule 3 (cuerpo -> tupla .)
-    RBRACE          reduce using rule 3 (cuerpo -> tupla .)
+    $end            reduce using rule 3 (cuerpo -> declaracion .)
+    RBRACE          reduce using rule 3 (cuerpo -> declaracion .)
+    BREAK           reduce using rule 3 (cuerpo -> declaracion .)
 
 
 state 5
 
-    (4) cuerpo -> declaracion .
+    (4) cuerpo -> sentenciaIf .
 
-    $end            reduce using rule 4 (cuerpo -> declaracion .)
-    RBRACE          reduce using rule 4 (cuerpo -> declaracion .)
+    $end            reduce using rule 4 (cuerpo -> sentenciaIf .)
+    RBRACE          reduce using rule 4 (cuerpo -> sentenciaIf .)
+    BREAK           reduce using rule 4 (cuerpo -> sentenciaIf .)
 
 
 state 6
 
-    (5) cuerpo -> sentenciaIfElse .
+    (5) cuerpo -> estructuraList .
 
-    $end            reduce using rule 5 (cuerpo -> sentenciaIfElse .)
-    RBRACE          reduce using rule 5 (cuerpo -> sentenciaIfElse .)
+    $end            reduce using rule 5 (cuerpo -> estructuraList .)
+    RBRACE          reduce using rule 5 (cuerpo -> estructuraList .)
+    BREAK           reduce using rule 5 (cuerpo -> estructuraList .)
 
 
 state 7
 
-    (6) cuerpo -> estructuraList .
+    (6) cuerpo -> funcionVoid .
 
-    $end            reduce using rule 6 (cuerpo -> estructuraList .)
-    RBRACE          reduce using rule 6 (cuerpo -> estructuraList .)
+    $end            reduce using rule 6 (cuerpo -> funcionVoid .)
+    RBRACE          reduce using rule 6 (cuerpo -> funcionVoid .)
+    BREAK           reduce using rule 6 (cuerpo -> funcionVoid .)
 
 
 state 8
 
-    (7) cuerpo -> funcionVoid .
+    (7) cuerpo -> switch .
 
-    $end            reduce using rule 7 (cuerpo -> funcionVoid .)
-    RBRACE          reduce using rule 7 (cuerpo -> funcionVoid .)
+    $end            reduce using rule 7 (cuerpo -> switch .)
+    RBRACE          reduce using rule 7 (cuerpo -> switch .)
+    BREAK           reduce using rule 7 (cuerpo -> switch .)
 
 
 state 9
 
-    (8) expresion -> valor . operador valor
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
+    (8) cuerpo -> operacion .
+    (36) valor -> operacion .
 
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    $end            reduce using rule 8 (cuerpo -> operacion .)
+    RBRACE          reduce using rule 8 (cuerpo -> operacion .)
+    BREAK           reduce using rule 8 (cuerpo -> operacion .)
+    PLUS            reduce using rule 36 (valor -> operacion .)
+    MINUS           reduce using rule 36 (valor -> operacion .)
+    TIMES           reduce using rule 36 (valor -> operacion .)
+    DIVIDE          reduce using rule 36 (valor -> operacion .)
 
-    operador                       shift and go to state 20
 
 state 10
 
-    (11) impresion -> PRINT . LPAREN valores RPAREN DOTCOMMA
-    (12) impresion -> PRINT . LPAREN expresion RPAREN DOTCOMMA
-    (13) impresion -> PRINT . LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> PRINT . LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA
-    (25) impresion -> PRINT . LPAREN RPAREN DOTCOMMA
+    (9) cuerpo -> flecha .
 
-    LPAREN          shift and go to state 25
+    $end            reduce using rule 9 (cuerpo -> flecha .)
+    RBRACE          reduce using rule 9 (cuerpo -> flecha .)
+    BREAK           reduce using rule 9 (cuerpo -> flecha .)
 
 
 state 11
 
-    (24) tupla -> LPAREN . valores RPAREN
-    (27) valores -> . valor
-    (28) valores -> . valor COMMA valores
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
+    (10) cuerpo -> RETURN . VARIABLE
 
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    VARIABLE        shift and go to state 41
 
-    valores                        shift and go to state 26
-    valor                          shift and go to state 27
-    expresion                      shift and go to state 29
 
 state 12
 
-    (9) declaracion -> VARIABLE . EQUALS valor
-    (10) declaracion -> VARIABLE . EQUALS tupla
+    (55) funcion -> VARIABLE . LPAREN valores RPAREN
+    (56) funcionData -> VARIABLE . DOT VARIABLE LPAREN valores RPAREN
     (33) valor -> VARIABLE .
 
-    EQUALS          shift and go to state 30
+    LPAREN          shift and go to state 42
+    DOT             shift and go to state 43
     PLUS            reduce using rule 33 (valor -> VARIABLE .)
     MINUS           reduce using rule 33 (valor -> VARIABLE .)
     TIMES           reduce using rule 33 (valor -> VARIABLE .)
@@ -399,228 +447,440 @@ state 12
 
 state 13
 
-    (15) sentenciaIfElse -> IF . LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF . LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (11) cuerpo -> funcion .
 
-    LPAREN          shift and go to state 31
+    $end            reduce using rule 11 (cuerpo -> funcion .)
+    RBRACE          reduce using rule 11 (cuerpo -> funcion .)
+    BREAK           reduce using rule 11 (cuerpo -> funcion .)
 
 
 state 14
 
-    (17) estructuraList -> LIST . LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (12) cuerpo -> funcionData .
 
-    LANGLE          shift and go to state 32
+    $end            reduce using rule 12 (cuerpo -> funcionData .)
+    RBRACE          reduce using rule 12 (cuerpo -> funcionData .)
+    BREAK           reduce using rule 12 (cuerpo -> funcionData .)
 
 
 state 15
 
-    (18) funcionVoid -> VOID . VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (13) cuerpo -> crearConjunto .
 
-    VARIABLE        shift and go to state 33
+    $end            reduce using rule 13 (cuerpo -> crearConjunto .)
+    RBRACE          reduce using rule 13 (cuerpo -> crearConjunto .)
+    BREAK           reduce using rule 13 (cuerpo -> crearConjunto .)
 
 
 state 16
 
-    (34) valor -> INT .
+    (14) impresion -> PRINT . LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> PRINT . LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> PRINT . LPAREN RPAREN DOTCOMMA
 
-    PLUS            reduce using rule 34 (valor -> INT .)
-    MINUS           reduce using rule 34 (valor -> INT .)
-    TIMES           reduce using rule 34 (valor -> INT .)
-    DIVIDE          reduce using rule 34 (valor -> INT .)
-    COMMA           reduce using rule 34 (valor -> INT .)
-    RPAREN          reduce using rule 34 (valor -> INT .)
-    $end            reduce using rule 34 (valor -> INT .)
-    RBRACE          reduce using rule 34 (valor -> INT .)
-    EQUALS          reduce using rule 34 (valor -> INT .)
-    LANGLE          reduce using rule 34 (valor -> INT .)
-    RANGLE          reduce using rule 34 (valor -> INT .)
-    NEQ             reduce using rule 34 (valor -> INT .)
-    DQUOTES         reduce using rule 34 (valor -> INT .)
-    RBRACKET        reduce using rule 34 (valor -> INT .)
+    LPAREN          shift and go to state 44
 
 
 state 17
 
-    (35) valor -> FLOAT .
+    (26) tupla -> LPAREN . valores RPAREN
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    PLUS            reduce using rule 35 (valor -> FLOAT .)
-    MINUS           reduce using rule 35 (valor -> FLOAT .)
-    TIMES           reduce using rule 35 (valor -> FLOAT .)
-    DIVIDE          reduce using rule 35 (valor -> FLOAT .)
-    COMMA           reduce using rule 35 (valor -> FLOAT .)
-    RPAREN          reduce using rule 35 (valor -> FLOAT .)
-    $end            reduce using rule 35 (valor -> FLOAT .)
-    RBRACE          reduce using rule 35 (valor -> FLOAT .)
-    EQUALS          reduce using rule 35 (valor -> FLOAT .)
-    LANGLE          reduce using rule 35 (valor -> FLOAT .)
-    RANGLE          reduce using rule 35 (valor -> FLOAT .)
-    NEQ             reduce using rule 35 (valor -> FLOAT .)
-    DQUOTES         reduce using rule 35 (valor -> FLOAT .)
-    RBRACKET        reduce using rule 35 (valor -> FLOAT .)
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
+    valores                        shift and go to state 45
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
 state 18
 
-    (36) valor -> BOOL .
+    (51) declaracion -> tipoVariable . VARIABLE EQUALS valor
 
-    PLUS            reduce using rule 36 (valor -> BOOL .)
-    MINUS           reduce using rule 36 (valor -> BOOL .)
-    TIMES           reduce using rule 36 (valor -> BOOL .)
-    DIVIDE          reduce using rule 36 (valor -> BOOL .)
-    COMMA           reduce using rule 36 (valor -> BOOL .)
-    RPAREN          reduce using rule 36 (valor -> BOOL .)
-    $end            reduce using rule 36 (valor -> BOOL .)
-    RBRACE          reduce using rule 36 (valor -> BOOL .)
-    EQUALS          reduce using rule 36 (valor -> BOOL .)
-    LANGLE          reduce using rule 36 (valor -> BOOL .)
-    RANGLE          reduce using rule 36 (valor -> BOOL .)
-    NEQ             reduce using rule 36 (valor -> BOOL .)
-    DQUOTES         reduce using rule 36 (valor -> BOOL .)
-    RBRACKET        reduce using rule 36 (valor -> BOOL .)
+    VARIABLE        shift and go to state 49
 
 
 state 19
 
-    (38) valor -> NUMBER .
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
 
-    PLUS            reduce using rule 38 (valor -> NUMBER .)
-    MINUS           reduce using rule 38 (valor -> NUMBER .)
-    TIMES           reduce using rule 38 (valor -> NUMBER .)
-    DIVIDE          reduce using rule 38 (valor -> NUMBER .)
-    COMMA           reduce using rule 38 (valor -> NUMBER .)
-    RPAREN          reduce using rule 38 (valor -> NUMBER .)
-    $end            reduce using rule 38 (valor -> NUMBER .)
-    RBRACE          reduce using rule 38 (valor -> NUMBER .)
-    EQUALS          reduce using rule 38 (valor -> NUMBER .)
-    LANGLE          reduce using rule 38 (valor -> NUMBER .)
-    RANGLE          reduce using rule 38 (valor -> NUMBER .)
-    NEQ             reduce using rule 38 (valor -> NUMBER .)
-    DQUOTES         reduce using rule 38 (valor -> NUMBER .)
-    RBRACKET        reduce using rule 38 (valor -> NUMBER .)
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
 
+    operador                       shift and go to state 50
 
 state 20
 
-    (8) expresion -> valor operador . valor
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
+    (16) sentenciaIf -> IF . LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> IF . LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
 
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    LPAREN          shift and go to state 55
 
-    valor                          shift and go to state 34
-    expresion                      shift and go to state 29
 
 state 21
 
-    (29) operador -> PLUS .
+    (20) estructuraList -> LIST . LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (44) type -> LIST .
 
-    VARIABLE        reduce using rule 29 (operador -> PLUS .)
-    INT             reduce using rule 29 (operador -> PLUS .)
-    FLOAT           reduce using rule 29 (operador -> PLUS .)
-    BOOL            reduce using rule 29 (operador -> PLUS .)
-    NUMBER          reduce using rule 29 (operador -> PLUS .)
+    LANGLE          shift and go to state 56
+    VARIABLE        reduce using rule 44 (type -> LIST .)
 
 
 state 22
 
-    (30) operador -> MINUS .
+    (60) flecha -> type . VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (46) tipoVariable -> type .
 
-    VARIABLE        reduce using rule 30 (operador -> MINUS .)
-    INT             reduce using rule 30 (operador -> MINUS .)
-    FLOAT           reduce using rule 30 (operador -> MINUS .)
-    BOOL            reduce using rule 30 (operador -> MINUS .)
-    NUMBER          reduce using rule 30 (operador -> MINUS .)
+  ! shift/reduce conflict for VARIABLE resolved as shift
+    VARIABLE        shift and go to state 57
+
+  ! VARIABLE        [ reduce using rule 46 (tipoVariable -> type .) ]
 
 
 state 23
 
-    (31) operador -> TIMES .
+    (21) funcionVoid -> VOID . VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
 
-    VARIABLE        reduce using rule 31 (operador -> TIMES .)
-    INT             reduce using rule 31 (operador -> TIMES .)
-    FLOAT           reduce using rule 31 (operador -> TIMES .)
-    BOOL            reduce using rule 31 (operador -> TIMES .)
-    NUMBER          reduce using rule 31 (operador -> TIMES .)
+    VARIABLE        shift and go to state 58
 
 
 state 24
 
-    (32) operador -> DIVIDE .
+    (57) switch -> SWITCH . LPAREN valor RPAREN LBRACE caso RBRACE
 
-    VARIABLE        reduce using rule 32 (operador -> DIVIDE .)
-    INT             reduce using rule 32 (operador -> DIVIDE .)
-    FLOAT           reduce using rule 32 (operador -> DIVIDE .)
-    BOOL            reduce using rule 32 (operador -> DIVIDE .)
-    NUMBER          reduce using rule 32 (operador -> DIVIDE .)
+    LPAREN          shift and go to state 59
 
 
 state 25
 
-    (11) impresion -> PRINT LPAREN . valores RPAREN DOTCOMMA
-    (12) impresion -> PRINT LPAREN . expresion RPAREN DOTCOMMA
-    (13) impresion -> PRINT LPAREN . DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> PRINT LPAREN . DQUOTES valores DQUOTES RPAREN DOTCOMMA
-    (25) impresion -> PRINT LPAREN . RPAREN DOTCOMMA
-    (27) valores -> . valor
-    (28) valores -> . valor COMMA valores
-    (8) expresion -> . valor operador valor
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
+    (61) crearConjunto -> SET . VARIABLE EQUALS conjunto
+    (62) crearConjunto -> SET . LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (43) type -> SET .
 
-    DQUOTES         shift and go to state 38
-    RPAREN          shift and go to state 36
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+  ! shift/reduce conflict for VARIABLE resolved as shift
+    VARIABLE        shift and go to state 60
+    LANGLE          shift and go to state 61
 
-    valores                        shift and go to state 35
-    expresion                      shift and go to state 37
-    valor                          shift and go to state 27
+  ! VARIABLE        [ reduce using rule 43 (type -> SET .) ]
+
 
 state 26
 
-    (24) tupla -> LPAREN valores . RPAREN
+    (47) tipoVariable -> FINAL .
 
-    RPAREN          shift and go to state 39
+    VARIABLE        reduce using rule 47 (tipoVariable -> FINAL .)
 
 
 state 27
 
-    (27) valores -> valor .
-    (28) valores -> valor . COMMA valores
-    (8) expresion -> valor . operador valor
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
+    (48) tipoVariable -> CONST .
 
-    RPAREN          reduce using rule 27 (valores -> valor .)
-    DQUOTES         reduce using rule 27 (valores -> valor .)
-    RBRACKET        reduce using rule 27 (valores -> valor .)
-    COMMA           shift and go to state 40
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    VARIABLE        reduce using rule 48 (tipoVariable -> CONST .)
 
-    operador                       shift and go to state 20
 
 state 28
+
+    (49) tipoVariable -> VAR .
+
+    VARIABLE        reduce using rule 49 (tipoVariable -> VAR .)
+
+
+state 29
+
+    (50) tipoVariable -> DYNAMIC .
+
+    VARIABLE        reduce using rule 50 (tipoVariable -> DYNAMIC .)
+
+
+state 30
+
+    (34) valor -> FLOAT .
+
+    PLUS            reduce using rule 34 (valor -> FLOAT .)
+    MINUS           reduce using rule 34 (valor -> FLOAT .)
+    TIMES           reduce using rule 34 (valor -> FLOAT .)
+    DIVIDE          reduce using rule 34 (valor -> FLOAT .)
+    COMMA           reduce using rule 34 (valor -> FLOAT .)
+    RPAREN          reduce using rule 34 (valor -> FLOAT .)
+    $end            reduce using rule 34 (valor -> FLOAT .)
+    EQUALS          reduce using rule 34 (valor -> FLOAT .)
+    LANGLE          reduce using rule 34 (valor -> FLOAT .)
+    RANGLE          reduce using rule 34 (valor -> FLOAT .)
+    NEQ             reduce using rule 34 (valor -> FLOAT .)
+    RBRACE          reduce using rule 34 (valor -> FLOAT .)
+    RBRACKET        reduce using rule 34 (valor -> FLOAT .)
+    BREAK           reduce using rule 34 (valor -> FLOAT .)
+    TWODOTS         reduce using rule 34 (valor -> FLOAT .)
+
+
+state 31
+
+    (35) valor -> Bool .
+
+    PLUS            reduce using rule 35 (valor -> Bool .)
+    MINUS           reduce using rule 35 (valor -> Bool .)
+    TIMES           reduce using rule 35 (valor -> Bool .)
+    DIVIDE          reduce using rule 35 (valor -> Bool .)
+    COMMA           reduce using rule 35 (valor -> Bool .)
+    RPAREN          reduce using rule 35 (valor -> Bool .)
+    $end            reduce using rule 35 (valor -> Bool .)
+    EQUALS          reduce using rule 35 (valor -> Bool .)
+    LANGLE          reduce using rule 35 (valor -> Bool .)
+    RANGLE          reduce using rule 35 (valor -> Bool .)
+    NEQ             reduce using rule 35 (valor -> Bool .)
+    RBRACE          reduce using rule 35 (valor -> Bool .)
+    RBRACKET        reduce using rule 35 (valor -> Bool .)
+    BREAK           reduce using rule 35 (valor -> Bool .)
+    TWODOTS         reduce using rule 35 (valor -> Bool .)
+
+
+state 32
+
+    (37) valor -> NUMBER .
+
+    PLUS            reduce using rule 37 (valor -> NUMBER .)
+    MINUS           reduce using rule 37 (valor -> NUMBER .)
+    TIMES           reduce using rule 37 (valor -> NUMBER .)
+    DIVIDE          reduce using rule 37 (valor -> NUMBER .)
+    COMMA           reduce using rule 37 (valor -> NUMBER .)
+    RPAREN          reduce using rule 37 (valor -> NUMBER .)
+    $end            reduce using rule 37 (valor -> NUMBER .)
+    EQUALS          reduce using rule 37 (valor -> NUMBER .)
+    LANGLE          reduce using rule 37 (valor -> NUMBER .)
+    RANGLE          reduce using rule 37 (valor -> NUMBER .)
+    NEQ             reduce using rule 37 (valor -> NUMBER .)
+    RBRACE          reduce using rule 37 (valor -> NUMBER .)
+    RBRACKET        reduce using rule 37 (valor -> NUMBER .)
+    BREAK           reduce using rule 37 (valor -> NUMBER .)
+    TWODOTS         reduce using rule 37 (valor -> NUMBER .)
+
+
+state 33
+
+    (38) valor -> CHAINCHAR .
+
+    PLUS            reduce using rule 38 (valor -> CHAINCHAR .)
+    MINUS           reduce using rule 38 (valor -> CHAINCHAR .)
+    TIMES           reduce using rule 38 (valor -> CHAINCHAR .)
+    DIVIDE          reduce using rule 38 (valor -> CHAINCHAR .)
+    COMMA           reduce using rule 38 (valor -> CHAINCHAR .)
+    RPAREN          reduce using rule 38 (valor -> CHAINCHAR .)
+    $end            reduce using rule 38 (valor -> CHAINCHAR .)
+    EQUALS          reduce using rule 38 (valor -> CHAINCHAR .)
+    LANGLE          reduce using rule 38 (valor -> CHAINCHAR .)
+    RANGLE          reduce using rule 38 (valor -> CHAINCHAR .)
+    NEQ             reduce using rule 38 (valor -> CHAINCHAR .)
+    RBRACE          reduce using rule 38 (valor -> CHAINCHAR .)
+    RBRACKET        reduce using rule 38 (valor -> CHAINCHAR .)
+    BREAK           reduce using rule 38 (valor -> CHAINCHAR .)
+    TWODOTS         reduce using rule 38 (valor -> CHAINCHAR .)
+
+
+state 34
+
+    (39) type -> MAP .
+
+    VARIABLE        reduce using rule 39 (type -> MAP .)
+    RANGLE          reduce using rule 39 (type -> MAP .)
+
+
+state 35
+
+    (40) type -> DOUBLE .
+
+    VARIABLE        reduce using rule 40 (type -> DOUBLE .)
+    RANGLE          reduce using rule 40 (type -> DOUBLE .)
+
+
+state 36
+
+    (41) type -> STRING .
+
+    VARIABLE        reduce using rule 41 (type -> STRING .)
+    RANGLE          reduce using rule 41 (type -> STRING .)
+
+
+state 37
+
+    (42) type -> INT .
+
+    VARIABLE        reduce using rule 42 (type -> INT .)
+    RANGLE          reduce using rule 42 (type -> INT .)
+
+
+state 38
+
+    (45) type -> BOOLEAN .
+
+    VARIABLE        reduce using rule 45 (type -> BOOLEAN .)
+    RANGLE          reduce using rule 45 (type -> BOOLEAN .)
+
+
+state 39
+
+    (31) Bool -> TRUE .
+
+    PLUS            reduce using rule 31 (Bool -> TRUE .)
+    MINUS           reduce using rule 31 (Bool -> TRUE .)
+    TIMES           reduce using rule 31 (Bool -> TRUE .)
+    DIVIDE          reduce using rule 31 (Bool -> TRUE .)
+    COMMA           reduce using rule 31 (Bool -> TRUE .)
+    RPAREN          reduce using rule 31 (Bool -> TRUE .)
+    $end            reduce using rule 31 (Bool -> TRUE .)
+    EQUALS          reduce using rule 31 (Bool -> TRUE .)
+    LANGLE          reduce using rule 31 (Bool -> TRUE .)
+    RANGLE          reduce using rule 31 (Bool -> TRUE .)
+    NEQ             reduce using rule 31 (Bool -> TRUE .)
+    RBRACE          reduce using rule 31 (Bool -> TRUE .)
+    RBRACKET        reduce using rule 31 (Bool -> TRUE .)
+    BREAK           reduce using rule 31 (Bool -> TRUE .)
+    TWODOTS         reduce using rule 31 (Bool -> TRUE .)
+
+
+state 40
+
+    (32) Bool -> FALSE .
+
+    PLUS            reduce using rule 32 (Bool -> FALSE .)
+    MINUS           reduce using rule 32 (Bool -> FALSE .)
+    TIMES           reduce using rule 32 (Bool -> FALSE .)
+    DIVIDE          reduce using rule 32 (Bool -> FALSE .)
+    COMMA           reduce using rule 32 (Bool -> FALSE .)
+    RPAREN          reduce using rule 32 (Bool -> FALSE .)
+    $end            reduce using rule 32 (Bool -> FALSE .)
+    EQUALS          reduce using rule 32 (Bool -> FALSE .)
+    LANGLE          reduce using rule 32 (Bool -> FALSE .)
+    RANGLE          reduce using rule 32 (Bool -> FALSE .)
+    NEQ             reduce using rule 32 (Bool -> FALSE .)
+    RBRACE          reduce using rule 32 (Bool -> FALSE .)
+    RBRACKET        reduce using rule 32 (Bool -> FALSE .)
+    BREAK           reduce using rule 32 (Bool -> FALSE .)
+    TWODOTS         reduce using rule 32 (Bool -> FALSE .)
+
+
+state 41
+
+    (10) cuerpo -> RETURN VARIABLE .
+
+    $end            reduce using rule 10 (cuerpo -> RETURN VARIABLE .)
+    RBRACE          reduce using rule 10 (cuerpo -> RETURN VARIABLE .)
+    BREAK           reduce using rule 10 (cuerpo -> RETURN VARIABLE .)
+
+
+state 42
+
+    (55) funcion -> VARIABLE LPAREN . valores RPAREN
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valores                        shift and go to state 62
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 43
+
+    (56) funcionData -> VARIABLE DOT . VARIABLE LPAREN valores RPAREN
+
+    VARIABLE        shift and go to state 63
+
+
+state 44
+
+    (14) impresion -> PRINT LPAREN . valores RPAREN DOTCOMMA
+    (15) impresion -> PRINT LPAREN . operacion RPAREN DOTCOMMA
+    (27) impresion -> PRINT LPAREN . RPAREN DOTCOMMA
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (52) operacion -> . valor operador numeroSiguiente
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+
+    RPAREN          shift and go to state 65
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valores                        shift and go to state 64
+    operacion                      shift and go to state 66
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+
+state 45
+
+    (26) tupla -> LPAREN valores . RPAREN
+
+    RPAREN          shift and go to state 67
+
+
+state 46
+
+    (29) valores -> valor .
+    (30) valores -> valor . COMMA valores
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
+
+    RPAREN          reduce using rule 29 (valores -> valor .)
+    RBRACE          reduce using rule 29 (valores -> valor .)
+    RBRACKET        reduce using rule 29 (valores -> valor .)
+    COMMA           shift and go to state 68
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
+
+    operador                       shift and go to state 50
+
+state 47
 
     (33) valor -> VARIABLE .
 
@@ -631,875 +891,1753 @@ state 28
     DIVIDE          reduce using rule 33 (valor -> VARIABLE .)
     RPAREN          reduce using rule 33 (valor -> VARIABLE .)
     $end            reduce using rule 33 (valor -> VARIABLE .)
-    RBRACE          reduce using rule 33 (valor -> VARIABLE .)
     EQUALS          reduce using rule 33 (valor -> VARIABLE .)
     LANGLE          reduce using rule 33 (valor -> VARIABLE .)
     RANGLE          reduce using rule 33 (valor -> VARIABLE .)
     NEQ             reduce using rule 33 (valor -> VARIABLE .)
-    DQUOTES         reduce using rule 33 (valor -> VARIABLE .)
+    RBRACE          reduce using rule 33 (valor -> VARIABLE .)
     RBRACKET        reduce using rule 33 (valor -> VARIABLE .)
+    BREAK           reduce using rule 33 (valor -> VARIABLE .)
+    TWODOTS         reduce using rule 33 (valor -> VARIABLE .)
 
 
-state 29
+state 48
 
-    (37) valor -> expresion .
+    (36) valor -> operacion .
 
-    COMMA           reduce using rule 37 (valor -> expresion .)
-    PLUS            reduce using rule 37 (valor -> expresion .)
-    MINUS           reduce using rule 37 (valor -> expresion .)
-    TIMES           reduce using rule 37 (valor -> expresion .)
-    DIVIDE          reduce using rule 37 (valor -> expresion .)
-    RPAREN          reduce using rule 37 (valor -> expresion .)
-    $end            reduce using rule 37 (valor -> expresion .)
-    RBRACE          reduce using rule 37 (valor -> expresion .)
-    EQUALS          reduce using rule 37 (valor -> expresion .)
-    LANGLE          reduce using rule 37 (valor -> expresion .)
-    RANGLE          reduce using rule 37 (valor -> expresion .)
-    NEQ             reduce using rule 37 (valor -> expresion .)
-    DQUOTES         reduce using rule 37 (valor -> expresion .)
-    RBRACKET        reduce using rule 37 (valor -> expresion .)
+    COMMA           reduce using rule 36 (valor -> operacion .)
+    PLUS            reduce using rule 36 (valor -> operacion .)
+    MINUS           reduce using rule 36 (valor -> operacion .)
+    TIMES           reduce using rule 36 (valor -> operacion .)
+    DIVIDE          reduce using rule 36 (valor -> operacion .)
+    RPAREN          reduce using rule 36 (valor -> operacion .)
+    $end            reduce using rule 36 (valor -> operacion .)
+    EQUALS          reduce using rule 36 (valor -> operacion .)
+    LANGLE          reduce using rule 36 (valor -> operacion .)
+    RANGLE          reduce using rule 36 (valor -> operacion .)
+    NEQ             reduce using rule 36 (valor -> operacion .)
+    RBRACE          reduce using rule 36 (valor -> operacion .)
+    RBRACKET        reduce using rule 36 (valor -> operacion .)
+    BREAK           reduce using rule 36 (valor -> operacion .)
+    TWODOTS         reduce using rule 36 (valor -> operacion .)
 
 
-state 30
+state 49
 
-    (9) declaracion -> VARIABLE EQUALS . valor
-    (10) declaracion -> VARIABLE EQUALS . tupla
+    (51) declaracion -> tipoVariable VARIABLE . EQUALS valor
+
+    EQUALS          shift and go to state 69
+
+
+state 50
+
+    (52) operacion -> valor operador . numeroSiguiente
+    (53) numeroSiguiente -> . LPAREN valor operador numeroSiguiente RPAREN
+    (54) numeroSiguiente -> . valor
     (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (24) tupla -> . LPAREN valores RPAREN
-    (8) expresion -> . valor operador valor
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
-    LPAREN          shift and go to state 11
+    LPAREN          shift and go to state 72
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
-    valor                          shift and go to state 41
-    tupla                          shift and go to state 42
-    expresion                      shift and go to state 29
+    valor                          shift and go to state 70
+    numeroSiguiente                shift and go to state 71
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
-state 31
+state 51
 
-    (15) sentenciaIfElse -> IF LPAREN . condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF LPAREN . condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (19) condicion -> . valor operadorComp valor
+    (65) operador -> PLUS .
+
+    LPAREN          reduce using rule 65 (operador -> PLUS .)
+    VARIABLE        reduce using rule 65 (operador -> PLUS .)
+    FLOAT           reduce using rule 65 (operador -> PLUS .)
+    NUMBER          reduce using rule 65 (operador -> PLUS .)
+    CHAINCHAR       reduce using rule 65 (operador -> PLUS .)
+    TRUE            reduce using rule 65 (operador -> PLUS .)
+    FALSE           reduce using rule 65 (operador -> PLUS .)
+
+
+state 52
+
+    (66) operador -> MINUS .
+
+    LPAREN          reduce using rule 66 (operador -> MINUS .)
+    VARIABLE        reduce using rule 66 (operador -> MINUS .)
+    FLOAT           reduce using rule 66 (operador -> MINUS .)
+    NUMBER          reduce using rule 66 (operador -> MINUS .)
+    CHAINCHAR       reduce using rule 66 (operador -> MINUS .)
+    TRUE            reduce using rule 66 (operador -> MINUS .)
+    FALSE           reduce using rule 66 (operador -> MINUS .)
+
+
+state 53
+
+    (67) operador -> TIMES .
+
+    LPAREN          reduce using rule 67 (operador -> TIMES .)
+    VARIABLE        reduce using rule 67 (operador -> TIMES .)
+    FLOAT           reduce using rule 67 (operador -> TIMES .)
+    NUMBER          reduce using rule 67 (operador -> TIMES .)
+    CHAINCHAR       reduce using rule 67 (operador -> TIMES .)
+    TRUE            reduce using rule 67 (operador -> TIMES .)
+    FALSE           reduce using rule 67 (operador -> TIMES .)
+
+
+state 54
+
+    (68) operador -> DIVIDE .
+
+    LPAREN          reduce using rule 68 (operador -> DIVIDE .)
+    VARIABLE        reduce using rule 68 (operador -> DIVIDE .)
+    FLOAT           reduce using rule 68 (operador -> DIVIDE .)
+    NUMBER          reduce using rule 68 (operador -> DIVIDE .)
+    CHAINCHAR       reduce using rule 68 (operador -> DIVIDE .)
+    TRUE            reduce using rule 68 (operador -> DIVIDE .)
+    FALSE           reduce using rule 68 (operador -> DIVIDE .)
+
+
+state 55
+
+    (16) sentenciaIf -> IF LPAREN . condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> IF LPAREN . condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (18) condicion -> . valor operadorComp valor
     (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
-    condicion                      shift and go to state 43
-    valor                          shift and go to state 44
-    expresion                      shift and go to state 29
+    condicion                      shift and go to state 73
+    valor                          shift and go to state 74
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
-state 32
+state 56
 
-    (17) estructuraList -> LIST LANGLE . type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-    (39) type -> . INT
-    (40) type -> . STRING
-    (41) type -> . BOOL
+    (20) estructuraList -> LIST LANGLE . type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
 
-    INT             shift and go to state 46
-    STRING          shift and go to state 47
-    BOOL            shift and go to state 48
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    SET             shift and go to state 77
+    LIST            shift and go to state 75
+    BOOLEAN         shift and go to state 38
 
-    type                           shift and go to state 45
+    type                           shift and go to state 76
 
-state 33
+state 57
 
-    (18) funcionVoid -> VOID VARIABLE . LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (60) flecha -> type VARIABLE . LPAREN valores RPAREN ARROWFUNCTION cuerpo
 
-    LPAREN          shift and go to state 49
+    LPAREN          shift and go to state 78
 
 
-state 34
+state 58
 
-    (8) expresion -> valor operador valor .
-    (8) expresion -> valor . operador valor
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
+    (21) funcionVoid -> VOID VARIABLE . LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+
+    LPAREN          shift and go to state 79
+
+
+state 59
+
+    (57) switch -> SWITCH LPAREN . valor RPAREN LBRACE caso RBRACE
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valor                          shift and go to state 80
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 60
+
+    (61) crearConjunto -> SET VARIABLE . EQUALS conjunto
+
+    EQUALS          shift and go to state 81
+
+
+state 61
+
+    (62) crearConjunto -> SET LANGLE . type RANGLE VARIABLE EQUALS conjunto
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    SET             shift and go to state 77
+    LIST            shift and go to state 75
+    BOOLEAN         shift and go to state 38
+
+    type                           shift and go to state 82
+
+state 62
+
+    (55) funcion -> VARIABLE LPAREN valores . RPAREN
+
+    RPAREN          shift and go to state 83
+
+
+state 63
+
+    (56) funcionData -> VARIABLE DOT VARIABLE . LPAREN valores RPAREN
+
+    LPAREN          shift and go to state 84
+
+
+state 64
+
+    (14) impresion -> PRINT LPAREN valores . RPAREN DOTCOMMA
+
+    RPAREN          shift and go to state 85
+
+
+state 65
+
+    (27) impresion -> PRINT LPAREN RPAREN . DOTCOMMA
+
+    DOTCOMMA        shift and go to state 86
+
+
+state 66
+
+    (15) impresion -> PRINT LPAREN operacion . RPAREN DOTCOMMA
+    (36) valor -> operacion .
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 87
+    COMMA           reduce using rule 36 (valor -> operacion .)
+    PLUS            reduce using rule 36 (valor -> operacion .)
+    MINUS           reduce using rule 36 (valor -> operacion .)
+    TIMES           reduce using rule 36 (valor -> operacion .)
+    DIVIDE          reduce using rule 36 (valor -> operacion .)
+
+  ! RPAREN          [ reduce using rule 36 (valor -> operacion .) ]
+
+
+state 67
+
+    (26) tupla -> LPAREN valores RPAREN .
+
+    $end            reduce using rule 26 (tupla -> LPAREN valores RPAREN .)
+    RBRACE          reduce using rule 26 (tupla -> LPAREN valores RPAREN .)
+    BREAK           reduce using rule 26 (tupla -> LPAREN valores RPAREN .)
+
+
+state 68
+
+    (30) valores -> valor COMMA . valores
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valor                          shift and go to state 46
+    valores                        shift and go to state 88
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 69
+
+    (51) declaracion -> tipoVariable VARIABLE EQUALS . valor
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valor                          shift and go to state 89
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 70
+
+    (54) numeroSiguiente -> valor .
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
   ! shift/reduce conflict for TIMES resolved as shift
   ! shift/reduce conflict for DIVIDE resolved as shift
-    $end            reduce using rule 8 (expresion -> valor operador valor .)
-    COMMA           reduce using rule 8 (expresion -> valor operador valor .)
-    RPAREN          reduce using rule 8 (expresion -> valor operador valor .)
-    RBRACE          reduce using rule 8 (expresion -> valor operador valor .)
-    EQUALS          reduce using rule 8 (expresion -> valor operador valor .)
-    LANGLE          reduce using rule 8 (expresion -> valor operador valor .)
-    RANGLE          reduce using rule 8 (expresion -> valor operador valor .)
-    NEQ             reduce using rule 8 (expresion -> valor operador valor .)
-    DQUOTES         reduce using rule 8 (expresion -> valor operador valor .)
-    RBRACKET        reduce using rule 8 (expresion -> valor operador valor .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-  ! PLUS            [ reduce using rule 8 (expresion -> valor operador valor .) ]
-  ! MINUS           [ reduce using rule 8 (expresion -> valor operador valor .) ]
-  ! TIMES           [ reduce using rule 8 (expresion -> valor operador valor .) ]
-  ! DIVIDE          [ reduce using rule 8 (expresion -> valor operador valor .) ]
-
-    operador                       shift and go to state 20
-
-state 35
-
-    (11) impresion -> PRINT LPAREN valores . RPAREN DOTCOMMA
-
-    RPAREN          shift and go to state 50
-
-
-state 36
-
-    (25) impresion -> PRINT LPAREN RPAREN . DOTCOMMA
-
-    DOTCOMMA        shift and go to state 51
-
-
-state 37
-
-    (12) impresion -> PRINT LPAREN expresion . RPAREN DOTCOMMA
-    (37) valor -> expresion .
-
-  ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 52
-    COMMA           reduce using rule 37 (valor -> expresion .)
-    PLUS            reduce using rule 37 (valor -> expresion .)
-    MINUS           reduce using rule 37 (valor -> expresion .)
-    TIMES           reduce using rule 37 (valor -> expresion .)
-    DIVIDE          reduce using rule 37 (valor -> expresion .)
-
-  ! RPAREN          [ reduce using rule 37 (valor -> expresion .) ]
-
-
-state 38
-
-    (13) impresion -> PRINT LPAREN DQUOTES . expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> PRINT LPAREN DQUOTES . valores DQUOTES RPAREN DOTCOMMA
-    (8) expresion -> . valor operador valor
-    (27) valores -> . valor
-    (28) valores -> . valor COMMA valores
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
-
-    expresion                      shift and go to state 53
-    valores                        shift and go to state 54
-    valor                          shift and go to state 55
-
-state 39
-
-    (24) tupla -> LPAREN valores RPAREN .
-
-    $end            reduce using rule 24 (tupla -> LPAREN valores RPAREN .)
-    RBRACE          reduce using rule 24 (tupla -> LPAREN valores RPAREN .)
-
-
-state 40
-
-    (28) valores -> valor COMMA . valores
-    (27) valores -> . valor
-    (28) valores -> . valor COMMA valores
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
-
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
-
-    valor                          shift and go to state 27
-    valores                        shift and go to state 56
-    expresion                      shift and go to state 29
-
-state 41
-
-    (9) declaracion -> VARIABLE EQUALS valor .
-    (8) expresion -> valor . operador valor
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
-
-    $end            reduce using rule 9 (declaracion -> VARIABLE EQUALS valor .)
-    RBRACE          reduce using rule 9 (declaracion -> VARIABLE EQUALS valor .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-    operador                       shift and go to state 20
-
-state 42
-
-    (10) declaracion -> VARIABLE EQUALS tupla .
-
-    $end            reduce using rule 10 (declaracion -> VARIABLE EQUALS tupla .)
-    RBRACE          reduce using rule 10 (declaracion -> VARIABLE EQUALS tupla .)
-
-
-state 43
-
-    (15) sentenciaIfElse -> IF LPAREN condicion . RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF LPAREN condicion . RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-
-    RPAREN          shift and go to state 57
-
-
-state 44
-
-    (19) condicion -> valor . operadorComp valor
-    (8) expresion -> valor . operador valor
-    (20) operadorComp -> . EQUALS
-    (21) operadorComp -> . LANGLE
-    (22) operadorComp -> . RANGLE
-    (23) operadorComp -> . NEQ
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
-
-    EQUALS          shift and go to state 59
-    LANGLE          shift and go to state 60
-    RANGLE          shift and go to state 61
-    NEQ             shift and go to state 62
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-    operadorComp                   shift and go to state 58
-    operador                       shift and go to state 20
-
-state 45
-
-    (17) estructuraList -> LIST LANGLE type . RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-
-    RANGLE          shift and go to state 63
-
-
-state 46
-
-    (39) type -> INT .
-
-    RANGLE          reduce using rule 39 (type -> INT .)
-
-
-state 47
-
-    (40) type -> STRING .
-
-    RANGLE          reduce using rule 40 (type -> STRING .)
-
-
-state 48
-
-    (41) type -> BOOL .
-
-    RANGLE          reduce using rule 41 (type -> BOOL .)
-
-
-state 49
-
-    (18) funcionVoid -> VOID VARIABLE LPAREN . valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (27) valores -> . valor
-    (28) valores -> . valor COMMA valores
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
-
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
-
-    valores                        shift and go to state 64
-    valor                          shift and go to state 27
-    expresion                      shift and go to state 29
-
-state 50
-
-    (11) impresion -> PRINT LPAREN valores RPAREN . DOTCOMMA
-
-    DOTCOMMA        shift and go to state 65
-
-
-state 51
-
-    (25) impresion -> PRINT LPAREN RPAREN DOTCOMMA .
-
-    $end            reduce using rule 25 (impresion -> PRINT LPAREN RPAREN DOTCOMMA .)
-    RBRACE          reduce using rule 25 (impresion -> PRINT LPAREN RPAREN DOTCOMMA .)
-
-
-state 52
-
-    (12) impresion -> PRINT LPAREN expresion RPAREN . DOTCOMMA
-
-    DOTCOMMA        shift and go to state 66
-
-
-state 53
-
-    (13) impresion -> PRINT LPAREN DQUOTES expresion . DQUOTES RPAREN DOTCOMMA
-    (37) valor -> expresion .
-
-  ! shift/reduce conflict for DQUOTES resolved as shift
-    DQUOTES         shift and go to state 67
-    COMMA           reduce using rule 37 (valor -> expresion .)
-    PLUS            reduce using rule 37 (valor -> expresion .)
-    MINUS           reduce using rule 37 (valor -> expresion .)
-    TIMES           reduce using rule 37 (valor -> expresion .)
-    DIVIDE          reduce using rule 37 (valor -> expresion .)
-
-  ! DQUOTES         [ reduce using rule 37 (valor -> expresion .) ]
-
-
-state 54
-
-    (14) impresion -> PRINT LPAREN DQUOTES valores . DQUOTES RPAREN DOTCOMMA
-
-    DQUOTES         shift and go to state 68
-
-
-state 55
-
-    (8) expresion -> valor . operador valor
-    (27) valores -> valor .
-    (28) valores -> valor . COMMA valores
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
-
-    DQUOTES         reduce using rule 27 (valores -> valor .)
-    COMMA           shift and go to state 40
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-    operador                       shift and go to state 20
-
-state 56
-
-    (28) valores -> valor COMMA valores .
-
-    RPAREN          reduce using rule 28 (valores -> valor COMMA valores .)
-    DQUOTES         reduce using rule 28 (valores -> valor COMMA valores .)
-    RBRACKET        reduce using rule 28 (valores -> valor COMMA valores .)
-
-
-state 57
-
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN . LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF LPAREN condicion RPAREN . LBRACE cuerpo RBRACE DOTCOMMA
-
-    LBRACE          shift and go to state 69
-
-
-state 58
-
-    (19) condicion -> valor operadorComp . valor
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
-
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
-
-    valor                          shift and go to state 70
-    expresion                      shift and go to state 29
-
-state 59
-
-    (20) operadorComp -> EQUALS .
-
-    VARIABLE        reduce using rule 20 (operadorComp -> EQUALS .)
-    INT             reduce using rule 20 (operadorComp -> EQUALS .)
-    FLOAT           reduce using rule 20 (operadorComp -> EQUALS .)
-    BOOL            reduce using rule 20 (operadorComp -> EQUALS .)
-    NUMBER          reduce using rule 20 (operadorComp -> EQUALS .)
-
-
-state 60
-
-    (21) operadorComp -> LANGLE .
-
-    VARIABLE        reduce using rule 21 (operadorComp -> LANGLE .)
-    INT             reduce using rule 21 (operadorComp -> LANGLE .)
-    FLOAT           reduce using rule 21 (operadorComp -> LANGLE .)
-    BOOL            reduce using rule 21 (operadorComp -> LANGLE .)
-    NUMBER          reduce using rule 21 (operadorComp -> LANGLE .)
-
-
-state 61
-
-    (22) operadorComp -> RANGLE .
-
-    VARIABLE        reduce using rule 22 (operadorComp -> RANGLE .)
-    INT             reduce using rule 22 (operadorComp -> RANGLE .)
-    FLOAT           reduce using rule 22 (operadorComp -> RANGLE .)
-    BOOL            reduce using rule 22 (operadorComp -> RANGLE .)
-    NUMBER          reduce using rule 22 (operadorComp -> RANGLE .)
-
-
-state 62
-
-    (23) operadorComp -> NEQ .
-
-    VARIABLE        reduce using rule 23 (operadorComp -> NEQ .)
-    INT             reduce using rule 23 (operadorComp -> NEQ .)
-    FLOAT           reduce using rule 23 (operadorComp -> NEQ .)
-    BOOL            reduce using rule 23 (operadorComp -> NEQ .)
-    NUMBER          reduce using rule 23 (operadorComp -> NEQ .)
-
-
-state 63
-
-    (17) estructuraList -> LIST LANGLE type RANGLE . VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-
-    VARIABLE        shift and go to state 71
-
-
-state 64
-
-    (18) funcionVoid -> VOID VARIABLE LPAREN valores . RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-
-    RPAREN          shift and go to state 72
-
-
-state 65
-
-    (11) impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .
-
-    $end            reduce using rule 11 (impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .)
-    RBRACE          reduce using rule 11 (impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .)
-
-
-state 66
-
-    (12) impresion -> PRINT LPAREN expresion RPAREN DOTCOMMA .
-
-    $end            reduce using rule 12 (impresion -> PRINT LPAREN expresion RPAREN DOTCOMMA .)
-    RBRACE          reduce using rule 12 (impresion -> PRINT LPAREN expresion RPAREN DOTCOMMA .)
-
-
-state 67
-
-    (13) impresion -> PRINT LPAREN DQUOTES expresion DQUOTES . RPAREN DOTCOMMA
-
-    RPAREN          shift and go to state 73
-
-
-state 68
-
-    (14) impresion -> PRINT LPAREN DQUOTES valores DQUOTES . RPAREN DOTCOMMA
-
-    RPAREN          shift and go to state 74
-
-
-state 69
-
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE . cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE . cuerpo RBRACE DOTCOMMA
-    (1) cuerpo -> . expresion
-    (2) cuerpo -> . impresion
-    (3) cuerpo -> . tupla
-    (4) cuerpo -> . declaracion
-    (5) cuerpo -> . sentenciaIfElse
-    (6) cuerpo -> . estructuraList
-    (7) cuerpo -> . funcionVoid
-    (8) expresion -> . valor operador valor
-    (11) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
-    (12) impresion -> . PRINT LPAREN expresion RPAREN DOTCOMMA
-    (13) impresion -> . PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> . PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA
-    (25) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
-    (26) impresion -> .
-    (24) tupla -> . LPAREN valores RPAREN
-    (9) declaracion -> . VARIABLE EQUALS valor
-    (10) declaracion -> . VARIABLE EQUALS tupla
-    (15) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (17) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-    (18) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-
-    PRINT           shift and go to state 10
-    RBRACE          reduce using rule 26 (impresion -> .)
-    LPAREN          shift and go to state 11
-    VARIABLE        shift and go to state 12
-    IF              shift and go to state 13
-    LIST            shift and go to state 14
-    VOID            shift and go to state 15
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
-
-    cuerpo                         shift and go to state 75
-    expresion                      shift and go to state 2
-    impresion                      shift and go to state 3
-    tupla                          shift and go to state 4
-    declaracion                    shift and go to state 5
-    sentenciaIfElse                shift and go to state 6
-    estructuraList                 shift and go to state 7
-    funcionVoid                    shift and go to state 8
-    valor                          shift and go to state 9
-
-state 70
-
-    (19) condicion -> valor operadorComp valor .
-    (8) expresion -> valor . operador valor
-    (29) operador -> . PLUS
-    (30) operador -> . MINUS
-    (31) operador -> . TIMES
-    (32) operador -> . DIVIDE
-
-    RPAREN          reduce using rule 19 (condicion -> valor operadorComp valor .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-    operador                       shift and go to state 20
+    $end            reduce using rule 54 (numeroSiguiente -> valor .)
+    COMMA           reduce using rule 54 (numeroSiguiente -> valor .)
+    RPAREN          reduce using rule 54 (numeroSiguiente -> valor .)
+    EQUALS          reduce using rule 54 (numeroSiguiente -> valor .)
+    LANGLE          reduce using rule 54 (numeroSiguiente -> valor .)
+    RANGLE          reduce using rule 54 (numeroSiguiente -> valor .)
+    NEQ             reduce using rule 54 (numeroSiguiente -> valor .)
+    RBRACE          reduce using rule 54 (numeroSiguiente -> valor .)
+    RBRACKET        reduce using rule 54 (numeroSiguiente -> valor .)
+    BREAK           reduce using rule 54 (numeroSiguiente -> valor .)
+    TWODOTS         reduce using rule 54 (numeroSiguiente -> valor .)
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
+
+  ! PLUS            [ reduce using rule 54 (numeroSiguiente -> valor .) ]
+  ! MINUS           [ reduce using rule 54 (numeroSiguiente -> valor .) ]
+  ! TIMES           [ reduce using rule 54 (numeroSiguiente -> valor .) ]
+  ! DIVIDE          [ reduce using rule 54 (numeroSiguiente -> valor .) ]
+
+    operador                       shift and go to state 50
 
 state 71
 
-    (17) estructuraList -> LIST LANGLE type RANGLE VARIABLE . EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (52) operacion -> valor operador numeroSiguiente .
 
-    EQUALS          shift and go to state 76
+    $end            reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    PLUS            reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    MINUS           reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    TIMES           reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    DIVIDE          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    COMMA           reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    RPAREN          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    EQUALS          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    LANGLE          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    RANGLE          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    NEQ             reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    RBRACE          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    RBRACKET        reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    BREAK           reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    TWODOTS         reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
 
 
 state 72
 
-    (18) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN . LBRACE cuerpo RBRACE DOTCOMMA
+    (53) numeroSiguiente -> LPAREN . valor operador numeroSiguiente RPAREN
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    LBRACE          shift and go to state 77
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
+    valor                          shift and go to state 90
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
 state 73
 
-    (13) impresion -> PRINT LPAREN DQUOTES expresion DQUOTES RPAREN . DOTCOMMA
+    (16) sentenciaIf -> IF LPAREN condicion . RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> IF LPAREN condicion . RPAREN LBRACE cuerpo RBRACE DOTCOMMA
 
-    DOTCOMMA        shift and go to state 78
+    RPAREN          shift and go to state 91
 
 
 state 74
 
-    (14) impresion -> PRINT LPAREN DQUOTES valores DQUOTES RPAREN . DOTCOMMA
+    (18) condicion -> valor . operadorComp valor
+    (52) operacion -> valor . operador numeroSiguiente
+    (22) operadorComp -> . EQUALS
+    (23) operadorComp -> . LANGLE
+    (24) operadorComp -> . RANGLE
+    (25) operadorComp -> . NEQ
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
 
-    DOTCOMMA        shift and go to state 79
+    EQUALS          shift and go to state 93
+    LANGLE          shift and go to state 94
+    RANGLE          shift and go to state 95
+    NEQ             shift and go to state 96
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
 
+    operadorComp                   shift and go to state 92
+    operador                       shift and go to state 50
 
 state 75
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo . RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo . RBRACE DOTCOMMA
+    (44) type -> LIST .
 
-    RBRACE          shift and go to state 80
+    RANGLE          reduce using rule 44 (type -> LIST .)
 
 
 state 76
 
-    (17) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS . LBRACKET valores RBRACKET DOTCOMMA
+    (20) estructuraList -> LIST LANGLE type . RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
 
-    LBRACKET        shift and go to state 81
+    RANGLE          shift and go to state 97
 
 
 state 77
 
-    (18) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE . cuerpo RBRACE DOTCOMMA
-    (1) cuerpo -> . expresion
-    (2) cuerpo -> . impresion
-    (3) cuerpo -> . tupla
-    (4) cuerpo -> . declaracion
-    (5) cuerpo -> . sentenciaIfElse
-    (6) cuerpo -> . estructuraList
-    (7) cuerpo -> . funcionVoid
-    (8) expresion -> . valor operador valor
-    (11) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
-    (12) impresion -> . PRINT LPAREN expresion RPAREN DOTCOMMA
-    (13) impresion -> . PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> . PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA
-    (25) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
-    (26) impresion -> .
-    (24) tupla -> . LPAREN valores RPAREN
-    (9) declaracion -> . VARIABLE EQUALS valor
-    (10) declaracion -> . VARIABLE EQUALS tupla
-    (15) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (17) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-    (18) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
+    (43) type -> SET .
 
-    PRINT           shift and go to state 10
-    RBRACE          reduce using rule 26 (impresion -> .)
-    LPAREN          shift and go to state 11
-    VARIABLE        shift and go to state 12
-    IF              shift and go to state 13
-    LIST            shift and go to state 14
-    VOID            shift and go to state 15
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    RANGLE          reduce using rule 43 (type -> SET .)
 
-    cuerpo                         shift and go to state 82
-    expresion                      shift and go to state 2
-    impresion                      shift and go to state 3
-    tupla                          shift and go to state 4
-    declaracion                    shift and go to state 5
-    sentenciaIfElse                shift and go to state 6
-    estructuraList                 shift and go to state 7
-    funcionVoid                    shift and go to state 8
-    valor                          shift and go to state 9
 
 state 78
 
-    (13) impresion -> PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA .
+    (60) flecha -> type VARIABLE LPAREN . valores RPAREN ARROWFUNCTION cuerpo
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    $end            reduce using rule 13 (impresion -> PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA .)
-    RBRACE          reduce using rule 13 (impresion -> PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA .)
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
+    valores                        shift and go to state 98
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
 state 79
 
-    (14) impresion -> PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA .
+    (21) funcionVoid -> VOID VARIABLE LPAREN . valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    $end            reduce using rule 14 (impresion -> PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA .)
-    RBRACE          reduce using rule 14 (impresion -> PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA .)
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
+    valores                        shift and go to state 99
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
 state 80
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE . ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE . DOTCOMMA
+    (57) switch -> SWITCH LPAREN valor . RPAREN LBRACE caso RBRACE
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
 
-    ELSE            shift and go to state 83
-    DOTCOMMA        shift and go to state 84
+    RPAREN          shift and go to state 100
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
 
+    operador                       shift and go to state 50
 
 state 81
 
-    (17) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET . valores RBRACKET DOTCOMMA
-    (27) valores -> . valor
-    (28) valores -> . valor COMMA valores
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
-    (8) expresion -> . valor operador valor
+    (61) crearConjunto -> SET VARIABLE EQUALS . conjunto
+    (63) conjunto -> . LBRACE valores RBRACE
+    (64) conjunto -> . LBRACE RBRACE
 
-    VARIABLE        shift and go to state 28
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    LBRACE          shift and go to state 102
 
-    valores                        shift and go to state 85
-    valor                          shift and go to state 27
-    expresion                      shift and go to state 29
+    conjunto                       shift and go to state 101
 
 state 82
 
-    (18) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo . RBRACE DOTCOMMA
+    (62) crearConjunto -> SET LANGLE type . RANGLE VARIABLE EQUALS conjunto
 
-    RBRACE          shift and go to state 86
+    RANGLE          shift and go to state 103
 
 
 state 83
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE . LBRACE cuerpo RBRACE DOTCOMMA
+    (55) funcion -> VARIABLE LPAREN valores RPAREN .
 
-    LBRACE          shift and go to state 87
+    $end            reduce using rule 55 (funcion -> VARIABLE LPAREN valores RPAREN .)
+    RBRACE          reduce using rule 55 (funcion -> VARIABLE LPAREN valores RPAREN .)
+    BREAK           reduce using rule 55 (funcion -> VARIABLE LPAREN valores RPAREN .)
 
 
 state 84
 
-    (16) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .
+    (56) funcionData -> VARIABLE DOT VARIABLE LPAREN . valores RPAREN
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    $end            reduce using rule 16 (sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
-    RBRACE          reduce using rule 16 (sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
+    valores                        shift and go to state 104
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
 state 85
 
-    (17) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores . RBRACKET DOTCOMMA
+    (14) impresion -> PRINT LPAREN valores RPAREN . DOTCOMMA
 
-    RBRACKET        shift and go to state 88
+    DOTCOMMA        shift and go to state 105
 
 
 state 86
 
-    (18) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE . DOTCOMMA
+    (27) impresion -> PRINT LPAREN RPAREN DOTCOMMA .
 
-    DOTCOMMA        shift and go to state 89
+    $end            reduce using rule 27 (impresion -> PRINT LPAREN RPAREN DOTCOMMA .)
+    RBRACE          reduce using rule 27 (impresion -> PRINT LPAREN RPAREN DOTCOMMA .)
+    BREAK           reduce using rule 27 (impresion -> PRINT LPAREN RPAREN DOTCOMMA .)
 
 
 state 87
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE . cuerpo RBRACE DOTCOMMA
-    (1) cuerpo -> . expresion
-    (2) cuerpo -> . impresion
-    (3) cuerpo -> . tupla
-    (4) cuerpo -> . declaracion
-    (5) cuerpo -> . sentenciaIfElse
-    (6) cuerpo -> . estructuraList
-    (7) cuerpo -> . funcionVoid
-    (8) expresion -> . valor operador valor
-    (11) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
-    (12) impresion -> . PRINT LPAREN expresion RPAREN DOTCOMMA
-    (13) impresion -> . PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA
-    (14) impresion -> . PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA
-    (25) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
-    (26) impresion -> .
-    (24) tupla -> . LPAREN valores RPAREN
-    (9) declaracion -> . VARIABLE EQUALS valor
-    (10) declaracion -> . VARIABLE EQUALS tupla
-    (15) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA
-    (16) sentenciaIfElse -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (17) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
-    (18) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
-    (33) valor -> . VARIABLE
-    (34) valor -> . INT
-    (35) valor -> . FLOAT
-    (36) valor -> . BOOL
-    (37) valor -> . expresion
-    (38) valor -> . NUMBER
+    (15) impresion -> PRINT LPAREN operacion RPAREN . DOTCOMMA
 
-    PRINT           shift and go to state 10
-    RBRACE          reduce using rule 26 (impresion -> .)
-    LPAREN          shift and go to state 11
-    VARIABLE        shift and go to state 12
-    IF              shift and go to state 13
-    LIST            shift and go to state 14
-    VOID            shift and go to state 15
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    BOOL            shift and go to state 18
-    NUMBER          shift and go to state 19
+    DOTCOMMA        shift and go to state 106
 
-    cuerpo                         shift and go to state 90
-    expresion                      shift and go to state 2
-    impresion                      shift and go to state 3
-    tupla                          shift and go to state 4
-    declaracion                    shift and go to state 5
-    sentenciaIfElse                shift and go to state 6
-    estructuraList                 shift and go to state 7
-    funcionVoid                    shift and go to state 8
-    valor                          shift and go to state 9
 
 state 88
 
-    (17) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET . DOTCOMMA
+    (30) valores -> valor COMMA valores .
 
-    DOTCOMMA        shift and go to state 91
+    RPAREN          reduce using rule 30 (valores -> valor COMMA valores .)
+    RBRACE          reduce using rule 30 (valores -> valor COMMA valores .)
+    RBRACKET        reduce using rule 30 (valores -> valor COMMA valores .)
 
 
 state 89
 
-    (18) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .
+    (51) declaracion -> tipoVariable VARIABLE EQUALS valor .
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
 
-    $end            reduce using rule 18 (funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
-    RBRACE          reduce using rule 18 (funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+    $end            reduce using rule 51 (declaracion -> tipoVariable VARIABLE EQUALS valor .)
+    RBRACE          reduce using rule 51 (declaracion -> tipoVariable VARIABLE EQUALS valor .)
+    BREAK           reduce using rule 51 (declaracion -> tipoVariable VARIABLE EQUALS valor .)
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
 
+    operador                       shift and go to state 50
 
 state 90
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo . RBRACE DOTCOMMA
+    (53) numeroSiguiente -> LPAREN valor . operador numeroSiguiente RPAREN
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
 
-    RBRACE          shift and go to state 92
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
 
+    operador                       shift and go to state 107
 
 state 91
 
-    (17) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .
+    (16) sentenciaIf -> IF LPAREN condicion RPAREN . LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> IF LPAREN condicion RPAREN . LBRACE cuerpo RBRACE DOTCOMMA
 
-    $end            reduce using rule 17 (estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .)
-    RBRACE          reduce using rule 17 (estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .)
+    LBRACE          shift and go to state 108
 
 
 state 92
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE . DOTCOMMA
+    (18) condicion -> valor operadorComp . valor
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
 
-    DOTCOMMA        shift and go to state 93
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
 
+    valor                          shift and go to state 109
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
 
 state 93
 
-    (15) sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA .
+    (22) operadorComp -> EQUALS .
 
-    $end            reduce using rule 15 (sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA .)
-    RBRACE          reduce using rule 15 (sentenciaIfElse -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA .)
+    VARIABLE        reduce using rule 22 (operadorComp -> EQUALS .)
+    FLOAT           reduce using rule 22 (operadorComp -> EQUALS .)
+    NUMBER          reduce using rule 22 (operadorComp -> EQUALS .)
+    CHAINCHAR       reduce using rule 22 (operadorComp -> EQUALS .)
+    TRUE            reduce using rule 22 (operadorComp -> EQUALS .)
+    FALSE           reduce using rule 22 (operadorComp -> EQUALS .)
+
+
+state 94
+
+    (23) operadorComp -> LANGLE .
+
+    VARIABLE        reduce using rule 23 (operadorComp -> LANGLE .)
+    FLOAT           reduce using rule 23 (operadorComp -> LANGLE .)
+    NUMBER          reduce using rule 23 (operadorComp -> LANGLE .)
+    CHAINCHAR       reduce using rule 23 (operadorComp -> LANGLE .)
+    TRUE            reduce using rule 23 (operadorComp -> LANGLE .)
+    FALSE           reduce using rule 23 (operadorComp -> LANGLE .)
+
+
+state 95
+
+    (24) operadorComp -> RANGLE .
+
+    VARIABLE        reduce using rule 24 (operadorComp -> RANGLE .)
+    FLOAT           reduce using rule 24 (operadorComp -> RANGLE .)
+    NUMBER          reduce using rule 24 (operadorComp -> RANGLE .)
+    CHAINCHAR       reduce using rule 24 (operadorComp -> RANGLE .)
+    TRUE            reduce using rule 24 (operadorComp -> RANGLE .)
+    FALSE           reduce using rule 24 (operadorComp -> RANGLE .)
+
+
+state 96
+
+    (25) operadorComp -> NEQ .
+
+    VARIABLE        reduce using rule 25 (operadorComp -> NEQ .)
+    FLOAT           reduce using rule 25 (operadorComp -> NEQ .)
+    NUMBER          reduce using rule 25 (operadorComp -> NEQ .)
+    CHAINCHAR       reduce using rule 25 (operadorComp -> NEQ .)
+    TRUE            reduce using rule 25 (operadorComp -> NEQ .)
+    FALSE           reduce using rule 25 (operadorComp -> NEQ .)
+
+
+state 97
+
+    (20) estructuraList -> LIST LANGLE type RANGLE . VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+
+    VARIABLE        shift and go to state 110
+
+
+state 98
+
+    (60) flecha -> type VARIABLE LPAREN valores . RPAREN ARROWFUNCTION cuerpo
+
+    RPAREN          shift and go to state 111
+
+
+state 99
+
+    (21) funcionVoid -> VOID VARIABLE LPAREN valores . RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+
+    RPAREN          shift and go to state 112
+
+
+state 100
+
+    (57) switch -> SWITCH LPAREN valor RPAREN . LBRACE caso RBRACE
+
+    LBRACE          shift and go to state 113
+
+
+state 101
+
+    (61) crearConjunto -> SET VARIABLE EQUALS conjunto .
+
+    $end            reduce using rule 61 (crearConjunto -> SET VARIABLE EQUALS conjunto .)
+    RBRACE          reduce using rule 61 (crearConjunto -> SET VARIABLE EQUALS conjunto .)
+    BREAK           reduce using rule 61 (crearConjunto -> SET VARIABLE EQUALS conjunto .)
+
+
+state 102
+
+    (63) conjunto -> LBRACE . valores RBRACE
+    (64) conjunto -> LBRACE . RBRACE
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    RBRACE          shift and go to state 115
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valores                        shift and go to state 114
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 103
+
+    (62) crearConjunto -> SET LANGLE type RANGLE . VARIABLE EQUALS conjunto
+
+    VARIABLE        shift and go to state 116
+
+
+state 104
+
+    (56) funcionData -> VARIABLE DOT VARIABLE LPAREN valores . RPAREN
+
+    RPAREN          shift and go to state 117
+
+
+state 105
+
+    (14) impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .
+
+    $end            reduce using rule 14 (impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .)
+    RBRACE          reduce using rule 14 (impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .)
+    BREAK           reduce using rule 14 (impresion -> PRINT LPAREN valores RPAREN DOTCOMMA .)
+
+
+state 106
+
+    (15) impresion -> PRINT LPAREN operacion RPAREN DOTCOMMA .
+
+    $end            reduce using rule 15 (impresion -> PRINT LPAREN operacion RPAREN DOTCOMMA .)
+    RBRACE          reduce using rule 15 (impresion -> PRINT LPAREN operacion RPAREN DOTCOMMA .)
+    BREAK           reduce using rule 15 (impresion -> PRINT LPAREN operacion RPAREN DOTCOMMA .)
+
+
+state 107
+
+    (53) numeroSiguiente -> LPAREN valor operador . numeroSiguiente RPAREN
+    (52) operacion -> valor operador . numeroSiguiente
+    (53) numeroSiguiente -> . LPAREN valor operador numeroSiguiente RPAREN
+    (54) numeroSiguiente -> . valor
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    LPAREN          shift and go to state 72
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valor                          shift and go to state 70
+    numeroSiguiente                shift and go to state 118
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 108
+
+    (16) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE . cuerpo RBRACE else
+    (17) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE . cuerpo RBRACE DOTCOMMA
+    (1) cuerpo -> . impresion
+    (2) cuerpo -> . tupla
+    (3) cuerpo -> . declaracion
+    (4) cuerpo -> . sentenciaIf
+    (5) cuerpo -> . estructuraList
+    (6) cuerpo -> . funcionVoid
+    (7) cuerpo -> . switch
+    (8) cuerpo -> . operacion
+    (9) cuerpo -> . flecha
+    (10) cuerpo -> . RETURN VARIABLE
+    (11) cuerpo -> . funcion
+    (12) cuerpo -> . funcionData
+    (13) cuerpo -> . crearConjunto
+    (14) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> . PRINT LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
+    (28) impresion -> .
+    (26) tupla -> . LPAREN valores RPAREN
+    (51) declaracion -> . tipoVariable VARIABLE EQUALS valor
+    (16) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (20) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (21) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (57) switch -> . SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+    (52) operacion -> . valor operador numeroSiguiente
+    (60) flecha -> . type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (55) funcion -> . VARIABLE LPAREN valores RPAREN
+    (56) funcionData -> . VARIABLE DOT VARIABLE LPAREN valores RPAREN
+    (61) crearConjunto -> . SET VARIABLE EQUALS conjunto
+    (62) crearConjunto -> . SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (46) tipoVariable -> . type
+    (47) tipoVariable -> . FINAL
+    (48) tipoVariable -> . CONST
+    (49) tipoVariable -> . VAR
+    (50) tipoVariable -> . DYNAMIC
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+
+    RETURN          shift and go to state 11
+    PRINT           shift and go to state 16
+    RBRACE          reduce using rule 28 (impresion -> .)
+    LPAREN          shift and go to state 17
+    IF              shift and go to state 20
+    LIST            shift and go to state 21
+    VOID            shift and go to state 23
+    SWITCH          shift and go to state 24
+    VARIABLE        shift and go to state 12
+    SET             shift and go to state 25
+    FINAL           shift and go to state 26
+    CONST           shift and go to state 27
+    VAR             shift and go to state 28
+    DYNAMIC         shift and go to state 29
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    BOOLEAN         shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    cuerpo                         shift and go to state 119
+    impresion                      shift and go to state 2
+    tupla                          shift and go to state 3
+    declaracion                    shift and go to state 4
+    sentenciaIf                    shift and go to state 5
+    estructuraList                 shift and go to state 6
+    funcionVoid                    shift and go to state 7
+    switch                         shift and go to state 8
+    operacion                      shift and go to state 9
+    flecha                         shift and go to state 10
+    funcion                        shift and go to state 13
+    funcionData                    shift and go to state 14
+    crearConjunto                  shift and go to state 15
+    tipoVariable                   shift and go to state 18
+    valor                          shift and go to state 19
+    type                           shift and go to state 22
+    Bool                           shift and go to state 31
+
+state 109
+
+    (18) condicion -> valor operadorComp valor .
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
+
+    RPAREN          reduce using rule 18 (condicion -> valor operadorComp valor .)
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
+
+    operador                       shift and go to state 50
+
+state 110
+
+    (20) estructuraList -> LIST LANGLE type RANGLE VARIABLE . EQUALS LBRACKET valores RBRACKET DOTCOMMA
+
+    EQUALS          shift and go to state 120
+
+
+state 111
+
+    (60) flecha -> type VARIABLE LPAREN valores RPAREN . ARROWFUNCTION cuerpo
+
+    ARROWFUNCTION   shift and go to state 121
+
+
+state 112
+
+    (21) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN . LBRACE cuerpo RBRACE DOTCOMMA
+
+    LBRACE          shift and go to state 122
+
+
+state 113
+
+    (57) switch -> SWITCH LPAREN valor RPAREN LBRACE . caso RBRACE
+    (58) caso -> . CASE valor TWODOTS cuerpo BREAK caso
+    (59) caso -> . CASE valor TWODOTS cuerpo BREAK
+
+    CASE            shift and go to state 124
+
+    caso                           shift and go to state 123
+
+state 114
+
+    (63) conjunto -> LBRACE valores . RBRACE
+
+    RBRACE          shift and go to state 125
+
+
+state 115
+
+    (64) conjunto -> LBRACE RBRACE .
+
+    $end            reduce using rule 64 (conjunto -> LBRACE RBRACE .)
+    RBRACE          reduce using rule 64 (conjunto -> LBRACE RBRACE .)
+    BREAK           reduce using rule 64 (conjunto -> LBRACE RBRACE .)
+
+
+state 116
+
+    (62) crearConjunto -> SET LANGLE type RANGLE VARIABLE . EQUALS conjunto
+
+    EQUALS          shift and go to state 126
+
+
+state 117
+
+    (56) funcionData -> VARIABLE DOT VARIABLE LPAREN valores RPAREN .
+
+    $end            reduce using rule 56 (funcionData -> VARIABLE DOT VARIABLE LPAREN valores RPAREN .)
+    RBRACE          reduce using rule 56 (funcionData -> VARIABLE DOT VARIABLE LPAREN valores RPAREN .)
+    BREAK           reduce using rule 56 (funcionData -> VARIABLE DOT VARIABLE LPAREN valores RPAREN .)
+
+
+state 118
+
+    (53) numeroSiguiente -> LPAREN valor operador numeroSiguiente . RPAREN
+    (52) operacion -> valor operador numeroSiguiente .
+
+    RPAREN          shift and go to state 127
+    PLUS            reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    MINUS           reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    TIMES           reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+    DIVIDE          reduce using rule 52 (operacion -> valor operador numeroSiguiente .)
+
+
+state 119
+
+    (16) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo . RBRACE else
+    (17) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo . RBRACE DOTCOMMA
+
+    RBRACE          shift and go to state 128
+
+
+state 120
+
+    (20) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS . LBRACKET valores RBRACKET DOTCOMMA
+
+    LBRACKET        shift and go to state 129
+
+
+state 121
+
+    (60) flecha -> type VARIABLE LPAREN valores RPAREN ARROWFUNCTION . cuerpo
+    (1) cuerpo -> . impresion
+    (2) cuerpo -> . tupla
+    (3) cuerpo -> . declaracion
+    (4) cuerpo -> . sentenciaIf
+    (5) cuerpo -> . estructuraList
+    (6) cuerpo -> . funcionVoid
+    (7) cuerpo -> . switch
+    (8) cuerpo -> . operacion
+    (9) cuerpo -> . flecha
+    (10) cuerpo -> . RETURN VARIABLE
+    (11) cuerpo -> . funcion
+    (12) cuerpo -> . funcionData
+    (13) cuerpo -> . crearConjunto
+    (14) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> . PRINT LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
+    (28) impresion -> .
+    (26) tupla -> . LPAREN valores RPAREN
+    (51) declaracion -> . tipoVariable VARIABLE EQUALS valor
+    (16) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (20) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (21) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (57) switch -> . SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+    (52) operacion -> . valor operador numeroSiguiente
+    (60) flecha -> . type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (55) funcion -> . VARIABLE LPAREN valores RPAREN
+    (56) funcionData -> . VARIABLE DOT VARIABLE LPAREN valores RPAREN
+    (61) crearConjunto -> . SET VARIABLE EQUALS conjunto
+    (62) crearConjunto -> . SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (46) tipoVariable -> . type
+    (47) tipoVariable -> . FINAL
+    (48) tipoVariable -> . CONST
+    (49) tipoVariable -> . VAR
+    (50) tipoVariable -> . DYNAMIC
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+
+    RETURN          shift and go to state 11
+    PRINT           shift and go to state 16
+    $end            reduce using rule 28 (impresion -> .)
+    RBRACE          reduce using rule 28 (impresion -> .)
+    BREAK           reduce using rule 28 (impresion -> .)
+    LPAREN          shift and go to state 17
+    IF              shift and go to state 20
+    LIST            shift and go to state 21
+    VOID            shift and go to state 23
+    SWITCH          shift and go to state 24
+    VARIABLE        shift and go to state 12
+    SET             shift and go to state 25
+    FINAL           shift and go to state 26
+    CONST           shift and go to state 27
+    VAR             shift and go to state 28
+    DYNAMIC         shift and go to state 29
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    BOOLEAN         shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    type                           shift and go to state 22
+    cuerpo                         shift and go to state 130
+    impresion                      shift and go to state 2
+    tupla                          shift and go to state 3
+    declaracion                    shift and go to state 4
+    sentenciaIf                    shift and go to state 5
+    estructuraList                 shift and go to state 6
+    funcionVoid                    shift and go to state 7
+    switch                         shift and go to state 8
+    operacion                      shift and go to state 9
+    flecha                         shift and go to state 10
+    funcion                        shift and go to state 13
+    funcionData                    shift and go to state 14
+    crearConjunto                  shift and go to state 15
+    tipoVariable                   shift and go to state 18
+    valor                          shift and go to state 19
+    Bool                           shift and go to state 31
+
+state 122
+
+    (21) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE . cuerpo RBRACE DOTCOMMA
+    (1) cuerpo -> . impresion
+    (2) cuerpo -> . tupla
+    (3) cuerpo -> . declaracion
+    (4) cuerpo -> . sentenciaIf
+    (5) cuerpo -> . estructuraList
+    (6) cuerpo -> . funcionVoid
+    (7) cuerpo -> . switch
+    (8) cuerpo -> . operacion
+    (9) cuerpo -> . flecha
+    (10) cuerpo -> . RETURN VARIABLE
+    (11) cuerpo -> . funcion
+    (12) cuerpo -> . funcionData
+    (13) cuerpo -> . crearConjunto
+    (14) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> . PRINT LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
+    (28) impresion -> .
+    (26) tupla -> . LPAREN valores RPAREN
+    (51) declaracion -> . tipoVariable VARIABLE EQUALS valor
+    (16) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (20) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (21) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (57) switch -> . SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+    (52) operacion -> . valor operador numeroSiguiente
+    (60) flecha -> . type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (55) funcion -> . VARIABLE LPAREN valores RPAREN
+    (56) funcionData -> . VARIABLE DOT VARIABLE LPAREN valores RPAREN
+    (61) crearConjunto -> . SET VARIABLE EQUALS conjunto
+    (62) crearConjunto -> . SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (46) tipoVariable -> . type
+    (47) tipoVariable -> . FINAL
+    (48) tipoVariable -> . CONST
+    (49) tipoVariable -> . VAR
+    (50) tipoVariable -> . DYNAMIC
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+
+    RETURN          shift and go to state 11
+    PRINT           shift and go to state 16
+    RBRACE          reduce using rule 28 (impresion -> .)
+    LPAREN          shift and go to state 17
+    IF              shift and go to state 20
+    LIST            shift and go to state 21
+    VOID            shift and go to state 23
+    SWITCH          shift and go to state 24
+    VARIABLE        shift and go to state 12
+    SET             shift and go to state 25
+    FINAL           shift and go to state 26
+    CONST           shift and go to state 27
+    VAR             shift and go to state 28
+    DYNAMIC         shift and go to state 29
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    BOOLEAN         shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    cuerpo                         shift and go to state 131
+    impresion                      shift and go to state 2
+    tupla                          shift and go to state 3
+    declaracion                    shift and go to state 4
+    sentenciaIf                    shift and go to state 5
+    estructuraList                 shift and go to state 6
+    funcionVoid                    shift and go to state 7
+    switch                         shift and go to state 8
+    operacion                      shift and go to state 9
+    flecha                         shift and go to state 10
+    funcion                        shift and go to state 13
+    funcionData                    shift and go to state 14
+    crearConjunto                  shift and go to state 15
+    tipoVariable                   shift and go to state 18
+    valor                          shift and go to state 19
+    type                           shift and go to state 22
+    Bool                           shift and go to state 31
+
+state 123
+
+    (57) switch -> SWITCH LPAREN valor RPAREN LBRACE caso . RBRACE
+
+    RBRACE          shift and go to state 132
+
+
+state 124
+
+    (58) caso -> CASE . valor TWODOTS cuerpo BREAK caso
+    (59) caso -> CASE . valor TWODOTS cuerpo BREAK
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valor                          shift and go to state 133
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 125
+
+    (63) conjunto -> LBRACE valores RBRACE .
+
+    $end            reduce using rule 63 (conjunto -> LBRACE valores RBRACE .)
+    RBRACE          reduce using rule 63 (conjunto -> LBRACE valores RBRACE .)
+    BREAK           reduce using rule 63 (conjunto -> LBRACE valores RBRACE .)
+
+
+state 126
+
+    (62) crearConjunto -> SET LANGLE type RANGLE VARIABLE EQUALS . conjunto
+    (63) conjunto -> . LBRACE valores RBRACE
+    (64) conjunto -> . LBRACE RBRACE
+
+    LBRACE          shift and go to state 102
+
+    conjunto                       shift and go to state 134
+
+state 127
+
+    (53) numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .
+
+    $end            reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    PLUS            reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    MINUS           reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    TIMES           reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    DIVIDE          reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    COMMA           reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    RPAREN          reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    EQUALS          reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    LANGLE          reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    RANGLE          reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    NEQ             reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    RBRACE          reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    RBRACKET        reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    BREAK           reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+    TWODOTS         reduce using rule 53 (numeroSiguiente -> LPAREN valor operador numeroSiguiente RPAREN .)
+
+
+state 128
+
+    (16) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE . else
+    (17) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE . DOTCOMMA
+    (19) else -> . ELSE LBRACE cuerpo RBRACE DOTCOMMA
+
+    DOTCOMMA        shift and go to state 136
+    ELSE            shift and go to state 137
+
+    else                           shift and go to state 135
+
+state 129
+
+    (20) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET . valores RBRACKET DOTCOMMA
+    (29) valores -> . valor
+    (30) valores -> . valor COMMA valores
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+    (52) operacion -> . valor operador numeroSiguiente
+
+    VARIABLE        shift and go to state 47
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valores                        shift and go to state 138
+    valor                          shift and go to state 46
+    Bool                           shift and go to state 31
+    operacion                      shift and go to state 48
+
+state 130
+
+    (60) flecha -> type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo .
+
+    $end            reduce using rule 60 (flecha -> type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo .)
+    RBRACE          reduce using rule 60 (flecha -> type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo .)
+    BREAK           reduce using rule 60 (flecha -> type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo .)
+
+
+state 131
+
+    (21) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo . RBRACE DOTCOMMA
+
+    RBRACE          shift and go to state 139
+
+
+state 132
+
+    (57) switch -> SWITCH LPAREN valor RPAREN LBRACE caso RBRACE .
+
+    $end            reduce using rule 57 (switch -> SWITCH LPAREN valor RPAREN LBRACE caso RBRACE .)
+    RBRACE          reduce using rule 57 (switch -> SWITCH LPAREN valor RPAREN LBRACE caso RBRACE .)
+    BREAK           reduce using rule 57 (switch -> SWITCH LPAREN valor RPAREN LBRACE caso RBRACE .)
+
+
+state 133
+
+    (58) caso -> CASE valor . TWODOTS cuerpo BREAK caso
+    (59) caso -> CASE valor . TWODOTS cuerpo BREAK
+    (52) operacion -> valor . operador numeroSiguiente
+    (65) operador -> . PLUS
+    (66) operador -> . MINUS
+    (67) operador -> . TIMES
+    (68) operador -> . DIVIDE
+
+    TWODOTS         shift and go to state 140
+    PLUS            shift and go to state 51
+    MINUS           shift and go to state 52
+    TIMES           shift and go to state 53
+    DIVIDE          shift and go to state 54
+
+    operador                       shift and go to state 50
+
+state 134
+
+    (62) crearConjunto -> SET LANGLE type RANGLE VARIABLE EQUALS conjunto .
+
+    $end            reduce using rule 62 (crearConjunto -> SET LANGLE type RANGLE VARIABLE EQUALS conjunto .)
+    RBRACE          reduce using rule 62 (crearConjunto -> SET LANGLE type RANGLE VARIABLE EQUALS conjunto .)
+    BREAK           reduce using rule 62 (crearConjunto -> SET LANGLE type RANGLE VARIABLE EQUALS conjunto .)
+
+
+state 135
+
+    (16) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else .
+
+    $end            reduce using rule 16 (sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else .)
+    RBRACE          reduce using rule 16 (sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else .)
+    BREAK           reduce using rule 16 (sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else .)
+
+
+state 136
+
+    (17) sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .
+
+    $end            reduce using rule 17 (sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+    RBRACE          reduce using rule 17 (sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+    BREAK           reduce using rule 17 (sentenciaIf -> IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+
+
+state 137
+
+    (19) else -> ELSE . LBRACE cuerpo RBRACE DOTCOMMA
+
+    LBRACE          shift and go to state 141
+
+
+state 138
+
+    (20) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores . RBRACKET DOTCOMMA
+
+    RBRACKET        shift and go to state 142
+
+
+state 139
+
+    (21) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE . DOTCOMMA
+
+    DOTCOMMA        shift and go to state 143
+
+
+state 140
+
+    (58) caso -> CASE valor TWODOTS . cuerpo BREAK caso
+    (59) caso -> CASE valor TWODOTS . cuerpo BREAK
+    (1) cuerpo -> . impresion
+    (2) cuerpo -> . tupla
+    (3) cuerpo -> . declaracion
+    (4) cuerpo -> . sentenciaIf
+    (5) cuerpo -> . estructuraList
+    (6) cuerpo -> . funcionVoid
+    (7) cuerpo -> . switch
+    (8) cuerpo -> . operacion
+    (9) cuerpo -> . flecha
+    (10) cuerpo -> . RETURN VARIABLE
+    (11) cuerpo -> . funcion
+    (12) cuerpo -> . funcionData
+    (13) cuerpo -> . crearConjunto
+    (14) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> . PRINT LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
+    (28) impresion -> .
+    (26) tupla -> . LPAREN valores RPAREN
+    (51) declaracion -> . tipoVariable VARIABLE EQUALS valor
+    (16) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (20) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (21) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (57) switch -> . SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+    (52) operacion -> . valor operador numeroSiguiente
+    (60) flecha -> . type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (55) funcion -> . VARIABLE LPAREN valores RPAREN
+    (56) funcionData -> . VARIABLE DOT VARIABLE LPAREN valores RPAREN
+    (61) crearConjunto -> . SET VARIABLE EQUALS conjunto
+    (62) crearConjunto -> . SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (46) tipoVariable -> . type
+    (47) tipoVariable -> . FINAL
+    (48) tipoVariable -> . CONST
+    (49) tipoVariable -> . VAR
+    (50) tipoVariable -> . DYNAMIC
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+
+    RETURN          shift and go to state 11
+    PRINT           shift and go to state 16
+    BREAK           reduce using rule 28 (impresion -> .)
+    LPAREN          shift and go to state 17
+    IF              shift and go to state 20
+    LIST            shift and go to state 21
+    VOID            shift and go to state 23
+    SWITCH          shift and go to state 24
+    VARIABLE        shift and go to state 12
+    SET             shift and go to state 25
+    FINAL           shift and go to state 26
+    CONST           shift and go to state 27
+    VAR             shift and go to state 28
+    DYNAMIC         shift and go to state 29
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    BOOLEAN         shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    valor                          shift and go to state 19
+    cuerpo                         shift and go to state 144
+    impresion                      shift and go to state 2
+    tupla                          shift and go to state 3
+    declaracion                    shift and go to state 4
+    sentenciaIf                    shift and go to state 5
+    estructuraList                 shift and go to state 6
+    funcionVoid                    shift and go to state 7
+    switch                         shift and go to state 8
+    operacion                      shift and go to state 9
+    flecha                         shift and go to state 10
+    funcion                        shift and go to state 13
+    funcionData                    shift and go to state 14
+    crearConjunto                  shift and go to state 15
+    tipoVariable                   shift and go to state 18
+    type                           shift and go to state 22
+    Bool                           shift and go to state 31
+
+state 141
+
+    (19) else -> ELSE LBRACE . cuerpo RBRACE DOTCOMMA
+    (1) cuerpo -> . impresion
+    (2) cuerpo -> . tupla
+    (3) cuerpo -> . declaracion
+    (4) cuerpo -> . sentenciaIf
+    (5) cuerpo -> . estructuraList
+    (6) cuerpo -> . funcionVoid
+    (7) cuerpo -> . switch
+    (8) cuerpo -> . operacion
+    (9) cuerpo -> . flecha
+    (10) cuerpo -> . RETURN VARIABLE
+    (11) cuerpo -> . funcion
+    (12) cuerpo -> . funcionData
+    (13) cuerpo -> . crearConjunto
+    (14) impresion -> . PRINT LPAREN valores RPAREN DOTCOMMA
+    (15) impresion -> . PRINT LPAREN operacion RPAREN DOTCOMMA
+    (27) impresion -> . PRINT LPAREN RPAREN DOTCOMMA
+    (28) impresion -> .
+    (26) tupla -> . LPAREN valores RPAREN
+    (51) declaracion -> . tipoVariable VARIABLE EQUALS valor
+    (16) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+    (17) sentenciaIf -> . IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (20) estructuraList -> . LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA
+    (21) funcionVoid -> . VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA
+    (57) switch -> . SWITCH LPAREN valor RPAREN LBRACE caso RBRACE
+    (52) operacion -> . valor operador numeroSiguiente
+    (60) flecha -> . type VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo
+    (55) funcion -> . VARIABLE LPAREN valores RPAREN
+    (56) funcionData -> . VARIABLE DOT VARIABLE LPAREN valores RPAREN
+    (61) crearConjunto -> . SET VARIABLE EQUALS conjunto
+    (62) crearConjunto -> . SET LANGLE type RANGLE VARIABLE EQUALS conjunto
+    (46) tipoVariable -> . type
+    (47) tipoVariable -> . FINAL
+    (48) tipoVariable -> . CONST
+    (49) tipoVariable -> . VAR
+    (50) tipoVariable -> . DYNAMIC
+    (33) valor -> . VARIABLE
+    (34) valor -> . FLOAT
+    (35) valor -> . Bool
+    (36) valor -> . operacion
+    (37) valor -> . NUMBER
+    (38) valor -> . CHAINCHAR
+    (39) type -> . MAP
+    (40) type -> . DOUBLE
+    (41) type -> . STRING
+    (42) type -> . INT
+    (43) type -> . SET
+    (44) type -> . LIST
+    (45) type -> . BOOLEAN
+    (31) Bool -> . TRUE
+    (32) Bool -> . FALSE
+
+    RETURN          shift and go to state 11
+    PRINT           shift and go to state 16
+    RBRACE          reduce using rule 28 (impresion -> .)
+    LPAREN          shift and go to state 17
+    IF              shift and go to state 20
+    LIST            shift and go to state 21
+    VOID            shift and go to state 23
+    SWITCH          shift and go to state 24
+    VARIABLE        shift and go to state 12
+    SET             shift and go to state 25
+    FINAL           shift and go to state 26
+    CONST           shift and go to state 27
+    VAR             shift and go to state 28
+    DYNAMIC         shift and go to state 29
+    FLOAT           shift and go to state 30
+    NUMBER          shift and go to state 32
+    CHAINCHAR       shift and go to state 33
+    MAP             shift and go to state 34
+    DOUBLE          shift and go to state 35
+    STRING          shift and go to state 36
+    INT             shift and go to state 37
+    BOOLEAN         shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+
+    cuerpo                         shift and go to state 145
+    impresion                      shift and go to state 2
+    tupla                          shift and go to state 3
+    declaracion                    shift and go to state 4
+    sentenciaIf                    shift and go to state 5
+    estructuraList                 shift and go to state 6
+    funcionVoid                    shift and go to state 7
+    switch                         shift and go to state 8
+    operacion                      shift and go to state 9
+    flecha                         shift and go to state 10
+    funcion                        shift and go to state 13
+    funcionData                    shift and go to state 14
+    crearConjunto                  shift and go to state 15
+    tipoVariable                   shift and go to state 18
+    valor                          shift and go to state 19
+    type                           shift and go to state 22
+    Bool                           shift and go to state 31
+
+state 142
+
+    (20) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET . DOTCOMMA
+
+    DOTCOMMA        shift and go to state 146
+
+
+state 143
+
+    (21) funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .
+
+    $end            reduce using rule 21 (funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+    RBRACE          reduce using rule 21 (funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+    BREAK           reduce using rule 21 (funcionVoid -> VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA .)
+
+
+state 144
+
+    (58) caso -> CASE valor TWODOTS cuerpo . BREAK caso
+    (59) caso -> CASE valor TWODOTS cuerpo . BREAK
+
+    BREAK           shift and go to state 147
+
+
+state 145
+
+    (19) else -> ELSE LBRACE cuerpo . RBRACE DOTCOMMA
+
+    RBRACE          shift and go to state 148
+
+
+state 146
+
+    (20) estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .
+
+    $end            reduce using rule 20 (estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .)
+    RBRACE          reduce using rule 20 (estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .)
+    BREAK           reduce using rule 20 (estructuraList -> LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA .)
+
+
+state 147
+
+    (58) caso -> CASE valor TWODOTS cuerpo BREAK . caso
+    (59) caso -> CASE valor TWODOTS cuerpo BREAK .
+    (58) caso -> . CASE valor TWODOTS cuerpo BREAK caso
+    (59) caso -> . CASE valor TWODOTS cuerpo BREAK
+
+    RBRACE          reduce using rule 59 (caso -> CASE valor TWODOTS cuerpo BREAK .)
+    CASE            shift and go to state 124
+
+    caso                           shift and go to state 149
+
+state 148
+
+    (19) else -> ELSE LBRACE cuerpo RBRACE . DOTCOMMA
+
+    DOTCOMMA        shift and go to state 150
+
+
+state 149
+
+    (58) caso -> CASE valor TWODOTS cuerpo BREAK caso .
+
+    RBRACE          reduce using rule 58 (caso -> CASE valor TWODOTS cuerpo BREAK caso .)
+
+
+state 150
+
+    (19) else -> ELSE LBRACE cuerpo RBRACE DOTCOMMA .
+
+    $end            reduce using rule 19 (else -> ELSE LBRACE cuerpo RBRACE DOTCOMMA .)
+    RBRACE          reduce using rule 19 (else -> ELSE LBRACE cuerpo RBRACE DOTCOMMA .)
+    BREAK           reduce using rule 19 (else -> ELSE LBRACE cuerpo RBRACE DOTCOMMA .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 34 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 34 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 34 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 34 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 37 resolved as shift
-WARNING: shift/reduce conflict for DQUOTES in state 53 resolved as shift
+WARNING: shift/reduce conflict for VARIABLE in state 22 resolved as shift
+WARNING: shift/reduce conflict for VARIABLE in state 25 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 66 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 70 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 70 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 70 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 70 resolved as shift

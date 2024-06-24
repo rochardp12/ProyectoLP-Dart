@@ -1,0 +1,15 @@
+Input: Set<String> con = {}
+Result: None
+
+Input: int funcion(a,b) => 4+5
+Result: None
+
+Input: int funcion(a,b) => 4+5
+Result: None
+
+Input: switch(True){case True: 4+5 break case False: 5+9 break}
+Result: None
+
+Input: switch(True){case True: 4+5 break case False: 5+9 break}
+Result: None
+
