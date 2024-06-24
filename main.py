@@ -11,9 +11,16 @@ def p_cuerpo(p):
             | flecha
             | NUMBER '''
     
+def p_tipoVariable(p):
+    '''tipoVariable : tipoDato
+                    | FINAL
+                    | CONST
+                    | VAR
+                    | DYNAMIC '''
+
 
 def p_declaracion(p):
-    'declaracion : tipoDato VARIABLE EQUALS valoresDatos'
+    'declaracion : tipoVariable VARIABLE EQUALS valoresDatos'
     
 def p_operacion(p):
   'operacion : valorNumerico operador numeroSiguiente'
@@ -81,8 +88,7 @@ def p_tipoDato(p):
                 | INT
                 | SET
                 | LIST
-                | BOOLEAN
-                | VAR '''
+                | BOOLEAN '''
 
 def p_parametros(p):
     '''parametros : valoresDatos
