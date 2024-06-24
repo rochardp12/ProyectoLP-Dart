@@ -1,0 +1,32 @@
+Syntax error at 'string'
+Input: List<string> numeros = [a,b,c];  
+Result: None
+
+Syntax error at 'string'
+Input: List< string > numeros = [a,b,c];  
+Result: None
+
+Syntax error at 'Strin'
+Input: List<Strin > numeros = [a,b,c];  
+Result: None
+
+Syntax error at '<String>'
+Input: List<String> numeros = [a,b,c];  
+Result: None
+
+Input: List<bool> numeros = [a,b,c];  
+Result: None
+
+Input: List<int> numeros = [a,b,c];  
+Result: None
+
+Syntax error at 'float'
+Input: List<float> numeros = [a,b,c];  
+Result: None
+
+Input: List<int> numeros = [a,b,c];  
+Result: None
+
+Input: List<bool> numeros = [a,b,c];  
+Result: None
+

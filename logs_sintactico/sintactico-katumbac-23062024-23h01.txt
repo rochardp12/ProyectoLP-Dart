@@ -1,0 +1,10 @@
+Input: print(hola,p);
+Result: None
+
+Syntax error at '"hola"'
+Input: print("hola");
+Result: None
+
+Input: print(hola);
+Result: None
+

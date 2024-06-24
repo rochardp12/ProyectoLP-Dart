@@ -1,0 +1,1564 @@
+[
+    {
+        "label": "generators",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "copy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "copy",
+        "description": "copy",
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "os.path",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os.path",
+        "description": "os.path",
+        "detail": "os.path",
+        "documentation": {}
+    },
+    {
+        "label": "types",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "types",
+        "description": "types",
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "inspect",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "inspect",
+        "description": "inspect",
+        "detail": "inspect",
+        "documentation": {}
+    },
+    {
+        "label": "warnings",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "warnings",
+        "description": "warnings",
+        "detail": "warnings",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "ply.lex",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "ply.yacc",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "tokens",
+        "importPath": "lexico",
+        "description": "lexico",
+        "isExtraImport": true,
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "Macro",
+        "kind": 6,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "class Macro(object):\n    def __init__(self,name,value,arglist=None,variadic=False):\n        self.name = name\n        self.value = value\n        self.arglist = arglist\n        self.variadic = variadic\n        if variadic:\n            self.vararg = arglist[-1]\n        self.source = None\n# ------------------------------------------------------------------",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "Preprocessor",
+        "kind": 6,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "class Preprocessor(object):\n    def __init__(self,lexer=None):\n        if lexer is None:\n            lexer = lex.lexer\n        self.lexer = lexer\n        self.macros = { }\n        self.path = []\n        self.temp_path = []\n        # Probe the lexer for selected tokens\n        self.lexprobe()",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_WS",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def t_CPP_WS(t):\n    r'\\s+'\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\nt_CPP_POUND = r'\\#'\nt_CPP_DPOUND = r'\\#\\#'\n# Identifier\nt_CPP_ID = r'[A-Za-z_][\\w_]*'\n# Integer literal\ndef CPP_INTEGER(t):",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "CPP_INTEGER",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def CPP_INTEGER(t):\n    r'(((((0x)|(0X))[0-9a-fA-F]+)|(\\d+))([uU][lL]|[lL][uU]|[uU]|[lL])?)'\n    return t\nt_CPP_INTEGER = CPP_INTEGER\n# Floating literal\nt_CPP_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\ndef t_CPP_STRING(t):\n    r'\\\"([^\\\\\\n]|(\\\\(.|\\n)))*?\\\"'\n    t.lexer.lineno += t.value.count(\"\\n\")",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_STRING",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def t_CPP_STRING(t):\n    r'\\\"([^\\\\\\n]|(\\\\(.|\\n)))*?\\\"'\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\n# Character constant 'c' or L'c'\ndef t_CPP_CHAR(t):\n    r'(L)?\\'([^\\\\\\n]|(\\\\(.|\\n)))*?\\''\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\n# Comment",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_CHAR",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def t_CPP_CHAR(t):\n    r'(L)?\\'([^\\\\\\n]|(\\\\(.|\\n)))*?\\''\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\n# Comment\ndef t_CPP_COMMENT1(t):\n    r'(/\\*(.|\\n)*?\\*/)'\n    ncr = t.value.count(\"\\n\")\n    t.lexer.lineno += ncr\n    # replace with one space or a number of '\\n'",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_COMMENT1",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def t_CPP_COMMENT1(t):\n    r'(/\\*(.|\\n)*?\\*/)'\n    ncr = t.value.count(\"\\n\")\n    t.lexer.lineno += ncr\n    # replace with one space or a number of '\\n'\n    t.type = 'CPP_WS'; t.value = '\\n' * ncr if ncr else ' '\n    return t\n# Line comment\ndef t_CPP_COMMENT2(t):\n    r'(//.*?(\\n|$))'",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_COMMENT2",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def t_CPP_COMMENT2(t):\n    r'(//.*?(\\n|$))'\n    # replace with '/n'\n    t.type = 'CPP_WS'; t.value = '\\n'\n    return t\ndef t_error(t):\n    t.type = t.value[0]\n    t.value = t.value[0]\n    t.lexer.skip(1)\n    return t",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_error",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def t_error(t):\n    t.type = t.value[0]\n    t.value = t.value[0]\n    t.lexer.skip(1)\n    return t\nimport re\nimport copy\nimport time\nimport os.path\n# -----------------------------------------------------------------------------",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "trigraph",
+        "kind": 2,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "def trigraph(input):\n    return _trigraph_pat.sub(lambda g: _trigraph_rep[g.group()[-1]],input)\n# ------------------------------------------------------------------\n# Macro object\n#\n# This object holds information about preprocessor macros\n#\n#    .name      - Macro name (string)\n#    .value     - Macro value (a list of tokens)\n#    .arglist   - List of argument names",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "tokens",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "tokens = (\n   'CPP_ID','CPP_INTEGER', 'CPP_FLOAT', 'CPP_STRING', 'CPP_CHAR', 'CPP_WS', 'CPP_COMMENT1', 'CPP_COMMENT2', 'CPP_POUND','CPP_DPOUND'\n)\nliterals = \"+-*/%|&~^<>=!?()[]{}.,;:\\\\\\'\\\"\"\n# Whitespace\ndef t_CPP_WS(t):\n    r'\\s+'\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\nt_CPP_POUND = r'\\#'",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "literals",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "literals = \"+-*/%|&~^<>=!?()[]{}.,;:\\\\\\'\\\"\"\n# Whitespace\ndef t_CPP_WS(t):\n    r'\\s+'\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\nt_CPP_POUND = r'\\#'\nt_CPP_DPOUND = r'\\#\\#'\n# Identifier\nt_CPP_ID = r'[A-Za-z_][\\w_]*'",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_POUND",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "t_CPP_POUND = r'\\#'\nt_CPP_DPOUND = r'\\#\\#'\n# Identifier\nt_CPP_ID = r'[A-Za-z_][\\w_]*'\n# Integer literal\ndef CPP_INTEGER(t):\n    r'(((((0x)|(0X))[0-9a-fA-F]+)|(\\d+))([uU][lL]|[lL][uU]|[uU]|[lL])?)'\n    return t\nt_CPP_INTEGER = CPP_INTEGER\n# Floating literal",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_DPOUND",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "t_CPP_DPOUND = r'\\#\\#'\n# Identifier\nt_CPP_ID = r'[A-Za-z_][\\w_]*'\n# Integer literal\ndef CPP_INTEGER(t):\n    r'(((((0x)|(0X))[0-9a-fA-F]+)|(\\d+))([uU][lL]|[lL][uU]|[uU]|[lL])?)'\n    return t\nt_CPP_INTEGER = CPP_INTEGER\n# Floating literal\nt_CPP_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_ID",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "t_CPP_ID = r'[A-Za-z_][\\w_]*'\n# Integer literal\ndef CPP_INTEGER(t):\n    r'(((((0x)|(0X))[0-9a-fA-F]+)|(\\d+))([uU][lL]|[lL][uU]|[uU]|[lL])?)'\n    return t\nt_CPP_INTEGER = CPP_INTEGER\n# Floating literal\nt_CPP_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\ndef t_CPP_STRING(t):",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_INTEGER",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "t_CPP_INTEGER = CPP_INTEGER\n# Floating literal\nt_CPP_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\ndef t_CPP_STRING(t):\n    r'\\\"([^\\\\\\n]|(\\\\(.|\\n)))*?\\\"'\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\n# Character constant 'c' or L'c'\ndef t_CPP_CHAR(t):",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPP_FLOAT",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "t_CPP_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\ndef t_CPP_STRING(t):\n    r'\\\"([^\\\\\\n]|(\\\\(.|\\n)))*?\\\"'\n    t.lexer.lineno += t.value.count(\"\\n\")\n    return t\n# Character constant 'c' or L'c'\ndef t_CPP_CHAR(t):\n    r'(L)?\\'([^\\\\\\n]|(\\\\(.|\\n)))*?\\''\n    t.lexer.lineno += t.value.count(\"\\n\")",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "_trigraph_pat",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "_trigraph_pat = re.compile(r'''\\?\\?[=/\\'\\(\\)\\!<>\\-]''')\n_trigraph_rep = {\n    '=':'#',\n    '/':'\\\\',\n    \"'\":'^',\n    '(':'[',\n    ')':']',\n    '!':'|',\n    '<':'{',\n    '>':'}',",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "_trigraph_rep",
+        "kind": 5,
+        "importPath": "ply.cpp",
+        "description": "ply.cpp",
+        "peekOfCode": "_trigraph_rep = {\n    '=':'#',\n    '/':'\\\\',\n    \"'\":'^',\n    '(':'[',\n    ')':']',\n    '!':'|',\n    '<':'{',\n    '>':'}',\n    '-':'~'",
+        "detail": "ply.cpp",
+        "documentation": {}
+    },
+    {
+        "label": "t_COMMENT",
+        "kind": 2,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "def t_COMMENT(t):\n    r'/\\*(.|\\n)*?\\*/'\n    t.lexer.lineno += t.value.count('\\n')\n    return t\n# Comment (C++-Style)\ndef t_CPPCOMMENT(t):\n    r'//.*\\n'\n    t.lexer.lineno += 1\n    return t",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "t_CPPCOMMENT",
+        "kind": 2,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "def t_CPPCOMMENT(t):\n    r'//.*\\n'\n    t.lexer.lineno += 1\n    return t",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "tokens",
+        "kind": 5,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "tokens = [\n    # Literals (identifier, integer constant, float constant, string constant, char const)\n    'ID', 'TYPEID', 'INTEGER', 'FLOAT', 'STRING', 'CHARACTER',\n    # Operators (+,-,*,/,%,|,&,~,^,<<,>>, ||, &&, !, <, <=, >, >=, ==, !=)\n    'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'MODULO',\n    'OR', 'AND', 'NOT', 'XOR', 'LSHIFT', 'RSHIFT',\n    'LOR', 'LAND', 'LNOT',\n    'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',\n    # Assignment (=, *=, /=, %=, +=, -=, <<=, >>=, &=, ^=, |=)\n    'EQUALS', 'TIMESEQUAL', 'DIVEQUAL', 'MODEQUAL', 'PLUSEQUAL', 'MINUSEQUAL',",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "t_ID",
+        "kind": 5,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "t_ID = r'[A-Za-z_][A-Za-z0-9_]*'\n# Integer literal\nt_INTEGER = r'\\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'\n# Floating literal\nt_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\nt_STRING = r'\\\"([^\\\\\\n]|(\\\\.))*?\\\"'\n# Character constant 'c' or L'c'\nt_CHARACTER = r'(L)?\\'([^\\\\\\n]|(\\\\.))*?\\''\n# Comment (C-Style)",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "t_INTEGER",
+        "kind": 5,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "t_INTEGER = r'\\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'\n# Floating literal\nt_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\nt_STRING = r'\\\"([^\\\\\\n]|(\\\\.))*?\\\"'\n# Character constant 'c' or L'c'\nt_CHARACTER = r'(L)?\\'([^\\\\\\n]|(\\\\.))*?\\''\n# Comment (C-Style)\ndef t_COMMENT(t):\n    r'/\\*(.|\\n)*?\\*/'",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "t_FLOAT",
+        "kind": 5,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "t_FLOAT = r'((\\d+)(\\.\\d+)(e(\\+|-)?(\\d+))? | (\\d+)e(\\+|-)?(\\d+))([lL]|[fF])?'\n# String literal\nt_STRING = r'\\\"([^\\\\\\n]|(\\\\.))*?\\\"'\n# Character constant 'c' or L'c'\nt_CHARACTER = r'(L)?\\'([^\\\\\\n]|(\\\\.))*?\\''\n# Comment (C-Style)\ndef t_COMMENT(t):\n    r'/\\*(.|\\n)*?\\*/'\n    t.lexer.lineno += t.value.count('\\n')\n    return t",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "t_STRING",
+        "kind": 5,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "t_STRING = r'\\\"([^\\\\\\n]|(\\\\.))*?\\\"'\n# Character constant 'c' or L'c'\nt_CHARACTER = r'(L)?\\'([^\\\\\\n]|(\\\\.))*?\\''\n# Comment (C-Style)\ndef t_COMMENT(t):\n    r'/\\*(.|\\n)*?\\*/'\n    t.lexer.lineno += t.value.count('\\n')\n    return t\n# Comment (C++-Style)\ndef t_CPPCOMMENT(t):",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "t_CHARACTER",
+        "kind": 5,
+        "importPath": "ply.ctokens",
+        "description": "ply.ctokens",
+        "peekOfCode": "t_CHARACTER = r'(L)?\\'([^\\\\\\n]|(\\\\.))*?\\''\n# Comment (C-Style)\ndef t_COMMENT(t):\n    r'/\\*(.|\\n)*?\\*/'\n    t.lexer.lineno += t.value.count('\\n')\n    return t\n# Comment (C++-Style)\ndef t_CPPCOMMENT(t):\n    r'//.*\\n'\n    t.lexer.lineno += 1",
+        "detail": "ply.ctokens",
+        "documentation": {}
+    },
+    {
+        "label": "LexError",
+        "kind": 6,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "class LexError(Exception):\n    def __init__(self, message, s):\n        self.args = (message,)\n        self.text = s\n# Token class.  This class is used to represent the tokens produced.\nclass LexToken(object):\n    def __str__(self):\n        return 'LexToken(%s,%r,%d,%d)' % (self.type, self.value, self.lineno, self.lexpos)\n    def __repr__(self):\n        return str(self)",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "LexToken",
+        "kind": 6,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "class LexToken(object):\n    def __str__(self):\n        return 'LexToken(%s,%r,%d,%d)' % (self.type, self.value, self.lineno, self.lexpos)\n    def __repr__(self):\n        return str(self)\n# This object is a stand-in for a logging object created by the\n# logging module.\nclass PlyLogger(object):\n    def __init__(self, f):\n        self.f = f",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "PlyLogger",
+        "kind": 6,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "class PlyLogger(object):\n    def __init__(self, f):\n        self.f = f\n    def critical(self, msg, *args, **kwargs):\n        self.f.write((msg % args) + '\\n')\n    def warning(self, msg, *args, **kwargs):\n        self.f.write('WARNING: ' + (msg % args) + '\\n')\n    def error(self, msg, *args, **kwargs):\n        self.f.write('ERROR: ' + (msg % args) + '\\n')\n    info = critical",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "NullLogger",
+        "kind": 6,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "class NullLogger(object):\n    def __getattribute__(self, name):\n        return self\n    def __call__(self, *args, **kwargs):\n        return self\n# -----------------------------------------------------------------------------\n#                        === Lexing Engine ===\n#\n# The following Lexer class implements the lexer runtime.   There are only\n# a few public methods and attributes:",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "Lexer",
+        "kind": 6,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "class Lexer:\n    def __init__(self):\n        self.lexre = None             # Master regular expression. This is a list of\n                                      # tuples (re, findex) where re is a compiled\n                                      # regular expression and findex is a list\n                                      # mapping regex group numbers to rules\n        self.lexretext = None         # Current regular expression strings\n        self.lexstatere = {}          # Dictionary mapping lexer states to master regexs\n        self.lexstateretext = {}      # Dictionary mapping lexer states to regex strings\n        self.lexstaterenames = {}     # Dictionary mapping lexer states to symbol names",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "LexerReflect",
+        "kind": 6,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "class LexerReflect(object):\n    def __init__(self, ldict, log=None, reflags=0):\n        self.ldict      = ldict\n        self.error_func = None\n        self.tokens     = []\n        self.reflags    = reflags\n        self.stateinfo  = {'INITIAL': 'inclusive'}\n        self.modules    = set()\n        self.error      = False\n        self.log        = PlyLogger(sys.stderr) if log is None else log",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "get_caller_module_dict",
+        "kind": 2,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "def get_caller_module_dict(levels):\n    f = sys._getframe(levels)\n    ldict = f.f_globals.copy()\n    if f.f_globals != f.f_locals:\n        ldict.update(f.f_locals)\n    return ldict\n# -----------------------------------------------------------------------------\n# _funcs_to_names()\n#\n# Given a list of regular expression functions, this converts it to a list",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "lex",
+        "kind": 2,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "def lex(module=None, object=None, debug=False, optimize=False, lextab='lextab',\n        reflags=int(re.VERBOSE), nowarn=False, outputdir=None, debuglog=None, errorlog=None):\n    if lextab is None:\n        lextab = 'lextab'\n    global lexer\n    ldict = None\n    stateinfo  = {'INITIAL': 'inclusive'}\n    lexobj = Lexer()\n    lexobj.lexoptimize = optimize\n    global token, input",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "runmain",
+        "kind": 2,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "def runmain(lexer=None, data=None):\n    if not data:\n        try:\n            filename = sys.argv[1]\n            f = open(filename)\n            data = f.read()\n            f.close()\n        except IndexError:\n            sys.stdout.write('Reading from standard input (type EOF to end):\\n')\n            data = sys.stdin.read()",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "TOKEN",
+        "kind": 2,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "def TOKEN(r):\n    def set_regex(f):\n        if hasattr(r, '__call__'):\n            f.regex = _get_regex(r)\n        else:\n            f.regex = r\n        return f\n    return set_regex\n# Alternative spelling of the TOKEN decorator\nToken = TOKEN",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "__tabversion__",
+        "kind": 5,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "__tabversion__ = '3.10'\nimport re\nimport sys\nimport types\nimport copy\nimport os\nimport inspect\n# This tuple contains known string types\ntry:\n    # Python 2.6",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "_is_identifier",
+        "kind": 5,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "_is_identifier = re.compile(r'^[a-zA-Z0-9_]+$')\n# Exception thrown when invalid token encountered and no default error\n# handler is defined.\nclass LexError(Exception):\n    def __init__(self, message, s):\n        self.args = (message,)\n        self.text = s\n# Token class.  This class is used to represent the tokens produced.\nclass LexToken(object):\n    def __str__(self):",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "kind": 5,
+        "importPath": "ply.lex",
+        "description": "ply.lex",
+        "peekOfCode": "Token = TOKEN",
+        "detail": "ply.lex",
+        "documentation": {}
+    },
+    {
+        "label": "PlyLogger",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class PlyLogger(object):\n    def __init__(self, f):\n        self.f = f\n    def debug(self, msg, *args, **kwargs):\n        self.f.write((msg % args) + '\\n')\n    info = debug\n    def warning(self, msg, *args, **kwargs):\n        self.f.write('WARNING: ' + (msg % args) + '\\n')\n    def error(self, msg, *args, **kwargs):\n        self.f.write('ERROR: ' + (msg % args) + '\\n')",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "NullLogger",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class NullLogger(object):\n    def __getattribute__(self, name):\n        return self\n    def __call__(self, *args, **kwargs):\n        return self\n# Exception raised for yacc-related errors\nclass YaccError(Exception):\n    pass\n# Format the result message that the parser produces when running in debug mode.\ndef format_result(r):",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "YaccError",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class YaccError(Exception):\n    pass\n# Format the result message that the parser produces when running in debug mode.\ndef format_result(r):\n    repr_str = repr(r)\n    if '\\n' in repr_str:\n        repr_str = repr(repr_str)\n    if len(repr_str) > resultlimit:\n        repr_str = repr_str[:resultlimit] + ' ...'\n    result = '<%s @ 0x%x> (%s)' % (type(r).__name__, id(r), repr_str)",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "YaccSymbol",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class YaccSymbol:\n    def __str__(self):\n        return self.type\n    def __repr__(self):\n        return str(self)\n# This class is a wrapper around the objects actually passed to each\n# grammar rule.   Index lookup and assignment actually assign the\n# .value attribute of the underlying YaccSymbol object.\n# The lineno() method returns the line number of a given\n# item (or 0 if not defined).   The linespan() method returns",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "YaccProduction",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class YaccProduction:\n    def __init__(self, s, stack=None):\n        self.slice = s\n        self.stack = stack\n        self.lexer = None\n        self.parser = None\n    def __getitem__(self, n):\n        if isinstance(n, slice):\n            return [s.value for s in self.slice[n]]\n        elif n >= 0:",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "LRParser",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class LRParser:\n    def __init__(self, lrtab, errorf):\n        self.productions = lrtab.lr_productions\n        self.action = lrtab.lr_action\n        self.goto = lrtab.lr_goto\n        self.errorfunc = errorf\n        self.set_defaulted_states()\n        self.errorok = True\n    def errok(self):\n        self.errorok = True",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "Production",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class Production(object):\n    reduced = 0\n    def __init__(self, number, name, prod, precedence=('right', 0), func=None, file='', line=0):\n        self.name     = name\n        self.prod     = tuple(prod)\n        self.number   = number\n        self.func     = func\n        self.callable = None\n        self.file     = file\n        self.line     = line",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "MiniProduction",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class MiniProduction(object):\n    def __init__(self, str, name, len, func, file, line):\n        self.name     = name\n        self.len      = len\n        self.func     = func\n        self.callable = None\n        self.file     = file\n        self.line     = line\n        self.str      = str\n    def __str__(self):",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "LRItem",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class LRItem(object):\n    def __init__(self, p, n):\n        self.name       = p.name\n        self.prod       = list(p.prod)\n        self.number     = p.number\n        self.lr_index   = n\n        self.lookaheads = {}\n        self.prod.insert(n, '.')\n        self.prod       = tuple(self.prod)\n        self.len        = len(self.prod)",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "GrammarError",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class GrammarError(YaccError):\n    pass\nclass Grammar(object):\n    def __init__(self, terminals):\n        self.Productions  = [None]  # A list of all of the productions.  The first\n                                    # entry is always reserved for the purpose of\n                                    # building an augmented grammar\n        self.Prodnames    = {}      # A dictionary mapping the names of nonterminals to a list of all\n                                    # productions of that nonterminal.\n        self.Prodmap      = {}      # A dictionary that is only used to detect duplicate",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "Grammar",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class Grammar(object):\n    def __init__(self, terminals):\n        self.Productions  = [None]  # A list of all of the productions.  The first\n                                    # entry is always reserved for the purpose of\n                                    # building an augmented grammar\n        self.Prodnames    = {}      # A dictionary mapping the names of nonterminals to a list of all\n                                    # productions of that nonterminal.\n        self.Prodmap      = {}      # A dictionary that is only used to detect duplicate\n                                    # productions.\n        self.Terminals    = {}      # A dictionary mapping the names of terminal symbols to a",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "VersionError",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class VersionError(YaccError):\n    pass\nclass LRTable(object):\n    def __init__(self):\n        self.lr_action = None\n        self.lr_goto = None\n        self.lr_productions = None\n        self.lr_method = None\n    def read_table(self, module):\n        if isinstance(module, types.ModuleType):",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "LRTable",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class LRTable(object):\n    def __init__(self):\n        self.lr_action = None\n        self.lr_goto = None\n        self.lr_productions = None\n        self.lr_method = None\n    def read_table(self, module):\n        if isinstance(module, types.ModuleType):\n            parsetab = module\n        else:",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "LALRError",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class LALRError(YaccError):\n    pass\n# -----------------------------------------------------------------------------\n#                             == LRGeneratedTable ==\n#\n# This class implements the LR table generation algorithm.  There are no\n# public methods except for write()\n# -----------------------------------------------------------------------------\nclass LRGeneratedTable(LRTable):\n    def __init__(self, grammar, method='LALR', log=None):",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "LRGeneratedTable",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class LRGeneratedTable(LRTable):\n    def __init__(self, grammar, method='LALR', log=None):\n        if method not in ['SLR', 'LALR']:\n            raise LALRError('Unsupported method %s' % method)\n        self.grammar = grammar\n        self.lr_method = method\n        # Set up the logger\n        if not log:\n            log = NullLogger()\n        self.log = log",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "ParserReflect",
+        "kind": 6,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "class ParserReflect(object):\n    def __init__(self, pdict, log=None):\n        self.pdict      = pdict\n        self.start      = None\n        self.error_func = None\n        self.tokens     = None\n        self.modules    = set()\n        self.grammar    = []\n        self.error      = False\n        if log is None:",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "format_result",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def format_result(r):\n    repr_str = repr(r)\n    if '\\n' in repr_str:\n        repr_str = repr(repr_str)\n    if len(repr_str) > resultlimit:\n        repr_str = repr_str[:resultlimit] + ' ...'\n    result = '<%s @ 0x%x> (%s)' % (type(r).__name__, id(r), repr_str)\n    return result\n# Format stack entries when the parser is running in debug mode\ndef format_stack_entry(r):",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "format_stack_entry",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def format_stack_entry(r):\n    repr_str = repr(r)\n    if '\\n' in repr_str:\n        repr_str = repr(repr_str)\n    if len(repr_str) < 16:\n        return repr_str\n    else:\n        return '<%s @ 0x%x>' % (type(r).__name__, id(r))\n# Panic mode error recovery support.   This feature is being reworked--much of the\n# code here is to offer a deprecation/backwards compatible transition",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "errok",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def errok():\n    warnings.warn(_warnmsg)\n    return _errok()\ndef restart():\n    warnings.warn(_warnmsg)\n    return _restart()\ndef token():\n    warnings.warn(_warnmsg)\n    return _token()\n# Utility function to call the p_error() function with some deprecation hacks",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "restart",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def restart():\n    warnings.warn(_warnmsg)\n    return _restart()\ndef token():\n    warnings.warn(_warnmsg)\n    return _token()\n# Utility function to call the p_error() function with some deprecation hacks\ndef call_errorfunc(errorfunc, token, parser):\n    global _errok, _token, _restart\n    _errok = parser.errok",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def token():\n    warnings.warn(_warnmsg)\n    return _token()\n# Utility function to call the p_error() function with some deprecation hacks\ndef call_errorfunc(errorfunc, token, parser):\n    global _errok, _token, _restart\n    _errok = parser.errok\n    _token = parser.token\n    _restart = parser.restart\n    r = errorfunc(token)",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "call_errorfunc",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def call_errorfunc(errorfunc, token, parser):\n    global _errok, _token, _restart\n    _errok = parser.errok\n    _token = parser.token\n    _restart = parser.restart\n    r = errorfunc(token)\n    try:\n        del _errok, _token, _restart\n    except NameError:\n        pass",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "rightmost_terminal",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def rightmost_terminal(symbols, terminals):\n    i = len(symbols) - 1\n    while i >= 0:\n        if symbols[i] in terminals:\n            return symbols[i]\n        i -= 1\n    return None\n# -----------------------------------------------------------------------------\n#                           === GRAMMAR CLASS ===\n#",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "digraph",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def digraph(X, R, FP):\n    N = {}\n    for x in X:\n        N[x] = 0\n    stack = []\n    F = {}\n    for x in X:\n        if N[x] == 0:\n            traverse(x, N, stack, F, X, R, FP)\n    return F",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "traverse",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def traverse(x, N, stack, F, X, R, FP):\n    stack.append(x)\n    d = len(stack)\n    N[x] = d\n    F[x] = FP(x)             # F(X) <- F'(x)\n    rel = R(x)               # Get y's related to x\n    for y in rel:\n        if N[y] == 0:\n            traverse(y, N, stack, F, X, R, FP)\n        N[x] = min(N[x], N[y])",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "get_caller_module_dict",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def get_caller_module_dict(levels):\n    f = sys._getframe(levels)\n    ldict = f.f_globals.copy()\n    if f.f_globals != f.f_locals:\n        ldict.update(f.f_locals)\n    return ldict\n# -----------------------------------------------------------------------------\n# parse_grammar()\n#\n# This takes a raw grammar rule string and parses it into production data",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "parse_grammar",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def parse_grammar(doc, file, line):\n    grammar = []\n    # Split the doc string into lines\n    pstrings = doc.splitlines()\n    lastp = None\n    dline = line\n    for ps in pstrings:\n        dline += 1\n        p = ps.split()\n        if not p:",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "yacc",
+        "kind": 2,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "def yacc(method='LALR', debug=yaccdebug, module=None, tabmodule=tab_module, start=None,\n         check_recursion=True, optimize=False, write_tables=True, debugfile=debug_file,\n         outputdir=None, debuglog=None, errorlog=None, picklefile=None):\n    if tabmodule is None:\n        tabmodule = tab_module\n    # Reference to the parsing method of the last built parser\n    global parse\n    # If pickling is enabled, table files are not created\n    if picklefile:\n        write_tables = 0",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "__tabversion__",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "__tabversion__ = '3.10'\n#-----------------------------------------------------------------------------\n#                     === User configurable parameters ===\n#\n# Change these to modify the default behavior of yacc (if you wish)\n#-----------------------------------------------------------------------------\nyaccdebug   = True             # Debugging mode.  If set, yacc generates a\n                               # a 'parser.out' file in the current directory\ndebug_file  = 'parser.out'     # Default name of the debugging file\ntab_module  = 'parsetab'       # Default name of the table module",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "error_count",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "error_count = 3                # Number of symbols that must be shifted to leave recovery mode\nyaccdevel   = False            # Set to True if developing yacc.  This turns off optimized\n                               # implementations of certain functions.\nresultlimit = 40               # Size limit of results when running in debug mode.\npickle_protocol = 0            # Protocol to use when writing pickle files\n# String type-checking compatibility\nif sys.version_info[0] < 3:\n    string_types = basestring\nelse:\n    string_types = str",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "resultlimit",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "resultlimit = 40               # Size limit of results when running in debug mode.\npickle_protocol = 0            # Protocol to use when writing pickle files\n# String type-checking compatibility\nif sys.version_info[0] < 3:\n    string_types = basestring\nelse:\n    string_types = str\nMAXINT = sys.maxsize\n# This object is a stand-in for a logging object created by the\n# logging module.   PLY will use this by default to create things",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "pickle_protocol",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "pickle_protocol = 0            # Protocol to use when writing pickle files\n# String type-checking compatibility\nif sys.version_info[0] < 3:\n    string_types = basestring\nelse:\n    string_types = str\nMAXINT = sys.maxsize\n# This object is a stand-in for a logging object created by the\n# logging module.   PLY will use this by default to create things\n# such as the parser.out file.  If a user wants more detailed",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "MAXINT",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "MAXINT = sys.maxsize\n# This object is a stand-in for a logging object created by the\n# logging module.   PLY will use this by default to create things\n# such as the parser.out file.  If a user wants more detailed\n# information, they can create their own logging object and pass\n# it into PLY.\nclass PlyLogger(object):\n    def __init__(self, f):\n        self.f = f\n    def debug(self, msg, *args, **kwargs):",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_errok",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_errok = None\n_token = None\n_restart = None\n_warnmsg = '''PLY: Don't use global functions errok(), token(), and restart() in p_error().\nInstead, invoke the methods on the associated parser instance:\n    def p_error(p):\n        ...\n        # Use parser.errok(), parser.token(), parser.restart()\n        ...\n    parser = yacc.yacc()",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_token",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_token = None\n_restart = None\n_warnmsg = '''PLY: Don't use global functions errok(), token(), and restart() in p_error().\nInstead, invoke the methods on the associated parser instance:\n    def p_error(p):\n        ...\n        # Use parser.errok(), parser.token(), parser.restart()\n        ...\n    parser = yacc.yacc()\n'''",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_restart",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_restart = None\n_warnmsg = '''PLY: Don't use global functions errok(), token(), and restart() in p_error().\nInstead, invoke the methods on the associated parser instance:\n    def p_error(p):\n        ...\n        # Use parser.errok(), parser.token(), parser.restart()\n        ...\n    parser = yacc.yacc()\n'''\ndef errok():",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_warnmsg",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_warnmsg = '''PLY: Don't use global functions errok(), token(), and restart() in p_error().\nInstead, invoke the methods on the associated parser instance:\n    def p_error(p):\n        ...\n        # Use parser.errok(), parser.token(), parser.restart()\n        ...\n    parser = yacc.yacc()\n'''\ndef errok():\n    warnings.warn(_warnmsg)",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_is_identifier",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_is_identifier = re.compile(r'^[a-zA-Z0-9_-]+$')\n# -----------------------------------------------------------------------------\n# class Production:\n#\n# This class stores the raw information about a single production or grammar rule.\n# A grammar rule refers to a specification such as this:\n#\n#       expr : expr PLUS term\n#\n# Here are the basic attributes defined on all productions",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_tabversion",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_tabversion = %r\n_lr_method = %r\n_lr_signature = %r\n    ''' % (os.path.basename(filename), __tabversion__, self.lr_method, signature))\n            # Change smaller to 0 to go back to original tables\n            smaller = 1\n            # Factor out names to try and make smaller\n            if smaller:\n                items = {}\n                for s, nd in self.lr_action.items():",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_method",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_lr_method = %r\n_lr_signature = %r\n    ''' % (os.path.basename(filename), __tabversion__, self.lr_method, signature))\n            # Change smaller to 0 to go back to original tables\n            smaller = 1\n            # Factor out names to try and make smaller\n            if smaller:\n                items = {}\n                for s, nd in self.lr_action.items():\n                    for name, v in nd.items():",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_signature",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_lr_signature = %r\n    ''' % (os.path.basename(filename), __tabversion__, self.lr_method, signature))\n            # Change smaller to 0 to go back to original tables\n            smaller = 1\n            # Factor out names to try and make smaller\n            if smaller:\n                items = {}\n                for s, nd in self.lr_action.items():\n                    for name, v in nd.items():\n                        i = items.get(name)",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_action",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_lr_action = {}\nfor _k, _v in _lr_action_items.items():\n   for _x,_y in zip(_v[0],_v[1]):\n      if not _x in _lr_action:  _lr_action[_x] = {}\n      _lr_action[_x][_k] = _y\ndel _lr_action_items\n''')\n            else:\n                f.write('\\n_lr_action = { ')\n                for k, v in self.lr_action.items():",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_goto",
+        "kind": 5,
+        "importPath": "ply.yacc",
+        "description": "ply.yacc",
+        "peekOfCode": "_lr_goto = {}\nfor _k, _v in _lr_goto_items.items():\n   for _x, _y in zip(_v[0], _v[1]):\n       if not _x in _lr_goto: _lr_goto[_x] = {}\n       _lr_goto[_x][_k] = _y\ndel _lr_goto_items\n''')\n            else:\n                f.write('\\n_lr_goto = { ')\n                for k, v in self.lr_goto.items():",
+        "detail": "ply.yacc",
+        "documentation": {}
+    },
+    {
+        "label": "get_source_range",
+        "kind": 2,
+        "importPath": "ply.ygen",
+        "description": "ply.ygen",
+        "peekOfCode": "def get_source_range(lines, tag):\n    srclines = enumerate(lines)\n    start_tag = '#--! %s-start' % tag\n    end_tag = '#--! %s-end' % tag\n    for start_index, line in srclines:\n        if line.strip().startswith(start_tag):\n            break\n    for end_index, line in srclines:\n        if line.strip().endswith(end_tag):\n            break",
+        "detail": "ply.ygen",
+        "documentation": {}
+    },
+    {
+        "label": "filter_section",
+        "kind": 2,
+        "importPath": "ply.ygen",
+        "description": "ply.ygen",
+        "peekOfCode": "def filter_section(lines, tag):\n    filtered_lines = []\n    include = True\n    tag_text = '#--! %s' % tag\n    for line in lines:\n        if line.strip().startswith(tag_text):\n            include = not include\n        elif include:\n            filtered_lines.append(line)\n    return filtered_lines",
+        "detail": "ply.ygen",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "ply.ygen",
+        "description": "ply.ygen",
+        "peekOfCode": "def main():\n    dirname = os.path.dirname(__file__)\n    shutil.copy2(os.path.join(dirname, 'yacc.py'), os.path.join(dirname, 'yacc.py.bak'))\n    with open(os.path.join(dirname, 'yacc.py'), 'r') as f:\n        lines = f.readlines()\n    parse_start, parse_end = get_source_range(lines, 'parsedebug')\n    parseopt_start, parseopt_end = get_source_range(lines, 'parseopt')\n    parseopt_notrack_start, parseopt_notrack_end = get_source_range(lines, 'parseopt-notrack')\n    # Get the original source\n    orig_lines = lines[parse_start:parse_end]",
+        "detail": "ply.ygen",
+        "documentation": {}
+    },
+    {
+        "label": "t_INTERNDATATYPE",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_INTERNDATATYPE(t):\n    r'\\<[A-Z][_a-zA-Z0-9]*\\>'\n    t.type = reserved.get(t.value, 'INTERNDATATYPE')\n    return t\ndef t_DATAATTRIBUTE(t):\n    r'\\.[a-zA-Z_]+\\w*'\n    t.type = reserved.get(t.value, 'DATAATTRIBUTE')\n    return t\n'''\n#Katherine Tumbaco",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_DATAATTRIBUTE",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_DATAATTRIBUTE(t):\n    r'\\.[a-zA-Z_]+\\w*'\n    t.type = reserved.get(t.value, 'DATAATTRIBUTE')\n    return t\n'''\n#Katherine Tumbaco\ndef t_FLOAT(t):\n    r'\\d+\\.\\d+'\n    t.value = float(t.value)\n    return t",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_FLOAT",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_FLOAT(t):\n    r'\\d+\\.\\d+'\n    t.value = float(t.value)\n    return t\ndef t_NUMBER(t):\n    r'\\d+'\n    t.value = int(t.value)\n    return t\ndef t_VARIABLE(t):\n    r'[a-zA-Z_]\\w*'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_NUMBER",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_NUMBER(t):\n    r'\\d+'\n    t.value = int(t.value)\n    return t\ndef t_VARIABLE(t):\n    r'[a-zA-Z_]\\w*'\n    t.type = reserved.get(t.value,'VARIABLE')    # Check for reserved words\n    return t\ndef t_newline(t):\n    r'\\n+'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_VARIABLE",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_VARIABLE(t):\n    r'[a-zA-Z_]\\w*'\n    t.type = reserved.get(t.value,'VARIABLE')    # Check for reserved words\n    return t\ndef t_newline(t):\n    r'\\n+'\n    t.lexer.lineno += len(t.value)\nt_ignore  = ' \\t'\n# Error handling rule\ndef t_error(t):",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_newline",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_newline(t):\n    r'\\n+'\n    t.lexer.lineno += len(t.value)\nt_ignore  = ' \\t'\n# Error handling rule\ndef t_error(t):\n    print(\"Illegal character '%s'\" % t.value[0])\n    t.lexer.skip(1)\n#Katherine Tumbaco\nalgoritmoKatherine = \"\"\"",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_error",
+        "kind": 2,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "def t_error(t):\n    print(\"Illegal character '%s'\" % t.value[0])\n    t.lexer.skip(1)\n#Katherine Tumbaco\nalgoritmoKatherine = \"\"\"\nenum DiaSemana{\n    Lunes,\n    Martes,\n    Miercoles,\n    Jueves,",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "reserved",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "reserved = {\n    #Roberto Encalada\n    'main': 'MAIN',\n    'new': 'NEW',\n    'null': 'NULL',\n    'map': 'MAP',\n    'private': 'PRIVATE',\n    'protected': 'PROTECTED',\n    'static': 'STATIC',\n    'abstract': 'ABSTRACT',",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "tokens",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "tokens = (\n    #Katherine Tumbaco\n    'NUMBER',\n    'FLOAT',\n    'PLUS',\n    'MINUS',\n    'TIMES',\n    'DIVIDE',\n    'LPAREN',\n    'RPAREN',",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_NEQ",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_NEQ = r'!='\nt_DOT = r'\\.'\nt_TWODOTS = r':'\nt_LBRACE  = r'\\{'\nt_RBRACE  = r'\\}'\nt_LBRACKET = r'\\['\nt_RBRACKET = r'\\]'\nt_LPAREN = r'\\('\nt_RPAREN = r'\\)'\nt_DOTCOMMA = r';'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_DOT",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_DOT = r'\\.'\nt_TWODOTS = r':'\nt_LBRACE  = r'\\{'\nt_RBRACE  = r'\\}'\nt_LBRACKET = r'\\['\nt_RBRACKET = r'\\]'\nt_LPAREN = r'\\('\nt_RPAREN = r'\\)'\nt_DOTCOMMA = r';'\nt_TIMES = r'\\*'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_TWODOTS",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_TWODOTS = r':'\nt_LBRACE  = r'\\{'\nt_RBRACE  = r'\\}'\nt_LBRACKET = r'\\['\nt_RBRACKET = r'\\]'\nt_LPAREN = r'\\('\nt_RPAREN = r'\\)'\nt_DOTCOMMA = r';'\nt_TIMES = r'\\*'\nt_DIVIDE = r'/'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_LBRACKET",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_LBRACKET = r'\\['\nt_RBRACKET = r'\\]'\nt_LPAREN = r'\\('\nt_RPAREN = r'\\)'\nt_DOTCOMMA = r';'\nt_TIMES = r'\\*'\nt_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_RBRACKET",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_RBRACKET = r'\\]'\nt_LPAREN = r'\\('\nt_RPAREN = r'\\)'\nt_DOTCOMMA = r';'\nt_TIMES = r'\\*'\nt_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_LPAREN",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_LPAREN = r'\\('\nt_RPAREN = r'\\)'\nt_DOTCOMMA = r';'\nt_TIMES = r'\\*'\nt_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_RPAREN",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_RPAREN = r'\\)'\nt_DOTCOMMA = r';'\nt_TIMES = r'\\*'\nt_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_DOTCOMMA",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_DOTCOMMA = r';'\nt_TIMES = r'\\*'\nt_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_TIMES",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_TIMES = r'\\*'\nt_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_DIVIDE",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_DIVIDE = r'/'\nt_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_MINUS",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_MINUS = r'-'\n#Roberto Encalada\nt_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_LANGLE",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_LANGLE = r'<'\nt_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_RANGLE",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_RANGLE = r'>'\nt_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_ADMIRATION",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_ADMIRATION = r'!'\nt_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_DOLLAR",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_DOLLAR = r'\\$'\nt_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'\nt_COMMA   = r','",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_OR",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_OR = r'\\|\\|'\nt_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'\nt_COMMA   = r','\nt_EQUALS  = r'='",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_AND",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_AND = r'&&'\nt_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'\nt_COMMA   = r','\nt_EQUALS  = r'='\nt_ARROWFUNCTION = r'=>'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_commentLine",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_commentLine = r'//.*'\nt_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'\nt_COMMA   = r','\nt_EQUALS  = r'='\nt_ARROWFUNCTION = r'=>'\nt_PLUS    = r'\\+'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_commentBlock",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_commentBlock = r'/\\*(.|\\n)*?\\*/'\nt_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'\nt_COMMA   = r','\nt_EQUALS  = r'='\nt_ARROWFUNCTION = r'=>'\nt_PLUS    = r'\\+'\n#Richard Perez",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_CHAINCHAR",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_CHAINCHAR = r'(\\'[^\\']*\\'|\\\"[^\\\"]*\\\")'\n#Richard Perez\nt_MOD     = r'\\%'\nt_INTEGERDIVISION = r'~/'\nt_COMMA   = r','\nt_EQUALS  = r'='\nt_ARROWFUNCTION = r'=>'\nt_PLUS    = r'\\+'\n#Richard Perez\n'''def t_NEWDATATYPE(t):",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_INTEGERDIVISION",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_INTEGERDIVISION = r'~/'\nt_COMMA   = r','\nt_EQUALS  = r'='\nt_ARROWFUNCTION = r'=>'\nt_PLUS    = r'\\+'\n#Richard Perez\n'''def t_NEWDATATYPE(t):\n    r'[A-Z][_a-zA-Z0-9]*'\n    t.type = reserved.get(t.value, 'NEWDATATYPE')\n    return t",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "t_ARROWFUNCTION",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "t_ARROWFUNCTION = r'=>'\nt_PLUS    = r'\\+'\n#Richard Perez\n'''def t_NEWDATATYPE(t):\n    r'[A-Z][_a-zA-Z0-9]*'\n    t.type = reserved.get(t.value, 'NEWDATATYPE')\n    return t\n'''\n'''def t_FUNCTION(t):\n    r'[^main][a-zA-Z]+\\w*\\(\\w*\\)'",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "algoritmoKatherine",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "algoritmoKatherine = \"\"\"\nenum DiaSemana{\n    Lunes,\n    Martes,\n    Miercoles,\n    Jueves,\n    Viernes,\n    Sabado,\n    Domingo\n}",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "algoritmoRichard",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "algoritmoRichard = \"\"\"\n        class Pais {\n        String nombre;\n        boolean ganoMundial;\n        int cantidad;\n        Pais(this.nombre, this.ganoMundial, this.cantidad);\n        public String cantidadMundiales() => print(this.cantidad)\n        }\n        void main() {\n        // Crear un conjunto de países",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "AlgoritmoRoberto",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "AlgoritmoRoberto = \"\"\"\n/* Block comment example\nThis is a test for the block comment token.\n*/\n// Line comment example\npublic class TestClass {\n    private int number = 42;\n    public double decimalNumber = 3.14;\n    protected isValid = True;\n    static final String CONSTANT_STRING = \"Hello\";",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "algoritmos",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "algoritmos = [algoritmoKatherine, algoritmoRichard, AlgoritmoRoberto]\n# Build the lexer\nlexer = lex.lex()\n#Generate logs\nlog_dir = \"logs\"\nif not os.path.exists(log_dir):\n    os.makedirs(log_dir)\nUsuariosGit = [\"katumbac\", \"rochardp12\", \"rocaenca\"]\ncurrent_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nfor i in range(len(algoritmos)):",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "lexer",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "lexer = lex.lex()\n#Generate logs\nlog_dir = \"logs\"\nif not os.path.exists(log_dir):\n    os.makedirs(log_dir)\nUsuariosGit = [\"katumbac\", \"rochardp12\", \"rocaenca\"]\ncurrent_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nfor i in range(len(algoritmos)):\n  log_filename = f\"lexico-{UsuariosGit[i]}-{current_time}.txt\"\n  log_filepath = os.path.join(log_dir, log_filename)",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "log_dir",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "log_dir = \"logs\"\nif not os.path.exists(log_dir):\n    os.makedirs(log_dir)\nUsuariosGit = [\"katumbac\", \"rochardp12\", \"rocaenca\"]\ncurrent_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nfor i in range(len(algoritmos)):\n  log_filename = f\"lexico-{UsuariosGit[i]}-{current_time}.txt\"\n  log_filepath = os.path.join(log_dir, log_filename)\n  lexer.input(algoritmos[i])\n  # Tokenize",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "UsuariosGit",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "UsuariosGit = [\"katumbac\", \"rochardp12\", \"rocaenca\"]\ncurrent_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nfor i in range(len(algoritmos)):\n  log_filename = f\"lexico-{UsuariosGit[i]}-{current_time}.txt\"\n  log_filepath = os.path.join(log_dir, log_filename)\n  lexer.input(algoritmos[i])\n  # Tokenize\n  with open(log_filepath, 'w') as log_file:\n    while True:\n        tok = lexer.token()",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "current_time",
+        "kind": 5,
+        "importPath": "lexico",
+        "description": "lexico",
+        "peekOfCode": "current_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nfor i in range(len(algoritmos)):\n  log_filename = f\"lexico-{UsuariosGit[i]}-{current_time}.txt\"\n  log_filepath = os.path.join(log_dir, log_filename)\n  lexer.input(algoritmos[i])\n  # Tokenize\n  with open(log_filepath, 'w') as log_file:\n    while True:\n        tok = lexer.token()\n        if not tok: ",
+        "detail": "lexico",
+        "documentation": {}
+    },
+    {
+        "label": "p_cuerpo",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_cuerpo(p):\n    '''cuerpo : expresion\n              | impresion \n              | tupla\n              | declaracion\n              | sentenciaIfElse\n              | estructuraList\n              | funcionVoid'''\ndef p_expresion(p):\n    'expresion : valor operador valor'",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_expresion",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_expresion(p):\n    'expresion : valor operador valor'\ndef p_declaracion(p):\n    '''declaracion : VARIABLE EQUALS valor\n                   | VARIABLE EQUALS tupla'''\ndef p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN expresion RPAREN DOTCOMMA\n    '''\n# Estructura de control - If-else - Katherine Tumbaco",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_declaracion",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_declaracion(p):\n    '''declaracion : VARIABLE EQUALS valor\n                   | VARIABLE EQUALS tupla'''\ndef p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN expresion RPAREN DOTCOMMA\n    '''\n# Estructura de control - If-else - Katherine Tumbaco\ndef p_sentenciaIfElse(p):\n    ''' sentenciaIfElse : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_impresion",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN expresion RPAREN DOTCOMMA\n    '''\n# Estructura de control - If-else - Katherine Tumbaco\ndef p_sentenciaIfElse(p):\n    ''' sentenciaIfElse : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA\n                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA\n    '''\n# Estructura de datos - Arreglos - List - Katherine Tumbaco",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_sentenciaIfElse",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_sentenciaIfElse(p):\n    ''' sentenciaIfElse : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA\n                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA\n    '''\n# Estructura de datos - Arreglos - List - Katherine Tumbaco\ndef p_estructuraList(p):\n    'estructuraList : LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA'\n# Tipo de funcion - Función sin retorno - Katherine Tumbaco\ndef p_funcionVoid(p):\n    'funcionVoid : VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA'",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_estructuraList",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_estructuraList(p):\n    'estructuraList : LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA'\n# Tipo de funcion - Función sin retorno - Katherine Tumbaco\ndef p_funcionVoid(p):\n    'funcionVoid : VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA'\ndef p_condicion(p):\n    'condicion : valor operadorComp valor'\ndef p_operadorComp(p):\n    '''operadorComp : EQUALS \n                    | LANGLE",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_funcionVoid",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_funcionVoid(p):\n    'funcionVoid : VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMA'\ndef p_condicion(p):\n    'condicion : valor operadorComp valor'\ndef p_operadorComp(p):\n    '''operadorComp : EQUALS \n                    | LANGLE\n                    | RANGLE\n                    | NEQ'''\ndef p_tupla(p):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_condicion",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_condicion(p):\n    'condicion : valor operadorComp valor'\ndef p_operadorComp(p):\n    '''operadorComp : EQUALS \n                    | LANGLE\n                    | RANGLE\n                    | NEQ'''\ndef p_tupla(p):\n    'tupla : LPAREN valores RPAREN'\ndef p_impresion_vacia(p):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_operadorComp",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_operadorComp(p):\n    '''operadorComp : EQUALS \n                    | LANGLE\n                    | RANGLE\n                    | NEQ'''\ndef p_tupla(p):\n    'tupla : LPAREN valores RPAREN'\ndef p_impresion_vacia(p):\n    '''impresion : PRINT LPAREN RPAREN DOTCOMMA\n    '''",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_tupla",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_tupla(p):\n    'tupla : LPAREN valores RPAREN'\ndef p_impresion_vacia(p):\n    '''impresion : PRINT LPAREN RPAREN DOTCOMMA\n    '''\ndef p_impresion_varias(p):\n    'impresion : '\ndef p_valores(p):\n    '''valores : valor\n               | valor COMMA valores'''",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_impresion_vacia",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_impresion_vacia(p):\n    '''impresion : PRINT LPAREN RPAREN DOTCOMMA\n    '''\ndef p_impresion_varias(p):\n    'impresion : '\ndef p_valores(p):\n    '''valores : valor\n               | valor COMMA valores'''\ndef p_operador(p):\n    '''operador : PLUS",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_impresion_varias",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_impresion_varias(p):\n    'impresion : '\ndef p_valores(p):\n    '''valores : valor\n               | valor COMMA valores'''\ndef p_operador(p):\n    '''operador : PLUS\n                | MINUS\n                | TIMES\n                | DIVIDE",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_valores",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_valores(p):\n    '''valores : valor\n               | valor COMMA valores'''\ndef p_operador(p):\n    '''operador : PLUS\n                | MINUS\n                | TIMES\n                | DIVIDE\n    '''\ndef p_valor(p):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_operador",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_operador(p):\n    '''operador : PLUS\n                | MINUS\n                | TIMES\n                | DIVIDE\n    '''\ndef p_valor(p):\n    '''valor : VARIABLE\n             | INT\n             | FLOAT",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_valor",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_valor(p):\n    '''valor : VARIABLE\n             | INT\n             | FLOAT\n             | BOOL\n             | expresion\n             | NUMBER\n    '''\ndef p_type(p):\n    '''type : INT",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_type",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_type(p):\n    '''type : INT\n             | STRING\n             | BOOL\n    '''\n# Error rule for syntax errors\ndef p_error(p):\n    print(\"Syntax error in input!\")\n    log_file.write(f\"Syntax error at '{p.value}'\\n\")\n# Build the parser",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "p_error",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def p_error(p):\n    print(\"Syntax error in input!\")\n    log_file.write(f\"Syntax error at '{p.value}'\\n\")\n# Build the parser\nparser = yacc.yacc()\ndef parse_input(input_string):\n    result = parser.parse(input_string)\n    log_file.write(f\"Input: {input_string}\\nResult: {result}\\n\\n\")\n    return result\n#while True:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "parse_input",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def parse_input(input_string):\n    result = parser.parse(input_string)\n    log_file.write(f\"Input: {input_string}\\nResult: {result}\\n\\n\")\n    return result\n#while True:\n#   try:\n#       s = input('lp > ')\n#   except EOFError:\n#       break\n#   if not s: continue",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "log_dir",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "log_dir = \"logs_sintactico\"\nif not os.path.exists(log_dir):\n    os.makedirs(log_dir)\n# Obtener la hora actual para los nombres de archivo de log\ncurrent_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nUsuariosGit = \"katumbac\"\n# Nombre del archivo de log\nlog_filename = f\"sintactico-{UsuariosGit}-{current_time}.txt\"\nlog_filepath = os.path.join(log_dir, log_filename)\n# Archivo de log para escribir",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "current_time",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "current_time = datetime.now().strftime(\"%d%m%Y-%Hh%M\")\nUsuariosGit = \"katumbac\"\n# Nombre del archivo de log\nlog_filename = f\"sintactico-{UsuariosGit}-{current_time}.txt\"\nlog_filepath = os.path.join(log_dir, log_filename)\n# Archivo de log para escribir\nlog_file = open(log_filepath, 'w')\n#Katherine Tumbaco\ndef p_cuerpo(p):\n    '''cuerpo : expresion",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "UsuariosGit",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "UsuariosGit = \"katumbac\"\n# Nombre del archivo de log\nlog_filename = f\"sintactico-{UsuariosGit}-{current_time}.txt\"\nlog_filepath = os.path.join(log_dir, log_filename)\n# Archivo de log para escribir\nlog_file = open(log_filepath, 'w')\n#Katherine Tumbaco\ndef p_cuerpo(p):\n    '''cuerpo : expresion\n              | impresion ",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "log_filename",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "log_filename = f\"sintactico-{UsuariosGit}-{current_time}.txt\"\nlog_filepath = os.path.join(log_dir, log_filename)\n# Archivo de log para escribir\nlog_file = open(log_filepath, 'w')\n#Katherine Tumbaco\ndef p_cuerpo(p):\n    '''cuerpo : expresion\n              | impresion \n              | tupla\n              | declaracion",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "log_filepath",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "log_filepath = os.path.join(log_dir, log_filename)\n# Archivo de log para escribir\nlog_file = open(log_filepath, 'w')\n#Katherine Tumbaco\ndef p_cuerpo(p):\n    '''cuerpo : expresion\n              | impresion \n              | tupla\n              | declaracion\n              | sentenciaIfElse",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "log_file",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "log_file = open(log_filepath, 'w')\n#Katherine Tumbaco\ndef p_cuerpo(p):\n    '''cuerpo : expresion\n              | impresion \n              | tupla\n              | declaracion\n              | sentenciaIfElse\n              | estructuraList\n              | funcionVoid'''",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "parser",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "parser = yacc.yacc()\ndef parse_input(input_string):\n    result = parser.parse(input_string)\n    log_file.write(f\"Input: {input_string}\\nResult: {result}\\n\\n\")\n    return result\n#while True:\n#   try:\n#       s = input('lp > ')\n#   except EOFError:\n#       break",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "_tabversion",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_tabversion = '3.10'\n_lr_method = 'LALR'\n_lr_signature = 'ABSTRACT ADMIRATION AND ARROWFUNCTION AS BOOL BREAK CASE CATCH CHAINCHAR CLASS COMMA CONST DATAATTRIBUTE DEF DEFAULT DIVIDE DOLLAR DOT DOTCOMMA DOUBLE DQUOTES DYNAMIC ELIF ELSE ENUM EQUALS EXTENDS FALSE FINAL FINALLY FLOAT FOR FUNCTION IF IN INT INTEGERDIVISION INTERFACE INTERNDATATYPE IS LANGLE LBRACE LBRACKET LIST LPAREN MAIN MAP METHOD MINUS MOD MODULE NEQ NEW NEWDATATYPE NULL NUMBER NUMBERINT OR PLUS PRINT PRIVATE PROTECTED PUBLIC RANGLE RBRACE RBRACKET RETURN RPAREN SET STATIC STRING SUPER SWITCH THIS TIMES TRUE TRY TWODOTS TYPEDEF VAR VARIABLE VOID WHILE commentBlock commentLinecuerpo : expresion\\n              | impresion \\n              | tupla\\n              | declaracion\\n              | sentenciaIfElse\\n              | estructuraList\\n              | funcionVoidexpresion : valor operador valordeclaracion : VARIABLE EQUALS valor\\n                   | VARIABLE EQUALS tuplaimpresion : PRINT LPAREN valores RPAREN DOTCOMMA\\n                 | PRINT LPAREN expresion RPAREN DOTCOMMA\\n                 | PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA\\n                 | PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA\\n     sentenciaIfElse : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA\\n                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA\\n    estructuraList : LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMAfuncionVoid : VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMAcondicion : valor operadorComp valoroperadorComp : EQUALS \\n                    | LANGLE\\n                    | RANGLE\\n                    | NEQtupla : LPAREN valores RPARENimpresion : PRINT LPAREN RPAREN DOTCOMMA\\n    impresion : valores : valor\\n               | valor COMMA valoresoperador : PLUS\\n                | MINUS\\n                | TIMES\\n                | DIVIDE\\n    valor : VARIABLE\\n             | INT\\n             | FLOAT\\n             | BOOL\\n             | expresion\\n             | NUMBER\\n    type : INT\\n             | STRING\\n             | BOOL\\n    '\n_lr_action_items = {'PRINT':([0,69,77,87,],[10,10,10,10,]),'$end':([0,1,2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,78,79,84,89,91,93,],[-26,0,-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-13,-14,-16,-18,-17,-15,]),'LPAREN':([0,10,13,30,33,69,77,87,],[11,25,31,11,49,11,11,11,]),'VARIABLE':([0,11,15,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,63,69,77,81,87,],[12,28,33,28,-29,-30,-31,-32,28,28,28,28,28,28,28,-20,-21,-22,-23,71,12,12,28,12,]),'IF':([0,69,77,87,],[13,13,13,13,]),'LIST':([0,69,77,87,],[14,14,14,14,]),'VOID':([0,69,77,87,],[15,15,15,15,]),'INT':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[16,16,16,-29,-30,-31,-32,16,16,16,46,16,16,16,16,-20,-21,-22,-23,16,16,16,16,]),'FLOAT':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[17,17,17,-29,-30,-31,-32,17,17,17,17,17,17,17,-20,-21,-22,-23,17,17,17,17,]),'BOOL':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[18,18,18,-29,-30,-31,-32,18,18,18,48,18,18,18,18,-20,-21,-22,-23,18,18,18,18,]),'NUMBER':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[19,19,19,-29,-30,-31,-32,19,19,19,19,19,19,19,-20,-21,-22,-23,19,19,19,19,]),'RBRACE':([2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,69,75,77,78,79,82,84,87,89,90,91,93,],[-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-26,80,-26,-13,-14,86,-16,-26,-18,92,-17,-15,]),'PLUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,21,-33,-34,-35,-36,-38,21,-33,-37,21,-37,21,21,-37,21,21,]),'MINUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,22,-33,-34,-35,-36,-38,22,-33,-37,22,-37,22,22,-37,22,22,]),'TIMES':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,23,-33,-34,-35,-36,-38,23,-33,-37,23,-37,23,23,-37,23,23,]),'DIVIDE':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,24,-33,-34,-35,-36,-38,24,-33,-37,24,-37,24,24,-37,24,24,]),'EQUALS':([12,16,17,18,19,28,29,34,44,71,],[30,-34,-35,-36,-38,-33,-37,-8,59,76,]),'LANGLE':([14,16,17,18,19,28,29,34,44,],[32,-34,-35,-36,-38,-33,-37,-8,60,]),'COMMA':([16,17,18,19,27,28,29,34,37,53,55,],[-34,-35,-36,-38,40,-33,-37,-8,-37,-37,40,]),'RPAREN':([16,17,18,19,25,26,27,28,29,34,35,37,43,56,64,67,68,70,],[-34,-35,-36,-38,36,39,-27,-33,-37,-8,50,52,57,-28,72,73,74,-19,]),'RANGLE':([16,17,18,19,28,29,34,44,45,46,47,48,],[-34,-35,-36,-38,-33,-37,-8,61,63,-39,-40,-41,]),'NEQ':([16,17,18,19,28,29,34,44,],[-34,-35,-36,-38,-33,-37,-8,62,]),'DQUOTES':([16,17,18,19,25,27,28,29,34,53,54,55,56,],[-34,-35,-36,-38,38,-27,-33,-37,-8,67,68,-27,-28,]),'RBRACKET':([16,17,18,19,27,28,29,34,56,85,],[-34,-35,-36,-38,-27,-33,-37,-8,-28,88,]),'STRING':([32,],[47,]),'DOTCOMMA':([36,50,52,73,74,80,86,88,92,],[51,65,66,78,79,84,89,91,93,]),'LBRACE':([57,72,83,],[69,77,87,]),'LBRACKET':([76,],[81,]),'ELSE':([80,],[83,]),}\n_lr_action = {}\nfor _k, _v in _lr_action_items.items():\n   for _x,_y in zip(_v[0],_v[1]):\n      if not _x in _lr_action:  _lr_action[_x] = {}\n      _lr_action[_x][_k] = _y\ndel _lr_action_items",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_method",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_method = 'LALR'\n_lr_signature = 'ABSTRACT ADMIRATION AND ARROWFUNCTION AS BOOL BREAK CASE CATCH CHAINCHAR CLASS COMMA CONST DATAATTRIBUTE DEF DEFAULT DIVIDE DOLLAR DOT DOTCOMMA DOUBLE DQUOTES DYNAMIC ELIF ELSE ENUM EQUALS EXTENDS FALSE FINAL FINALLY FLOAT FOR FUNCTION IF IN INT INTEGERDIVISION INTERFACE INTERNDATATYPE IS LANGLE LBRACE LBRACKET LIST LPAREN MAIN MAP METHOD MINUS MOD MODULE NEQ NEW NEWDATATYPE NULL NUMBER NUMBERINT OR PLUS PRINT PRIVATE PROTECTED PUBLIC RANGLE RBRACE RBRACKET RETURN RPAREN SET STATIC STRING SUPER SWITCH THIS TIMES TRUE TRY TWODOTS TYPEDEF VAR VARIABLE VOID WHILE commentBlock commentLinecuerpo : expresion\\n              | impresion \\n              | tupla\\n              | declaracion\\n              | sentenciaIfElse\\n              | estructuraList\\n              | funcionVoidexpresion : valor operador valordeclaracion : VARIABLE EQUALS valor\\n                   | VARIABLE EQUALS tuplaimpresion : PRINT LPAREN valores RPAREN DOTCOMMA\\n                 | PRINT LPAREN expresion RPAREN DOTCOMMA\\n                 | PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA\\n                 | PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA\\n     sentenciaIfElse : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA\\n                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA\\n    estructuraList : LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMAfuncionVoid : VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMAcondicion : valor operadorComp valoroperadorComp : EQUALS \\n                    | LANGLE\\n                    | RANGLE\\n                    | NEQtupla : LPAREN valores RPARENimpresion : PRINT LPAREN RPAREN DOTCOMMA\\n    impresion : valores : valor\\n               | valor COMMA valoresoperador : PLUS\\n                | MINUS\\n                | TIMES\\n                | DIVIDE\\n    valor : VARIABLE\\n             | INT\\n             | FLOAT\\n             | BOOL\\n             | expresion\\n             | NUMBER\\n    type : INT\\n             | STRING\\n             | BOOL\\n    '\n_lr_action_items = {'PRINT':([0,69,77,87,],[10,10,10,10,]),'$end':([0,1,2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,78,79,84,89,91,93,],[-26,0,-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-13,-14,-16,-18,-17,-15,]),'LPAREN':([0,10,13,30,33,69,77,87,],[11,25,31,11,49,11,11,11,]),'VARIABLE':([0,11,15,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,63,69,77,81,87,],[12,28,33,28,-29,-30,-31,-32,28,28,28,28,28,28,28,-20,-21,-22,-23,71,12,12,28,12,]),'IF':([0,69,77,87,],[13,13,13,13,]),'LIST':([0,69,77,87,],[14,14,14,14,]),'VOID':([0,69,77,87,],[15,15,15,15,]),'INT':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[16,16,16,-29,-30,-31,-32,16,16,16,46,16,16,16,16,-20,-21,-22,-23,16,16,16,16,]),'FLOAT':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[17,17,17,-29,-30,-31,-32,17,17,17,17,17,17,17,-20,-21,-22,-23,17,17,17,17,]),'BOOL':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[18,18,18,-29,-30,-31,-32,18,18,18,48,18,18,18,18,-20,-21,-22,-23,18,18,18,18,]),'NUMBER':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[19,19,19,-29,-30,-31,-32,19,19,19,19,19,19,19,-20,-21,-22,-23,19,19,19,19,]),'RBRACE':([2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,69,75,77,78,79,82,84,87,89,90,91,93,],[-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-26,80,-26,-13,-14,86,-16,-26,-18,92,-17,-15,]),'PLUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,21,-33,-34,-35,-36,-38,21,-33,-37,21,-37,21,21,-37,21,21,]),'MINUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,22,-33,-34,-35,-36,-38,22,-33,-37,22,-37,22,22,-37,22,22,]),'TIMES':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,23,-33,-34,-35,-36,-38,23,-33,-37,23,-37,23,23,-37,23,23,]),'DIVIDE':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,24,-33,-34,-35,-36,-38,24,-33,-37,24,-37,24,24,-37,24,24,]),'EQUALS':([12,16,17,18,19,28,29,34,44,71,],[30,-34,-35,-36,-38,-33,-37,-8,59,76,]),'LANGLE':([14,16,17,18,19,28,29,34,44,],[32,-34,-35,-36,-38,-33,-37,-8,60,]),'COMMA':([16,17,18,19,27,28,29,34,37,53,55,],[-34,-35,-36,-38,40,-33,-37,-8,-37,-37,40,]),'RPAREN':([16,17,18,19,25,26,27,28,29,34,35,37,43,56,64,67,68,70,],[-34,-35,-36,-38,36,39,-27,-33,-37,-8,50,52,57,-28,72,73,74,-19,]),'RANGLE':([16,17,18,19,28,29,34,44,45,46,47,48,],[-34,-35,-36,-38,-33,-37,-8,61,63,-39,-40,-41,]),'NEQ':([16,17,18,19,28,29,34,44,],[-34,-35,-36,-38,-33,-37,-8,62,]),'DQUOTES':([16,17,18,19,25,27,28,29,34,53,54,55,56,],[-34,-35,-36,-38,38,-27,-33,-37,-8,67,68,-27,-28,]),'RBRACKET':([16,17,18,19,27,28,29,34,56,85,],[-34,-35,-36,-38,-27,-33,-37,-8,-28,88,]),'STRING':([32,],[47,]),'DOTCOMMA':([36,50,52,73,74,80,86,88,92,],[51,65,66,78,79,84,89,91,93,]),'LBRACE':([57,72,83,],[69,77,87,]),'LBRACKET':([76,],[81,]),'ELSE':([80,],[83,]),}\n_lr_action = {}\nfor _k, _v in _lr_action_items.items():\n   for _x,_y in zip(_v[0],_v[1]):\n      if not _x in _lr_action:  _lr_action[_x] = {}\n      _lr_action[_x][_k] = _y\ndel _lr_action_items\n_lr_goto_items = {'cuerpo':([0,69,77,87,],[1,75,82,90,]),'expresion':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[2,29,29,37,29,29,53,29,29,29,2,2,29,2,]),'impresion':([0,69,77,87,],[3,3,3,3,]),'tupla':([0,30,69,77,87,],[4,42,4,4,4,]),'declaracion':([0,69,77,87,],[5,5,5,5,]),'sentenciaIfElse':([0,69,77,87,],[6,6,6,6,]),'estructuraList':([0,69,77,87,],[7,7,7,7,]),'funcionVoid':([0,69,77,87,],[8,8,8,8,]),'valor':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[9,27,34,27,41,44,55,27,27,70,9,9,27,9,]),'operador':([9,27,34,41,44,55,70,],[20,20,20,20,20,20,20,]),'valores':([11,25,38,40,49,81,],[26,35,54,56,64,85,]),'condicion':([31,],[43,]),'type':([32,],[45,]),'operadorComp':([44,],[58,]),}",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_signature",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_signature = 'ABSTRACT ADMIRATION AND ARROWFUNCTION AS BOOL BREAK CASE CATCH CHAINCHAR CLASS COMMA CONST DATAATTRIBUTE DEF DEFAULT DIVIDE DOLLAR DOT DOTCOMMA DOUBLE DQUOTES DYNAMIC ELIF ELSE ENUM EQUALS EXTENDS FALSE FINAL FINALLY FLOAT FOR FUNCTION IF IN INT INTEGERDIVISION INTERFACE INTERNDATATYPE IS LANGLE LBRACE LBRACKET LIST LPAREN MAIN MAP METHOD MINUS MOD MODULE NEQ NEW NEWDATATYPE NULL NUMBER NUMBERINT OR PLUS PRINT PRIVATE PROTECTED PUBLIC RANGLE RBRACE RBRACKET RETURN RPAREN SET STATIC STRING SUPER SWITCH THIS TIMES TRUE TRY TWODOTS TYPEDEF VAR VARIABLE VOID WHILE commentBlock commentLinecuerpo : expresion\\n              | impresion \\n              | tupla\\n              | declaracion\\n              | sentenciaIfElse\\n              | estructuraList\\n              | funcionVoidexpresion : valor operador valordeclaracion : VARIABLE EQUALS valor\\n                   | VARIABLE EQUALS tuplaimpresion : PRINT LPAREN valores RPAREN DOTCOMMA\\n                 | PRINT LPAREN expresion RPAREN DOTCOMMA\\n                 | PRINT LPAREN DQUOTES expresion DQUOTES RPAREN DOTCOMMA\\n                 | PRINT LPAREN DQUOTES valores DQUOTES RPAREN DOTCOMMA\\n     sentenciaIfElse : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE ELSE LBRACE cuerpo RBRACE DOTCOMMA\\n                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE DOTCOMMA\\n    estructuraList : LIST LANGLE type RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMAfuncionVoid : VOID VARIABLE LPAREN valores RPAREN LBRACE cuerpo RBRACE DOTCOMMAcondicion : valor operadorComp valoroperadorComp : EQUALS \\n                    | LANGLE\\n                    | RANGLE\\n                    | NEQtupla : LPAREN valores RPARENimpresion : PRINT LPAREN RPAREN DOTCOMMA\\n    impresion : valores : valor\\n               | valor COMMA valoresoperador : PLUS\\n                | MINUS\\n                | TIMES\\n                | DIVIDE\\n    valor : VARIABLE\\n             | INT\\n             | FLOAT\\n             | BOOL\\n             | expresion\\n             | NUMBER\\n    type : INT\\n             | STRING\\n             | BOOL\\n    '\n_lr_action_items = {'PRINT':([0,69,77,87,],[10,10,10,10,]),'$end':([0,1,2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,78,79,84,89,91,93,],[-26,0,-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-13,-14,-16,-18,-17,-15,]),'LPAREN':([0,10,13,30,33,69,77,87,],[11,25,31,11,49,11,11,11,]),'VARIABLE':([0,11,15,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,63,69,77,81,87,],[12,28,33,28,-29,-30,-31,-32,28,28,28,28,28,28,28,-20,-21,-22,-23,71,12,12,28,12,]),'IF':([0,69,77,87,],[13,13,13,13,]),'LIST':([0,69,77,87,],[14,14,14,14,]),'VOID':([0,69,77,87,],[15,15,15,15,]),'INT':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[16,16,16,-29,-30,-31,-32,16,16,16,46,16,16,16,16,-20,-21,-22,-23,16,16,16,16,]),'FLOAT':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[17,17,17,-29,-30,-31,-32,17,17,17,17,17,17,17,-20,-21,-22,-23,17,17,17,17,]),'BOOL':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[18,18,18,-29,-30,-31,-32,18,18,18,48,18,18,18,18,-20,-21,-22,-23,18,18,18,18,]),'NUMBER':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[19,19,19,-29,-30,-31,-32,19,19,19,19,19,19,19,-20,-21,-22,-23,19,19,19,19,]),'RBRACE':([2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,69,75,77,78,79,82,84,87,89,90,91,93,],[-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-26,80,-26,-13,-14,86,-16,-26,-18,92,-17,-15,]),'PLUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,21,-33,-34,-35,-36,-38,21,-33,-37,21,-37,21,21,-37,21,21,]),'MINUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,22,-33,-34,-35,-36,-38,22,-33,-37,22,-37,22,22,-37,22,22,]),'TIMES':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,23,-33,-34,-35,-36,-38,23,-33,-37,23,-37,23,23,-37,23,23,]),'DIVIDE':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,24,-33,-34,-35,-36,-38,24,-33,-37,24,-37,24,24,-37,24,24,]),'EQUALS':([12,16,17,18,19,28,29,34,44,71,],[30,-34,-35,-36,-38,-33,-37,-8,59,76,]),'LANGLE':([14,16,17,18,19,28,29,34,44,],[32,-34,-35,-36,-38,-33,-37,-8,60,]),'COMMA':([16,17,18,19,27,28,29,34,37,53,55,],[-34,-35,-36,-38,40,-33,-37,-8,-37,-37,40,]),'RPAREN':([16,17,18,19,25,26,27,28,29,34,35,37,43,56,64,67,68,70,],[-34,-35,-36,-38,36,39,-27,-33,-37,-8,50,52,57,-28,72,73,74,-19,]),'RANGLE':([16,17,18,19,28,29,34,44,45,46,47,48,],[-34,-35,-36,-38,-33,-37,-8,61,63,-39,-40,-41,]),'NEQ':([16,17,18,19,28,29,34,44,],[-34,-35,-36,-38,-33,-37,-8,62,]),'DQUOTES':([16,17,18,19,25,27,28,29,34,53,54,55,56,],[-34,-35,-36,-38,38,-27,-33,-37,-8,67,68,-27,-28,]),'RBRACKET':([16,17,18,19,27,28,29,34,56,85,],[-34,-35,-36,-38,-27,-33,-37,-8,-28,88,]),'STRING':([32,],[47,]),'DOTCOMMA':([36,50,52,73,74,80,86,88,92,],[51,65,66,78,79,84,89,91,93,]),'LBRACE':([57,72,83,],[69,77,87,]),'LBRACKET':([76,],[81,]),'ELSE':([80,],[83,]),}\n_lr_action = {}\nfor _k, _v in _lr_action_items.items():\n   for _x,_y in zip(_v[0],_v[1]):\n      if not _x in _lr_action:  _lr_action[_x] = {}\n      _lr_action[_x][_k] = _y\ndel _lr_action_items\n_lr_goto_items = {'cuerpo':([0,69,77,87,],[1,75,82,90,]),'expresion':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[2,29,29,37,29,29,53,29,29,29,2,2,29,2,]),'impresion':([0,69,77,87,],[3,3,3,3,]),'tupla':([0,30,69,77,87,],[4,42,4,4,4,]),'declaracion':([0,69,77,87,],[5,5,5,5,]),'sentenciaIfElse':([0,69,77,87,],[6,6,6,6,]),'estructuraList':([0,69,77,87,],[7,7,7,7,]),'funcionVoid':([0,69,77,87,],[8,8,8,8,]),'valor':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[9,27,34,27,41,44,55,27,27,70,9,9,27,9,]),'operador':([9,27,34,41,44,55,70,],[20,20,20,20,20,20,20,]),'valores':([11,25,38,40,49,81,],[26,35,54,56,64,85,]),'condicion':([31,],[43,]),'type':([32,],[45,]),'operadorComp':([44,],[58,]),}\n_lr_goto = {}",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_action_items",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_action_items = {'PRINT':([0,69,77,87,],[10,10,10,10,]),'$end':([0,1,2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,78,79,84,89,91,93,],[-26,0,-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-13,-14,-16,-18,-17,-15,]),'LPAREN':([0,10,13,30,33,69,77,87,],[11,25,31,11,49,11,11,11,]),'VARIABLE':([0,11,15,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,63,69,77,81,87,],[12,28,33,28,-29,-30,-31,-32,28,28,28,28,28,28,28,-20,-21,-22,-23,71,12,12,28,12,]),'IF':([0,69,77,87,],[13,13,13,13,]),'LIST':([0,69,77,87,],[14,14,14,14,]),'VOID':([0,69,77,87,],[15,15,15,15,]),'INT':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[16,16,16,-29,-30,-31,-32,16,16,16,46,16,16,16,16,-20,-21,-22,-23,16,16,16,16,]),'FLOAT':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[17,17,17,-29,-30,-31,-32,17,17,17,17,17,17,17,-20,-21,-22,-23,17,17,17,17,]),'BOOL':([0,11,20,21,22,23,24,25,30,31,32,38,40,49,58,59,60,61,62,69,77,81,87,],[18,18,18,-29,-30,-31,-32,18,18,18,48,18,18,18,18,-20,-21,-22,-23,18,18,18,18,]),'NUMBER':([0,11,20,21,22,23,24,25,30,31,38,40,49,58,59,60,61,62,69,77,81,87,],[19,19,19,-29,-30,-31,-32,19,19,19,19,19,19,19,-20,-21,-22,-23,19,19,19,19,]),'RBRACE':([2,3,4,5,6,7,8,16,17,18,19,28,29,34,39,41,42,51,65,66,69,75,77,78,79,82,84,87,89,90,91,93,],[-1,-2,-3,-4,-5,-6,-7,-34,-35,-36,-38,-33,-37,-8,-24,-9,-10,-25,-11,-12,-26,80,-26,-13,-14,86,-16,-26,-18,92,-17,-15,]),'PLUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,21,-33,-34,-35,-36,-38,21,-33,-37,21,-37,21,21,-37,21,21,]),'MINUS':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,22,-33,-34,-35,-36,-38,22,-33,-37,22,-37,22,22,-37,22,22,]),'TIMES':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,23,-33,-34,-35,-36,-38,23,-33,-37,23,-37,23,23,-37,23,23,]),'DIVIDE':([2,9,12,16,17,18,19,27,28,29,34,37,41,44,53,55,70,],[-37,24,-33,-34,-35,-36,-38,24,-33,-37,24,-37,24,24,-37,24,24,]),'EQUALS':([12,16,17,18,19,28,29,34,44,71,],[30,-34,-35,-36,-38,-33,-37,-8,59,76,]),'LANGLE':([14,16,17,18,19,28,29,34,44,],[32,-34,-35,-36,-38,-33,-37,-8,60,]),'COMMA':([16,17,18,19,27,28,29,34,37,53,55,],[-34,-35,-36,-38,40,-33,-37,-8,-37,-37,40,]),'RPAREN':([16,17,18,19,25,26,27,28,29,34,35,37,43,56,64,67,68,70,],[-34,-35,-36,-38,36,39,-27,-33,-37,-8,50,52,57,-28,72,73,74,-19,]),'RANGLE':([16,17,18,19,28,29,34,44,45,46,47,48,],[-34,-35,-36,-38,-33,-37,-8,61,63,-39,-40,-41,]),'NEQ':([16,17,18,19,28,29,34,44,],[-34,-35,-36,-38,-33,-37,-8,62,]),'DQUOTES':([16,17,18,19,25,27,28,29,34,53,54,55,56,],[-34,-35,-36,-38,38,-27,-33,-37,-8,67,68,-27,-28,]),'RBRACKET':([16,17,18,19,27,28,29,34,56,85,],[-34,-35,-36,-38,-27,-33,-37,-8,-28,88,]),'STRING':([32,],[47,]),'DOTCOMMA':([36,50,52,73,74,80,86,88,92,],[51,65,66,78,79,84,89,91,93,]),'LBRACE':([57,72,83,],[69,77,87,]),'LBRACKET':([76,],[81,]),'ELSE':([80,],[83,]),}\n_lr_action = {}\nfor _k, _v in _lr_action_items.items():\n   for _x,_y in zip(_v[0],_v[1]):\n      if not _x in _lr_action:  _lr_action[_x] = {}\n      _lr_action[_x][_k] = _y\ndel _lr_action_items\n_lr_goto_items = {'cuerpo':([0,69,77,87,],[1,75,82,90,]),'expresion':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[2,29,29,37,29,29,53,29,29,29,2,2,29,2,]),'impresion':([0,69,77,87,],[3,3,3,3,]),'tupla':([0,30,69,77,87,],[4,42,4,4,4,]),'declaracion':([0,69,77,87,],[5,5,5,5,]),'sentenciaIfElse':([0,69,77,87,],[6,6,6,6,]),'estructuraList':([0,69,77,87,],[7,7,7,7,]),'funcionVoid':([0,69,77,87,],[8,8,8,8,]),'valor':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[9,27,34,27,41,44,55,27,27,70,9,9,27,9,]),'operador':([9,27,34,41,44,55,70,],[20,20,20,20,20,20,20,]),'valores':([11,25,38,40,49,81,],[26,35,54,56,64,85,]),'condicion':([31,],[43,]),'type':([32,],[45,]),'operadorComp':([44,],[58,]),}\n_lr_goto = {}\nfor _k, _v in _lr_goto_items.items():",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_action",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_action = {}\nfor _k, _v in _lr_action_items.items():\n   for _x,_y in zip(_v[0],_v[1]):\n      if not _x in _lr_action:  _lr_action[_x] = {}\n      _lr_action[_x][_k] = _y\ndel _lr_action_items\n_lr_goto_items = {'cuerpo':([0,69,77,87,],[1,75,82,90,]),'expresion':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[2,29,29,37,29,29,53,29,29,29,2,2,29,2,]),'impresion':([0,69,77,87,],[3,3,3,3,]),'tupla':([0,30,69,77,87,],[4,42,4,4,4,]),'declaracion':([0,69,77,87,],[5,5,5,5,]),'sentenciaIfElse':([0,69,77,87,],[6,6,6,6,]),'estructuraList':([0,69,77,87,],[7,7,7,7,]),'funcionVoid':([0,69,77,87,],[8,8,8,8,]),'valor':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[9,27,34,27,41,44,55,27,27,70,9,9,27,9,]),'operador':([9,27,34,41,44,55,70,],[20,20,20,20,20,20,20,]),'valores':([11,25,38,40,49,81,],[26,35,54,56,64,85,]),'condicion':([31,],[43,]),'type':([32,],[45,]),'operadorComp':([44,],[58,]),}\n_lr_goto = {}\nfor _k, _v in _lr_goto_items.items():\n   for _x, _y in zip(_v[0], _v[1]):",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_goto_items",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_goto_items = {'cuerpo':([0,69,77,87,],[1,75,82,90,]),'expresion':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[2,29,29,37,29,29,53,29,29,29,2,2,29,2,]),'impresion':([0,69,77,87,],[3,3,3,3,]),'tupla':([0,30,69,77,87,],[4,42,4,4,4,]),'declaracion':([0,69,77,87,],[5,5,5,5,]),'sentenciaIfElse':([0,69,77,87,],[6,6,6,6,]),'estructuraList':([0,69,77,87,],[7,7,7,7,]),'funcionVoid':([0,69,77,87,],[8,8,8,8,]),'valor':([0,11,20,25,30,31,38,40,49,58,69,77,81,87,],[9,27,34,27,41,44,55,27,27,70,9,9,27,9,]),'operador':([9,27,34,41,44,55,70,],[20,20,20,20,20,20,20,]),'valores':([11,25,38,40,49,81,],[26,35,54,56,64,85,]),'condicion':([31,],[43,]),'type':([32,],[45,]),'operadorComp':([44,],[58,]),}\n_lr_goto = {}\nfor _k, _v in _lr_goto_items.items():\n   for _x, _y in zip(_v[0], _v[1]):\n       if not _x in _lr_goto: _lr_goto[_x] = {}\n       _lr_goto[_x][_k] = _y\ndel _lr_goto_items\n_lr_productions = [\n  (\"S' -> cuerpo\",\"S'\",1,None,None,None),\n  ('cuerpo -> expresion','cuerpo',1,'p_cuerpo','main.py',25),",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_goto",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_goto = {}\nfor _k, _v in _lr_goto_items.items():\n   for _x, _y in zip(_v[0], _v[1]):\n       if not _x in _lr_goto: _lr_goto[_x] = {}\n       _lr_goto[_x][_k] = _y\ndel _lr_goto_items\n_lr_productions = [\n  (\"S' -> cuerpo\",\"S'\",1,None,None,None),\n  ('cuerpo -> expresion','cuerpo',1,'p_cuerpo','main.py',25),\n  ('cuerpo -> impresion','cuerpo',1,'p_cuerpo','main.py',26),",
+        "detail": "parsetab",
+        "documentation": {}
+    },
+    {
+        "label": "_lr_productions",
+        "kind": 5,
+        "importPath": "parsetab",
+        "description": "parsetab",
+        "peekOfCode": "_lr_productions = [\n  (\"S' -> cuerpo\",\"S'\",1,None,None,None),\n  ('cuerpo -> expresion','cuerpo',1,'p_cuerpo','main.py',25),\n  ('cuerpo -> impresion','cuerpo',1,'p_cuerpo','main.py',26),\n  ('cuerpo -> tupla','cuerpo',1,'p_cuerpo','main.py',27),\n  ('cuerpo -> declaracion','cuerpo',1,'p_cuerpo','main.py',28),\n  ('cuerpo -> sentenciaIfElse','cuerpo',1,'p_cuerpo','main.py',29),\n  ('cuerpo -> estructuraList','cuerpo',1,'p_cuerpo','main.py',30),\n  ('cuerpo -> funcionVoid','cuerpo',1,'p_cuerpo','main.py',31),\n  ('expresion -> valor operador valor','expresion',3,'p_expresion','main.py',34),",
+        "detail": "parsetab",
+        "documentation": {}
+    }
+]

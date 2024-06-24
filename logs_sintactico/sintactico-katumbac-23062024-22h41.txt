@@ -1,0 +1,24 @@
+Input: List<bool> numeros = [a,b,c];  
+Result: None
+
+Syntax error at '<String>'
+Input: List<String> numeros = [a,b,c];  
+Result: None
+
+Syntax error at '<String>'
+Input: List<String> numeros = [a,b,c];  
+Result: None
+
+Syntax error at '<String>'
+Input: List<String> numeros = [a,b,c];  
+Result: None
+
+Input: List< String > numeros = [a,b,c];  
+Result: None
+
+Input: List<bool> numeros = [a,b,c];  
+Result: None
+
+Input: List<int> numeros = [a,b,c];  
+Result: None
+

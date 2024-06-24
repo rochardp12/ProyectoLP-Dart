@@ -1,0 +1,7 @@
+Input: print();
+Result: None
+
+Syntax error at '"a"'
+Input: print("a");
+Result: None
+
