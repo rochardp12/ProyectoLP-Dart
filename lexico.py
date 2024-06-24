@@ -134,10 +134,10 @@ t_ARROWFUNCTION = r'=>'
 t_PLUS    = r'\+'
 
 #Richard Perez
-def t_NEWDATATYPE(t):
+'''def t_NEWDATATYPE(t):
     r'[A-Z][_a-zA-Z0-9]*'
     t.type = reserved.get(t.value, 'NEWDATATYPE')
-    return t
+    return t'''
 '''
 def t_FUNCTION(t):
     r'[^main][^print][a-zA-Z]+\w*\(\w*\)'
@@ -145,10 +145,11 @@ def t_FUNCTION(t):
     return t'''
 
 #Roberto Encalada
+'''
 def t_INTERNDATATYPE(t):
     r'\<[A-Z][_a-zA-Z0-9]*\>'
     t.type = reserved.get(t.value, 'INTERNDATATYPE')
-    return t
+    return t'''
 
 '''
 def t_DATAATTRIBUTE(t):

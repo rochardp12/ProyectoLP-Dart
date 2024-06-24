@@ -6,36 +6,43 @@ from datetime import datetime
 
 def p_cuerpo(p):
     '''cuerpo : switch
-            | flecha
             | declaracion
+            | flecha
             | NUMBER '''
     
+
 def p_declaracion(p):
-    '''declaracion : INT VARIABLE EQUALS NUMBER
-                   | DOUBLE VARIABLE EQUALS FLOAT 
-                   | BOOLEAN VARIABLE EQUALS valorBooleano
-                   | STRING VARIABLE EQUALS CHAINCHAR
-                   | crearConjunto
-                   | VAR VARIABLE EQUALS valoresTotales'''
+    'declaracion : tipoDato VARIABLE EQUALS valoresDatos'
     
 def p_operacion(p):
   'operacion : valorNumerico operador valorNumerico'
 
+def p_sentencia(p):
+    '''sentencia : declaracion
+                | operacion
+                | RETURN VARIABLE 
+                | funcion
+                | funcionData '''
+    
+def p_funcion(p):
+    'funcion : VARIABLE LPAREN parametros RPAREN'
 
+def p_funcionData(p):
+    'funcionData : VARIABLE DOT VARIABLE LPAREN parametros RPAREN'
 
 #-----------------SWITCH-----------------------------------
 def p_sentenciaSwitch(p):
-    'switch : SWITCH LPAREN valoresTotales RPAREN LBRACE caso RBRACE'
+    'switch : SWITCH LPAREN valoresDatos RPAREN LBRACE caso RBRACE'
 
 def p_casos(p):
-    '''caso : CASE valoresTotales TWODOTS cuerpo BREAK caso 
-            | CASE valoresTotales TWODOTS cuerpo BREAK'''
+    '''caso : CASE valoresDatos TWODOTS sentencia BREAK caso 
+            | CASE valoresDatos TWODOTS sentencia BREAK'''
 #----------------------------------------------------------
 
 
 #----------------FUNCION FLECHA-----------------------------
 def p_funcionflecha(p):
-    'flecha : tipoDato valorVariable LPAREN parametros RPAREN ARROWFUNCTION cuerpo'
+    'flecha : tipoDato VARIABLE LPAREN parametros RPAREN ARROWFUNCTION sentencia'
 #----------------------------------------------------------
 
 
@@ -53,17 +60,14 @@ def p_valorNumerico(p):
     '''valorNumerico : NUMBER
                     | FLOAT '''
     
-def p_valorVariable(p):
-    'valorVariable : VARIABLE'
-
 def p_valorBooleano(p):
     '''valorBooleano : TRUE
                     | FALSE '''
 
-def p_valoresTotales(p):
-    '''valoresTotales : valorBooleano
+def p_valoresDatos(p):
+    '''valoresDatos : valorBooleano
                     | valorNumerico
-                    | valorVariable '''
+                    | VARIABLE '''
 
 def p_tipoDato(p):
    '''tipoDato : MAP
@@ -73,12 +77,11 @@ def p_tipoDato(p):
                 | SET
                 | LIST
                 | BOOLEAN
-                | NEWDATATYPE 
                 | VAR '''
 
 def p_parametros(p):
-    '''parametros : valoresTotales
-                | valoresTotales COMMA parametros'''
+    '''parametros : valoresDatos
+                | valoresDatos COMMA parametros'''
 
 def p_operador(p):
     '''operador : PLUS
@@ -107,7 +110,6 @@ def p_error(p):
 
 # Build the parser
 parser = yacc.yacc()
-
 
 while True:
    try:
