@@ -1,0 +1,17 @@
+Input: print( hola, p );
+Result: None
+
+Input: print( );
+Result: None
+
+Syntax error at 'print()'
+Input: print();
+Result: None
+
+Syntax error at '""'
+Input: print("");
+Result: None
+
+Input: print( 1 + 2 + 3);
+Result: None
+

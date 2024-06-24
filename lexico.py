@@ -133,29 +133,6 @@ t_EQUALS  = r'='
 t_ARROWFUNCTION = r'=>'
 t_PLUS    = r'\+'
 
-#Richard Perez
-'''def t_NEWDATATYPE(t):
-    r'[A-Z][_a-zA-Z0-9]*'
-    t.type = reserved.get(t.value, 'NEWDATATYPE')
-    return t'''
-'''
-def t_FUNCTION(t):
-    r'[^main][^print][a-zA-Z]+\w*\(\w*\)'
-    t.type = reserved.get(t.value, 'FUNCTION')
-    return t'''
-
-#Roberto Encalada
-'''
-def t_INTERNDATATYPE(t):
-    r'\<[A-Z][_a-zA-Z0-9]*\>'
-    t.type = reserved.get(t.value, 'INTERNDATATYPE')
-    return t'''
-
-'''
-def t_DATAATTRIBUTE(t):
-    r'\.[a-zA-Z_]+\w*'
-    t.type = reserved.get(t.value, 'DATAATTRIBUTE')
-    return t'''
 
 #Katherine Tumbaco
 def t_FLOAT(t):
