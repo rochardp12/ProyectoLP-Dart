@@ -54,7 +54,8 @@ reserved = {
     "var": "VAR",
     "in": "IN",
     "break": "BREAK",
-    "List": "LIST"
+    "List": "LIST",
+    "bool": "BOOL"
     }
 tokens = (
     #Katherine Tumbaco
@@ -133,12 +134,12 @@ t_ARROWFUNCTION = r'=>'
 t_PLUS    = r'\+'
 
 #Richard Perez
-def t_NEWDATATYPE(t):
+'''def t_NEWDATATYPE(t):
     r'[A-Z][_a-zA-Z0-9]*'
     t.type = reserved.get(t.value, 'NEWDATATYPE')
     return t
-
-def t_FUNCTION(t):
+'''
+'''def t_FUNCTION(t):
     r'[^main][a-zA-Z]+\w*\(\w*\)'
     t.type = reserved.get(t.value, 'FUNCTION')
     return t
@@ -153,7 +154,7 @@ def t_DATAATTRIBUTE(t):
     r'\.[a-zA-Z_]+\w*'
     t.type = reserved.get(t.value, 'DATAATTRIBUTE')
     return t
-
+'''
 #Katherine Tumbaco
 def t_FLOAT(t):
     r'\d+\.\d+'
