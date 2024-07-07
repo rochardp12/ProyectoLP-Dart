@@ -3,6 +3,18 @@ from datetime import datetime
 import ply.yacc as yacc
 from lexico import tokens
 
+log_dir = "logs_semantico"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
+log_filename = f"semantico-rochardp12-{current_time}.txt"
+log_filepath = os.path.join(log_dir, log_filename)
+
+def escribir_log(mensaje):
+    with open(log_filepath, 'a') as f:
+        f.write(mensaje)
+
 #Katherine Tumbaco
 def p_programa(p):
     '''programa : cuerpo
@@ -85,6 +97,10 @@ def p_tupla(p):
 def p_valores(p):
     '''valores : valor
                | valor COMMA valores'''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = [p[1]] + p[3]
 
 def p_Bool(p):
     '''Bool : TRUE
@@ -101,6 +117,8 @@ def p_valor(p):
             | operacion
             | tupla
     '''
+    p[0] = p[1]
+
 def p_tipo(p):
     '''tipo : MAP
             | DOUBLE
@@ -113,6 +131,7 @@ def p_tipo(p):
             | CONST
             | DYNAMIC
     '''
+    p[0] = p[1]
 
 #Richard
 
@@ -146,8 +165,16 @@ def p_caso(p):
 
 
 #----------------FUNCION FLECHA-----------------------------
-def p_funcion_flecha(p):
+def p_funcion_flecha_param(p):
     'funcion_flecha : tipo VARIABLE LPAREN valores RPAREN ARROWFUNCTION programa DOTCOMMA'
+    for valor in p[4]:
+        if not isinstance(valor,str) or not valor.isidentifier():
+            mensaje = f'Error semantico: Parametro "{valor}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n'
+            print(mensaje)
+            escribir_log(mensaje)
+
+def p_funcion_flecha_no_param(p):
+    'funcion_flecha : tipo VARIABLE LPAREN RPAREN ARROWFUNCTION programa DOTCOMMA'
 #----------------------------------------------------------
 
 
@@ -166,7 +193,7 @@ def p_operador(p):
                 | MINUS
                 | TIMES
                 | DIVIDE '''
-
+    
 #Roberto Encalada
 
 #-----------------------FOR-----------------------------------
@@ -209,36 +236,37 @@ def p_dupla(p):
     '''
 #----------------------------------------------------------
 # Crear el directorio de logs si no existe
-log_dir = "logs_sintactico"
+'''
+log_dir = "logs_semantico"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
     
 # Obtener la hora actual para los nombres de archivo de log
 current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 
-UsuariosGit = "rocaenca"
+UsuariosGit = "rochardp12"
 # Nombre del archivo de log
-log_filename = f"sintactico-{UsuariosGit}-{current_time}.txt"
+log_filename = f"semantico-{UsuariosGit}-{current_time}.txt"
 log_filepath = os.path.join(log_dir, log_filename)
 
 # Archivo de log para escribir
-log_file = open(log_filepath, 'w')
+log_file = open(log_filepath, 'w')'''
   
 # Error rule for syntax errors
 def p_error(p):
     if p:
         print(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
-        log_file.write(f"Syntax error at '{p.value}'\n")
+        #log_file.write(f"Syntax error at '{p.value}'\n")
     else:
         print("Error sintactico en el final del token")
-        log_file.write("Syntax error at EOF\n")
+        #log_file.write("Syntax error at EOF\n")
 
 # Build the parser
 parser = yacc.yacc()
 
 def parse_input(input_string):
     result = parser.parse(input_string)
-    log_file.write(f"Input: {input_string}\nResult: {result}\n\n")
+    #log_file.write(f"Input: {input_string}\nResult: {result}\n\n")
     return result
 
 while True:
