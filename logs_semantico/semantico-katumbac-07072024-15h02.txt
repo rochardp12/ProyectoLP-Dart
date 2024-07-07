@@ -1,0 +1,9 @@
+Input: void main() { print('¡Hola, nombre!'); return ma }
+Result: None
+
+Input: void main() { print('¡Hola, nombre!');}
+Result: None
+
+Input: void main() { print('¡Hola, nombre!'); return} 
+Result: None
+

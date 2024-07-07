@@ -1,0 +1,51 @@
+Syntax error at 'main'
+Input: void main() {
+Result: None
+
+Syntax error at ')'
+Input:   imprimirSaludo();
+Result: None
+
+Syntax error at '}'
+Input: }
+Result: None
+
+Syntax error at 'main'
+Input: void main() { imprimirSaludo(); }
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola! Esta es una función sin retorno."); }
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola! "); }
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola!");}
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola! "); };
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola! ") ; }
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola! "); };
+Result: None
+
+Syntax error at ')'
+Syntax error at '}'
+Input: void imprimirSaludo() { print("¡Hola! "); } ;
+Result: None
+

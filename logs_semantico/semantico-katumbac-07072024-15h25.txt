@@ -1,0 +1,25 @@
+Syntax error at '>'
+Input: lp > if (xp == p10) { print("x es igual a 10"); }
+Result: None
+
+Syntax error at '10'
+Syntax error at '}'
+Input: if (x = 10) { print("x es igual a 10"); }
+Result: None
+
+Syntax error at '10'
+Syntax error at '}'
+Input: if (x = 10) { print("x es igual a 10"); }
+Result: None
+
+Syntax error at '10'
+Syntax error at '}'
+Input: if (x = 10) { print("x es igual a 10");}
+Result: None
+
+Input: if (x == 10) { print("x es igual a 10"); }
+Result: None
+
+Input: if (x != 10) { print("x es igual a 10"); }
+Result: None
+

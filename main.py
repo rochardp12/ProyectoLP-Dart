@@ -3,7 +3,9 @@ from datetime import datetime
 import ply.yacc as yacc
 from lexico import tokens
 
-#Katherine Tumbaco
+# Katherine Tumbaco
+sin_retorno = {}
+
 def p_programa(p):
     '''programa : cuerpo
                 | programa cuerpo'''
@@ -15,8 +17,9 @@ def p_cuerpo(p):
               | operacion
               | comentario
               | estructuras_de_Control
+              | retorno
             '''
-    
+
 def p_estructuras_de_Control(p):
     '''estructuras_de_Control : sentencia_If
                             | sentencia_Switch
@@ -28,9 +31,9 @@ def p_estructuras_de_Control(p):
                             | funcion_Void
                             | funcion
                             | funcion_Data
-                            | RETURN VARIABLE
                             | estructura_List
     '''
+    
 def p_comentario(p):
     '''comentario : COMMENTLINE
                   | COMMENTBLOCK'''
@@ -44,9 +47,14 @@ def p_impresion(p):
 
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
-    ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE programa RBRACE else
-                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE
-    '''
+    '''sentencia_If : IF LPAREN condicion RPAREN LBRACE programa RBRACE else
+                    | IF LPAREN condicion RPAREN LBRACE programa RBRACE'''   
+    
+    if len(p) == 8 and not isinstance(p[3], bool):
+        print(f"Error semántico: La condición en el 'if' de la línea no evalúa a un valor booleano.")
+    else: 
+        print(f"La condición en el 'if' de la línea evalúa a un valor booleano válido.")
+        
 def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
@@ -62,15 +70,31 @@ def p_conector(p):
                 | OR
     '''
     
-
+def p_retorno(p):
+    '''retorno : RETURN
+                | RETURN valores
+    '''
 # Estructura de datos - Arreglos - List - Katherine Tumbaco
 def p_estructura_List(p):
     'estructura_List : LIST LANGLE tipo RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA'
 
 # Tipo de funcion - Función sin retorno - Katherine Tumbaco
 def p_funcion_Void(p):
-    'funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE DOTCOMMA'
+    '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE
+                    | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE
+                    | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''
 
+    #Semantica - Katherine Tumbaco
+    func_name = p[2]
+    func_body = p[7] if len(p) == 8 else p[6]
+    sin_retorno[func_name] = 'void'
+        
+    if 'return' in func_body :
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
+    else:
+        print(f"Función sin retorno '{func_name}' declarada correctamente.")
+    
+    
 def p_Comparador(p):
     '''Comparador : EQUALS EQUALS
                     | LANGLE
@@ -84,7 +108,9 @@ def p_tupla(p):
 
 def p_valores(p):
     '''valores : valor
-               | valor COMMA valores'''
+               | valor COMMA valores
+               | tipo VARIABLE
+               | tipo VARIABLE COMMA valores'''
 
 def p_Bool(p):
     '''Bool : TRUE
@@ -120,7 +146,10 @@ def p_declaracion(p):
     """
     declaracion : tipo VARIABLE EQUALS valor DOTCOMMA
                 | VAR VARIABLE EQUALS valor DOTCOMMA
+                | FINAL tipo VARIABLE EQUALS valor DOTCOMMA
+                | CONST tipo VARIABLE EQUALS valor DOTCOMMA
     """
+    global variables_final, variables_const
     
 def p_operacion(p):
   'operacion : valor operador expresion'
@@ -209,16 +238,16 @@ def p_dupla(p):
     '''
 #----------------------------------------------------------
 # Crear el directorio de logs si no existe
-log_dir = "logs_sintactico"
+log_dir = "logs_semantico"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
     
 # Obtener la hora actual para los nombres de archivo de log
 current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 
-UsuariosGit = "rocaenca"
+UsuariosGit = "katumbac"
 # Nombre del archivo de log
-log_filename = f"sintactico-{UsuariosGit}-{current_time}.txt"
+log_filename = f"semantico-{UsuariosGit}-{current_time}.txt"
 log_filepath = os.path.join(log_dir, log_filename)
 
 # Archivo de log para escribir
