@@ -140,7 +140,15 @@ def p_declaracion(p):
     declaracion : tipo VARIABLE EQUALS valor DOTCOMMA
                 | VAR VARIABLE EQUALS valor DOTCOMMA
     """
-    
+    if p[1] == 'int' and not isinstance(p[4], int):
+        mensaje = 'Error semantico: El valor asignado a una variable de tipo int solo deben ser valores enteros\n'
+        print(mensaje)
+        escribir_log(mensaje)
+    elif p[1] == 'double' and not isinstance(p[4], float):
+        mensaje = 'Error semantico: El valor asignado a una variable de tipo double solo deben ser valores decimales\n'
+        print(mensaje)
+        escribir_log(mensaje)
+
 def p_operacion(p):
   'operacion : valor operador expresion'
 
