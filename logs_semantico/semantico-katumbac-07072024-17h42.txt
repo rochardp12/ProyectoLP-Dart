@@ -1,0 +1,4 @@
+Syntax error at EOF
+Input: if (a < b) {print("a es menor que b");}
+Result: None
+

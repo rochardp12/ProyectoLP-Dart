@@ -3,13 +3,20 @@ from datetime import datetime
 import ply.yacc as yacc
 from lexico import tokens
 
-# Katherine Tumbaco
-sin_retorno = {}
+
+#Katherine Tumbaco
+sin_retorno= {}
+funciones = {}
+variables = {}
 
 def p_programa(p):
     '''programa : cuerpo
                 | programa cuerpo'''
-
+    
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[2]]
 
 def p_cuerpo(p):
     '''cuerpo : impresion
@@ -17,9 +24,10 @@ def p_cuerpo(p):
               | operacion
               | comentario
               | estructuras_de_Control
-              | retorno
-            '''
-
+              | RETURN 
+              | RETURN valores'''
+    p[0] = p[1]
+    
 def p_estructuras_de_Control(p):
     '''estructuras_de_Control : sentencia_If
                             | sentencia_Switch
@@ -31,9 +39,8 @@ def p_estructuras_de_Control(p):
                             | funcion_Void
                             | funcion
                             | funcion_Data
-                            | estructura_List
-    '''
-    
+                            | estructura_List'''
+                            
 def p_comentario(p):
     '''comentario : COMMENTLINE
                   | COMMENTBLOCK'''
@@ -47,14 +54,10 @@ def p_impresion(p):
 
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
-    '''sentencia_If : IF LPAREN condicion RPAREN LBRACE programa RBRACE else
-                    | IF LPAREN condicion RPAREN LBRACE programa RBRACE'''   
-    
-    if len(p) == 8 and not isinstance(p[3], bool):
-        print(f"Error semántico: La condición en el 'if' de la línea no evalúa a un valor booleano.")
-    else: 
-        print(f"La condición en el 'if' de la línea evalúa a un valor booleano válido.")
-        
+    ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
+                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE
+    '''
+            
 def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
@@ -63,17 +66,15 @@ def p_condicion(p):
     '''
     condicion : valor Comparador valor
             |   condicion conector condicion
+            |   Bool
     ''' 
-
+    
 def p_conector(p):
     '''conector : AND
                 | OR
     '''
     
-def p_retorno(p):
-    '''retorno : RETURN
-                | RETURN valores
-    '''
+
 # Estructura de datos - Arreglos - List - Katherine Tumbaco
 def p_estructura_List(p):
     'estructura_List : LIST LANGLE tipo RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA'
@@ -83,18 +84,22 @@ def p_funcion_Void(p):
     '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE
                     | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE
                     | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''
-
-    #Semantica - Katherine Tumbaco
+    #Semantico - Katherine Tumbaco
     func_name = p[2]
-    func_body = p[7] if len(p) == 8 else p[6]
     sin_retorno[func_name] = 'void'
-        
-    if 'return' in func_body :
+    
+    print("7",p[7])
+    print("8",p[8])
+
+    if len(p) == 8 and any('return' in item for item in p[7]):
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
+    elif len(p) == 7 and any('return' in item for item in p[6]):
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
+    elif len(p) == 6 and any('return' in item for item in p[5]):
         print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
     else:
         print(f"Función sin retorno '{func_name}' declarada correctamente.")
-    
-    
+
 def p_Comparador(p):
     '''Comparador : EQUALS EQUALS
                     | LANGLE
@@ -111,11 +116,20 @@ def p_valores(p):
                | valor COMMA valores
                | tipo VARIABLE
                | tipo VARIABLE COMMA valores'''
+               
+    if len(p) == 2:
+        p[0] = [p[1]]
+    elif len(p) == 3:
+        p[0] = [p[1]] + p[3]
+    elif len(p) == 4:
+        p[0] = [p[1], p[3]]
+    elif len(p) == 5:
+        p[0] = [p[1], p[3]] + p[4]
 
 def p_Bool(p):
     '''Bool : TRUE
         | FALSE '''
-
+        
 
 def p_valor(p):
     '''
@@ -127,6 +141,7 @@ def p_valor(p):
             | operacion
             | tupla
     '''
+    
 def p_tipo(p):
     '''tipo : MAP
             | DOUBLE
@@ -146,10 +161,7 @@ def p_declaracion(p):
     """
     declaracion : tipo VARIABLE EQUALS valor DOTCOMMA
                 | VAR VARIABLE EQUALS valor DOTCOMMA
-                | FINAL tipo VARIABLE EQUALS valor DOTCOMMA
-                | CONST tipo VARIABLE EQUALS valor DOTCOMMA
     """
-    global variables_final, variables_const
     
 def p_operacion(p):
   'operacion : valor operador expresion'

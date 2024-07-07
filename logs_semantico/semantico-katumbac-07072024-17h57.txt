@@ -1,0 +1,18 @@
+Input: void main() { print("hola"); return a}
+Result: None
+
+Input: void main() { print("hola"); print("a");}
+Result: None
+
+Input: void mainaa(a,b) { print("hola"); print("a");}
+Result: None
+
+Input: void mainaa(a,b) { print("hola"); print("a"); return 3}
+Result: None
+
+Input: void mainaa(a,b) { print("hola"); print("a"); return}
+Result: None
+
+Input: void mainaa(a,b) { print("hola"); print("a"); return}
+Result: None
+

@@ -1,0 +1,6 @@
+Input: void mainaa(pepe) { print("hola"); print("a"); return}
+Result: None
+
+Input: void mainaa(pepe) { print("hola"); print("a"); return a}
+Result: None
+

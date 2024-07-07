@@ -1,3 +1,0 @@
-Input: void main() { print('¡Hola, nombre!'); return apa } 
-Result: None
-

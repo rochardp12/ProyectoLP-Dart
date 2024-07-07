@@ -1,0 +1,19 @@
+Syntax error at 'int'
+Syntax error at '}'
+Input: void void1(int num, int num2) { print("hola"); return a}
+Result: None
+
+Input: void void1(numero) { print("hola"); return a}
+Result: None
+
+Input: void void1(numero,numeros) { print("hola"); return a}
+Result: None
+
+Syntax error at 's'
+Syntax error at '}'
+Input: void main(s) { print("hola"); return a}
+Result: None
+
+Input: void main() { print("hola"); return a}
+Result: None
+

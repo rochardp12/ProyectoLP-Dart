@@ -1,0 +1,4 @@
+Syntax error at 'return'
+Input: void apa(a,b) { print('Hola, mundo!'); return a}
+Result: None
+

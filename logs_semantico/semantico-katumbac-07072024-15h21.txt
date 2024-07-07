@@ -1,3 +1,0 @@
-Input: if (x == 10) { print("x es igual a 10"); }
-Result: None
-

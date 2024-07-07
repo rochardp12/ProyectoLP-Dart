@@ -1,0 +1,6 @@
+Input: void mainaa(a,b) { print(a); return 2}
+Result: [None]
+
+Input: void mainaa(a,b) { return 2}
+Result: [None]
+

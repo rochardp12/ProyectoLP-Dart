@@ -1,0 +1,9 @@
+Input: void mainaa(a,b) { print("hola"); print("a"); return 3}
+Result: [None]
+
+Syntax error at ':'
+Syntax error at '.'
+Syntax error at 'main'
+Input: & C:/Users/user/AppData/Local/Programs/Python/Python39/python.exe c:/Users/user/Desktop/ProyectoLP-Dart/main.py
+Result: None
+

@@ -1,6 +1,0 @@
-Input: if (x == 10) { print("El valor de x es 10"); }
-Result: None
-
-Input: if (3 == 10) { print("El valor de x es 10"); }
-Result: None
-
