@@ -54,7 +54,7 @@ def p_impresion(p):
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
     ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE 
-                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE else
+                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
     '''
             
 def p_else(p):
