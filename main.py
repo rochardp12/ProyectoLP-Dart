@@ -189,11 +189,10 @@ def p_declaracion(p):
     if p[1] == 'int' and not isinstance(p[4], int):
         mensaje = 'Error semantico: El valor asignado a una variable de tipo int solo deben ser valores enteros\n'
         print(mensaje)
-        escribir_log(mensaje)
     elif p[1] == 'double' and not isinstance(p[4], float):
         mensaje = 'Error semantico: El valor asignado a una variable de tipo double solo deben ser valores decimales\n'
         print(mensaje)
-        escribir_log(mensaje)
+       
 
 def p_operacion(p):
     'operacion : valor operador expresion'
@@ -201,7 +200,7 @@ def p_operacion(p):
     if not isinstance(p[1],int) and not isinstance(p[1],float):
         mensaje = 'Error semantico: El valor en la operacion debe ser numerico\n'
         print(mensaje)
-        escribir_log(mensaje) 
+        
 
 def p_expresion(p):
     '''expresion : LPAREN valor operador expresion RPAREN
@@ -212,11 +211,9 @@ def p_expresion(p):
         if not isinstance(p[2], (int, float)):
             mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
             print(mensaje)
-            escribir_log(mensaje) 
         elif not isinstance(p[4], (int, float)):
             mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
             print(mensaje)
-            escribir_log(mensaje) 
         elif p[3] == '+' and isinstance(p[2], type(p[4])):
             p[0] = p[2] + p[4]
         elif p[3] == '-' and isinstance(p[2], type(p[4])):
@@ -228,7 +225,6 @@ def p_expresion(p):
         else:
             mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
             print(mensaje)
-            escribir_log(mensaje) 
 
 def p_funcion(p):
     'funcion : VARIABLE LPAREN valores RPAREN'
@@ -253,7 +249,6 @@ def p_funcion_flecha_param(p):
         if not isinstance(valor,str) or not valor.isidentifier():
             mensaje = f'Error semantico: Parametro "{valor}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n'
             print(mensaje)
-            escribir_log(mensaje)
 
 def p_funcion_flecha_no_param(p):
     'funcion_flecha : tipo VARIABLE LPAREN RPAREN ARROWFUNCTION programa DOTCOMMA'
@@ -360,5 +355,3 @@ while True:
   if not s: continue
   result = parse_input(s)
   print(result)
-
-log_file.close()
