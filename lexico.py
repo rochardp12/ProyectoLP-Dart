@@ -55,7 +55,8 @@ reserved = {
     "in": "IN",
     "break": "BREAK",
     "List": "LIST",
-    "boolean": "BOOLEAN"
+    "boolean": "BOOLEAN",
+    "tuple": "TUPLE",
     }
 tokens = (
     #Katherine Tumbaco
