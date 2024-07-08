@@ -1,0 +1,12 @@
+Syntax error at EOF
+Input: void apa(a,b) { print('Hola, mundo!'); return a}
+Result: None
+
+Syntax error at '}'
+Input: void apa(a,b) { print('Hola, mundo!'); return }
+Result: None
+
+Syntax error at EOF
+Input: void apa(a,b) { print('Hola, mundo!');}
+Result: None
+

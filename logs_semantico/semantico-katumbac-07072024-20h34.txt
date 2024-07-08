@@ -1,0 +1,7 @@
+Syntax error at '}'
+Input: if ("hola"=="hola") { print ("v");} else { print ("hola")}
+Result: None
+
+Input: if ("hola"=="hola") { print ("v");} else { print ("hola");}
+Result: [None]
+

@@ -1,0 +1,9 @@
+Input: void main() { print('¡Hola, nombre!'); return ma }
+Result: None
+
+Syntax error at ':'
+Syntax error at '.'
+Syntax error at 'main'
+Input: & C:/Users/Katherine/AppData/Local/Programs/Python/Python312/python.exe c:/Users/Katherine/Desktop/ProyectoLP-Dart/main.py
+Result: None
+
