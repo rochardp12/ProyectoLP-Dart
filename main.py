@@ -57,7 +57,6 @@ def p_sentencia_If(p):
                         | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
     '''
   
-            
 def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
