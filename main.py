@@ -108,7 +108,7 @@ def p_funcion_Void(p):
     '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE
                     | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE
                     | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''
-    #Semantico - Katherine Tumbaco
+    #Semantico- no retorna un valor deben ser declaradas con el tipo void - Katherine Tumbaco
     func_name = p[2]
     sin_retorno[func_name] = 'void'
 

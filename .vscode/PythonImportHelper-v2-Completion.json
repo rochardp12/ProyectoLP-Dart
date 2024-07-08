@@ -1315,7 +1315,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def p_estructura_List(p):\n    'estructura_List : LIST LANGLE tipo RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA'\n# Tipo de funcion - Función sin retorno - Katherine Tumbaco\ndef p_funcion_Void(p):\n    '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE\n                    | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE\n                    | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''\n    #Semantico - Katherine Tumbaco\n    func_name = p[2]\n    sin_retorno[func_name] = 'void'",
+        "peekOfCode": "def p_estructura_List(p):\n    'estructura_List : LIST LANGLE tipo RANGLE VARIABLE EQUALS LBRACKET valores RBRACKET DOTCOMMA'\n# Tipo de funcion - Función sin retorno - Katherine Tumbaco\ndef p_funcion_Void(p):\n    '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE\n                    | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE\n                    | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''\n    #Semantico- no retorna un valor deben ser declaradas con el tipo void - Katherine Tumbaco\n    func_name = p[2]\n    sin_retorno[func_name] = 'void'",
         "detail": "main",
         "documentation": {}
     },
@@ -1324,7 +1324,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def p_funcion_Void(p):\n    '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE\n                    | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE\n                    | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''\n    #Semantico - Katherine Tumbaco\n    func_name = p[2]\n    sin_retorno[func_name] = 'void'\n    if any('return' in item for item in p[7]):\n        print(f\"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.\")\n    elif any('return' in item for item in p[6]):",
+        "peekOfCode": "def p_funcion_Void(p):\n    '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE\n                    | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE\n                    | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''\n    #Semantico- no retorna un valor deben ser declaradas con el tipo void - Katherine Tumbaco\n    func_name = p[2]\n    sin_retorno[func_name] = 'void'\n    if any('return' in item for item in p[7]):\n        print(f\"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.\")\n    elif any('return' in item for item in p[6]):",
         "detail": "main",
         "documentation": {}
     },
