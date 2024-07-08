@@ -1,0 +1,18 @@
+Input: void mainaa(a,b) { print("hola"); return abc}
+Result: [None]
+
+Input: void mainaa(a,b) { print("hola"); return abc}
+Result: [None]
+
+Input: void mainaa(a,b) { print("hola");}
+Result: [None]
+
+Syntax error at ';'
+Syntax error at '}'
+Input: void miFuncion(a, b) { print("Hola"); if (a > b) { return a;  } print("Fin de función"); }
+Result: None
+
+Syntax error at ';'
+Input: void miFuncion(a, b) { print("Hola"); if (a > b) { return a;  } }
+Result: None
+

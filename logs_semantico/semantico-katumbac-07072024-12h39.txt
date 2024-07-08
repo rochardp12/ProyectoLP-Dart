@@ -1,0 +1,12 @@
+Input:  void imprimirSaludo() { print("¡Hola! "); }
+Result: None
+
+Input:  void imprimirSaludo(a,b) { print("¡Hola! "); }
+Result: None
+
+Input:  void imprimirSaludo(a,b) { print(a); }
+Result: None
+
+Input:  void imprimirSaludo(a,b) { print("¡Hola!"); return a }
+Result: None
+

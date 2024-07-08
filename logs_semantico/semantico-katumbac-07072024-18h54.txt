@@ -1,0 +1,21 @@
+Input: if (True) { print ("v");}
+Result: [None]
+
+Input: if (5>6) { print ("v");}
+Result: [None]
+
+Input: if (a==2) { print ("v");}
+Result: [None]
+
+Input: if ("hola"=="hola") { print ("v");}
+Result: [None]
+
+Input: if ("hola"== 2) { print ("v");}
+Result: [None]
+
+Syntax error at ':'
+Syntax error at '.'
+Syntax error at 'main'
+Input: & C:/Users/user/AppData/Local/Programs/Python/Python39/python.exe c:/Users/user/Desktop/ProyectoLP-Dart/main.py
+Result: None
+
