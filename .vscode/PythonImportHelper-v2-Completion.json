@@ -1297,7 +1297,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def p_condicion(p):\n    '''\n    condicion : valor Comparador valor\n            |   condicion conector condicion\n            |   Bool\n    ''' \n    if len(p) == 4:\n        tipo1 = obtener_tipo(p[1])\n        tipo2 = obtener_tipo(p[3])\n        if tipo1 != tipo2:",
+        "peekOfCode": "def p_condicion(p):\n    '''\n    condicion : valor Comparador valor\n            |   condicion conector condicion\n            |   Bool\n    ''' \n    #Semantica - If tener una condición que evalúe a un valor booleano. Katherine Tumbaco \n    if len(p) == 4:\n        tipo1 = obtener_tipo(p[1])\n        tipo2 = obtener_tipo(p[3])",
         "detail": "main",
         "documentation": {}
     },

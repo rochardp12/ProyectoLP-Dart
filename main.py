@@ -80,7 +80,7 @@ def p_condicion(p):
             |   condicion conector condicion
             |   Bool
     ''' 
-    
+    #Semantica - If tener una condición que evalúe a un valor booleano. Katherine Tumbaco 
     if len(p) == 4:
         tipo1 = obtener_tipo(p[1])
         tipo2 = obtener_tipo(p[3])
