@@ -54,13 +54,14 @@ def p_impresion(p):
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
     ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE 
-                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE else
+                        | IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
     '''
-            
+  
 def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
     """
+    
 def obtener_tipo(valor):
     if isinstance(valor, int):
         return 'int'
@@ -79,6 +80,7 @@ def p_condicion(p):
             |   condicion conector condicion
             |   Bool
     ''' 
+    
     #Semantica - If tener una condición que evalúe a un valor booleano. Katherine Tumbaco 
     if len(p) == 4:
         tipo1 = obtener_tipo(p[1])
@@ -125,6 +127,7 @@ def p_Comparador(p):
                     | LANGLE EQUALS
                     | RANGLE EQUALS
                     | NEQ'''
+                    
     #Semantico - Katherine Tumbaco 
     p[0] = p[1] if len(p) == 2 else (p[1], p[2])
 
