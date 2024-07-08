@@ -114,7 +114,6 @@ def p_valor(p):
             | FLOAT
             | CHAINCHAR
             | Bool
-            | operacion
             | tupla
     '''
     p[0] = p[1]
@@ -150,12 +149,40 @@ def p_declaracion(p):
         escribir_log(mensaje)
 
 def p_operacion(p):
-  'operacion : valor operador expresion'
+    'operacion : valor operador expresion'
+
+    if not isinstance(p[1],int) and not isinstance(p[1],float):
+        mensaje = 'Error semantico: El valor en la operacion debe ser numerico\n'
+        print(mensaje)
+        escribir_log(mensaje) 
 
 def p_expresion(p):
     '''expresion : LPAREN valor operador expresion RPAREN
                     | valor '''
-    
+    if len(p) == 2:
+        p[0] = p[1]    
+    else:
+        if not isinstance(p[2], (int, float)):
+            mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
+            print(mensaje)
+            escribir_log(mensaje) 
+        elif not isinstance(p[4], (int, float)):
+            mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
+            print(mensaje)
+            escribir_log(mensaje) 
+        elif p[3] == '+' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] + p[4]
+        elif p[3] == '-' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] - p[4]
+        elif p[3] == '*' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] * p[4]
+        elif p[3] == '/' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] / p[4]
+        else:
+            mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
+            print(mensaje)
+            escribir_log(mensaje) 
+
 def p_funcion(p):
     'funcion : VARIABLE LPAREN valores RPAREN'
 
@@ -201,7 +228,7 @@ def p_operador(p):
                 | MINUS
                 | TIMES
                 | DIVIDE '''
-    
+    p[0] = p[1]
 #Roberto Encalada
 
 #-----------------------FOR-----------------------------------
