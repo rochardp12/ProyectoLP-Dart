@@ -1,0 +1,1 @@
+Error semantico: Parametro "';'" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables

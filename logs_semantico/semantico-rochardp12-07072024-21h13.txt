@@ -1,0 +1,2 @@
+Error semantico: Los valores en la expresion deben ser numericosError semantico: Los valores en la expresion deben ser numericosError semantico: Los valores en la expresion deben ser numericosError semantico: Los valores en la expresion deben ser numericosError semantico: Los valores en la expresion deben ser numericosError semantico: El valor en la operacion debe ser numerico
+Error semantico: Los valores en la expresion deben ser numericos

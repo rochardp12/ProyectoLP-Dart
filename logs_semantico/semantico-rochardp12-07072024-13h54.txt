@@ -1,0 +1,4 @@
+Error semantico: Parametro "'hola'" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "None" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "';'" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "4" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables

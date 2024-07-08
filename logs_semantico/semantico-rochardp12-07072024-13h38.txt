@@ -1,0 +1,6 @@
+Error semantico: Parametro "2" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "2" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "5" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "7" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "None" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
+Error semantico: Parametro "None" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables
