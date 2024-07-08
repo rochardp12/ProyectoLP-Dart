@@ -1,0 +1,3 @@
+Error semantico: El valor asignado a una variable de tipo double solo deben ser valores decimales
+Error semantico: El valor asignado a una variable de tipo double solo deben ser valores decimales
+Error semantico: El valor asignado a una variable de tipo double solo deben ser valores decimales

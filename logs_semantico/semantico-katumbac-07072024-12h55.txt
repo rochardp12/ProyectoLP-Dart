@@ -1,0 +1,12 @@
+Syntax error at 'return'
+Input: void imprimirSaludo(a,b) { print("return"); return a }
+Result: None
+
+Syntax error at 'return'
+Input: void imprimirSaludo(a,b) { print("return"); return a; }
+Result: None
+
+Syntax error at 'return'
+Input: void imprimirSaludo(a,b) { print("pp"); return a }
+Result: None
+

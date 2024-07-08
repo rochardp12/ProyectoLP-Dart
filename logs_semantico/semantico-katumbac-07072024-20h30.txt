@@ -1,0 +1,18 @@
+Syntax error at ':'
+Syntax error at '.'
+Syntax error at 'main'
+Input: & C:/Users/user/AppData/Local/Programs/Python/Python39/python.exe c:/Users/user/Desktop/ProyectoLP-Dart/main.py
+Result: None
+
+Syntax error at EOF
+Input: if ("hola"=="hola") { print ("v");
+Result: None
+
+Input: if ("hola"=="hola") { print ("v");}
+Result: [None]
+
+Syntax error at 'else'
+Syntax error at '}'
+Input: if ("hola"=="hola") { print ("v");} else { print ("hola")}
+Result: None
+

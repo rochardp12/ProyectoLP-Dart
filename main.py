@@ -17,10 +17,18 @@ type_map = {
 }
 
 #Katherine Tumbaco
+sin_retorno= {}
+funciones = {}
+variables = {}
+
 def p_programa(p):
     '''programa : cuerpo
                 | programa cuerpo'''
-
+    
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[2]]
 
 def p_cuerpo(p):
     '''cuerpo : impresion
@@ -28,9 +36,9 @@ def p_cuerpo(p):
               | operacion
               | comentario
               | estructuras_de_Control
-              | RETURN valor DOTCOMMA
-            '''
-    
+              | RETURN DOTCOMMA'''
+    p[0] = p[1]
+       
 def p_estructuras_de_Control(p):
     '''estructuras_de_Control : sentencia_If
                             | sentencia_Switch
@@ -42,8 +50,8 @@ def p_estructuras_de_Control(p):
                             | funcion_Void
                             | funcion
                             | funcion_Data
-                            | estructura_List
-    '''
+                            | estructura_List'''
+    
 def p_comentario(p):
     '''comentario : COMMENTLINE
                   | COMMENTBLOCK'''
@@ -70,11 +78,26 @@ def p_impresion(p):
 def p_sentencia_If(p):
     ''' sentencia_If : IF LPAREN condiciones RPAREN LBRACE programa RBRACE else
                         | IF LPAREN condiciones RPAREN LBRACE programa RBRACE
-    '''
+
+
+  
 def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
     """
+    
+def obtener_tipo(valor):
+    if isinstance(valor, int):
+        return 'int'
+    elif isinstance(valor, float):
+        return 'float'
+    elif isinstance(valor, str):
+        return 'string'
+    elif isinstance(valor, bool):
+        return 'bool'
+    else:
+        return 'unknown'
+    
 def p_condicion(p):
     'condicion : valor Comparador valor'
     if type(p[1]) == type(p[3]):
@@ -87,12 +110,22 @@ def p_condicion(p):
 def p_condiciones(p):
     '''condiciones : condicion
                     | condicion conector condiciones
+                    | Bool
     '''               
-    if len(p) == 2:
-        p[0] = [p[1]]
+    
+    #Semantica - If tener una condición que evalúe a un valor booleano. Katherine Tumbaco 
+    if len(p) == 4:
+        tipo1 = obtener_tipo(p[1])
+        tipo2 = obtener_tipo(p[3])
+        if tipo1 != tipo2:
+            print(f"Error semántico: Tipos incompatibles en la comparación: {tipo1} y {tipo2}")
+        else:
+            p[0] = True 
+    elif len(p) == 3:
+        p[0] = p[1] and p[3] if p[2] == 'AND' else p[1] or p[3]
     else:
-        p[0] = [p[1]] + p[3]
-
+        p[0] = p[1]
+    
 def p_conector(p):
     '''conector : AND
                 | OR
@@ -123,7 +156,19 @@ def p_lista(p):
 
 # Tipo de funcion - Función sin retorno - Katherine Tumbaco
 def p_funcion_Void(p):
-    'funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE DOTCOMMA'
+    '''funcion_Void : VOID VARIABLE LPAREN valores RPAREN LBRACE programa RBRACE
+                    | VOID VARIABLE LPAREN RPAREN LBRACE programa RBRACE
+                    | VOID MAIN LPAREN RPAREN LBRACE programa RBRACE'''
+    #Semantico- no retorna un valor deben ser declaradas con el tipo void - Katherine Tumbaco
+    func_name = p[2]
+    sin_retorno[func_name] = 'void'
+
+    if any('return' in item for item in p[7]):
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
+    elif any('return' in item for item in p[6]):
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
+    else:
+        print(f"Función sin retorno '{func_name}' declarada correctamente.")
 
 def p_Comparador(p):
     '''Comparador : EQUALS EQUALS
@@ -132,7 +177,8 @@ def p_Comparador(p):
                     | LANGLE EQUALS
                     | RANGLE EQUALS
                     | NEQ'''
-    p[0] = p[1]
+    #Semantico - Katherine Tumbaco 
+    p[0] = p[1] if len(p) == 2 else (p[1], p[2])
 
 def p_tupla(p):
     'tupla : LPAREN valores RPAREN'
@@ -140,12 +186,19 @@ def p_tupla(p):
 
 def p_valores(p):
     '''valores : valor
-               | valor COMMA valores'''
+               | valor COMMA valores
+               | tipo VARIABLE
+               | tipo VARIABLE COMMA valores'''
+               
+    #Semantico - Katherine Tumbaco           
     if len(p) == 2:
         p[0] = [p[1]]
-    else:
+    elif len(p) == 3:
         p[0] = [p[1]] + p[3]
-
+    elif len(p) == 4:
+        p[0] = [p[1], p[3]]
+    elif len(p) == 5:
+        p[0] = [p[1], p[3]] + p[4]
 
 def p_Bool(p):
     '''Bool : TRUE
@@ -160,12 +213,12 @@ def p_valor(p):
             | FLOAT
             | CHAINCHAR
             | Bool
-            | operacion
             | tupla
             | lista
             | cuerpo_conjunto
             | cuerpo_Diccionario
     '''
+
     if existe_variable(p[1]):
         p[0] = variables[p[1]]
     else:
@@ -203,13 +256,38 @@ def p_declaracion(p):
             error_tipo(tipo_variable.__name__, valor)
             return
     p[0] = p[2]
-    
+
 def p_operacion(p):
     'operacion : valor operador expresion'
 
+    if not isinstance(p[1],int) and not isinstance(p[1],float):
+        mensaje = 'Error semantico: El valor en la operacion debe ser numerico\n'
+        print(mensaje)
+        
+
 def p_expresion(p):
-    '''expresion : LPAREN operacion RPAREN
-                 | valor'''
+    '''expresion : LPAREN valor operador expresion RPAREN
+                    | valor '''
+    if len(p) == 2:
+        p[0] = p[1]    
+    else:
+        if not isinstance(p[2], (int, float)):
+            mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
+            print(mensaje)
+        elif not isinstance(p[4], (int, float)):
+            mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
+            print(mensaje)
+        elif p[3] == '+' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] + p[4]
+        elif p[3] == '-' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] - p[4]
+        elif p[3] == '*' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] * p[4]
+        elif p[3] == '/' and isinstance(p[2], type(p[4])):
+            p[0] = p[2] / p[4]
+        else:
+            mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
+            print(mensaje)
 
 def p_funcion(p):
     'funcion : VARIABLE LPAREN valores RPAREN'
@@ -228,8 +306,15 @@ def p_caso(p):
 
 
 #----------------FUNCION FLECHA-----------------------------
-def p_funcion_flecha(p):
+def p_funcion_flecha_param(p):
     'funcion_flecha : tipo VARIABLE LPAREN valores RPAREN ARROWFUNCTION programa DOTCOMMA'
+    for valor in p[4]:
+        if not isinstance(valor,str) or not valor.isidentifier():
+            mensaje = f'Error semantico: Parametro "{valor}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n'
+            print(mensaje)
+
+def p_funcion_flecha_no_param(p):
+    'funcion_flecha : tipo VARIABLE LPAREN RPAREN ARROWFUNCTION programa DOTCOMMA'
 #----------------------------------------------------------
 
 
@@ -268,7 +353,7 @@ def p_operador(p):
                 | MINUS
                 | TIMES
                 | DIVIDE '''
-
+    p[0] = p[1]
 #Roberto Encalada
 
 #-----------------------FOR-----------------------------------
@@ -386,30 +471,36 @@ def existe_variable(p):
 def error_tipo(p1, p2):
     print(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.")
 #----------------------------------------------------------
-# # Crear el directorio de logs si no existe
-# log_dir = "logs_sintactico"
-# if not os.path.exists(log_dir):
-#     os.makedirs(log_dir)
+
+# Crear el directorio de logs si no existe
+'''
+log_dir = "logs_semantico"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
     
 # # Obtener la hora actual para los nombres de archivo de log
 # current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 
-# UsuariosGit = "rocaenca"
-# # Nombre del archivo de log
-# log_filename = f"sintactico-{UsuariosGit}-{current_time}.txt"
-# log_filepath = os.path.join(log_dir, log_filename)
 
-# # Archivo de log para escribir
-# log_file = open(log_filepath, 'w')
+UsuariosGit = "rocaenca"
+
+# Nombre del archivo de log
+log_filename = f"semantico-{UsuariosGit}-{current_time}.txt"
+log_filepath = os.path.join(log_dir, log_filename)
+
+# Archivo de log para escribir
+log_file = open(log_filepath, 'w')'''
   
 # Error rule for syntax errors
 def p_error(p):
     if p:
         print(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
+
         # log_file.write(f"Syntax error at '{p.value}'\n")
     else:
         print("Error sintactico en el final del token")
         # log_file.write("Syntax error at EOF\n")
+
 
 # Build the parser
 parser = yacc.yacc()
@@ -417,6 +508,7 @@ parser = yacc.yacc()
 def parse_input(input_string):
     result = parser.parse(input_string)
     # log_file.write(f"Input: {input_string}\nResult: {result}\n\n")
+
     return result
 
 while True:
@@ -429,4 +521,3 @@ while True:
   result = parse_input(s)
   print(result)
 
-#log_file.close()
