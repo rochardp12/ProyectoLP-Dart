@@ -1,0 +1,16 @@
+Input: var tuki = "hola";
+Result: ['tuki']
+
+Input: int tuki = 2;
+Result: ['tuki']
+
+Input: int t = "gpa";
+Result: [None]
+
+Syntax error at 't'
+Input: string t = "gpa";
+Result: None
+
+Input: String t = "gpa";
+Result: ['t']
+

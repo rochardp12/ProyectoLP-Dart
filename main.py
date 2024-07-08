@@ -3,7 +3,6 @@ from datetime import datetime
 import ply.yacc as yacc
 from lexico import tokens
 
-variables = {}
 
 type_map = {
     'String': str,
@@ -28,7 +27,7 @@ def p_programa(p):
     if len(p) == 2:
         p[0] = [p[1]]
     else:
-        p[0] = p[1] + [p[2]]
+        p[0] = [p[1]] + p[2]
 
 def p_cuerpo(p):
     '''cuerpo : impresion
@@ -36,7 +35,7 @@ def p_cuerpo(p):
               | operacion
               | comentario
               | estructuras_de_Control
-              | RETURN DOTCOMMA'''
+              | return'''
     p[0] = p[1]
        
 def p_estructuras_de_Control(p):
@@ -59,6 +58,7 @@ def p_comentario(p):
 
 def p_impresion(p):
     '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA
+                 | PRINT LPAREN CHAINCHAR RPAREN DOTCOMMA
                  | PRINT LPAREN operacion RPAREN DOTCOMMA
                  | PRINT LPAREN condiciones RPAREN DOTCOMMA
                  | PRINT LPAREN RPAREN DOTCOMMA
@@ -77,8 +77,7 @@ def p_impresion(p):
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
     ''' sentencia_If : IF LPAREN condiciones RPAREN LBRACE programa RBRACE else
-                        | IF LPAREN condiciones RPAREN LBRACE programa RBRACE
-
+                        | IF LPAREN condiciones RPAREN LBRACE programa RBRACE '''
 
   
 def p_else(p):
@@ -86,21 +85,9 @@ def p_else(p):
     else : ELSE LBRACE programa RBRACE
     """
     
-def obtener_tipo(valor):
-    if isinstance(valor, int):
-        return 'int'
-    elif isinstance(valor, float):
-        return 'float'
-    elif isinstance(valor, str):
-        return 'string'
-    elif isinstance(valor, bool):
-        return 'bool'
-    else:
-        return 'unknown'
-    
 def p_condicion(p):
     'condicion : valor Comparador valor'
-    if type(p[1]) == type(p[3]):
+    if type(p[1][0]) == type(p[3]):
         pass
     else:
         error_tipo(p[1], p[3])
@@ -114,18 +101,12 @@ def p_condiciones(p):
     '''               
     
     #Semantica - If tener una condición que evalúe a un valor booleano. Katherine Tumbaco 
-    if len(p) == 4:
-        tipo1 = obtener_tipo(p[1])
-        tipo2 = obtener_tipo(p[3])
-        if tipo1 != tipo2:
-            print(f"Error semántico: Tipos incompatibles en la comparación: {tipo1} y {tipo2}")
-        else:
-            p[0] = True 
-    elif len(p) == 3:
-        p[0] = p[1] and p[3] if p[2] == 'AND' else p[1] or p[3]
+
+    if len(p) == 2:
+        p[0] = [p[1]]
     else:
-        p[0] = p[1]
-    
+        p[0] = [p[1]] + p[3]
+
 def p_conector(p):
     '''conector : AND
                 | OR
@@ -138,7 +119,6 @@ def p_estructura_List(p):
     'estructura_List : LIST LANGLE tipo RANGLE VARIABLE EQUALS lista DOTCOMMA'
     tipo_elemento = type_map[p[3]]
     lista_valores = []
-    print(p[7])
     for element in p[7]:
         if isinstance(element, tipo_elemento):
             lista_valores.append(element)
@@ -170,6 +150,11 @@ def p_funcion_Void(p):
     else:
         print(f"Función sin retorno '{func_name}' declarada correctamente.")
 
+def p_return(p):
+    'return : RETURN valor DOTCOMMA'
+    p[0] = [p[1], p[2]]
+            
+
 def p_Comparador(p):
     '''Comparador : EQUALS EQUALS
                     | LANGLE
@@ -186,20 +171,15 @@ def p_tupla(p):
 
 def p_valores(p):
     '''valores : valor
-               | valor COMMA valores
-               | tipo VARIABLE
-               | tipo VARIABLE COMMA valores'''
+               | valor COMMA valores'''
                
     #Semantico - Katherine Tumbaco           
     if len(p) == 2:
         p[0] = [p[1]]
-    elif len(p) == 3:
+    else:
         p[0] = [p[1]] + p[3]
-    elif len(p) == 4:
-        p[0] = [p[1], p[3]]
-    elif len(p) == 5:
-        p[0] = [p[1], p[3]] + p[4]
 
+        
 def p_Bool(p):
     '''Bool : TRUE
         | FALSE '''
@@ -363,31 +343,40 @@ def p_ciclo_for(p):
     """
     # Obtenemos la variable de control
     variable_control = p[3]
-    print(variable_control)
     # Obtenemos la condición de terminación
     condicion_terminacion = p[4]
-
+    # Obtenemos el contador
+    contador = p[6]
     # Verificamos que la variable de control exista
     if existe_variable(variable_control):
         valor_actual = variables[variable_control][0]
         
         # Determinamos el valor de terminación de la condición
-        if condicion_terminacion[2] == "<":
-            valor_terminacion = condicion_terminacion[3]
+        if condicion_terminacion[1] == "<":
+            valor_terminacion = condicion_terminacion[2]
             if valor_actual >= valor_terminacion:
                 error_ciclo(variable_control)
                 return
-        elif condicion_terminacion[2] == ">":
-            valor_terminacion = condicion_terminacion[3]
+            else:
+                if contador[1] == "-" and contador[2] == "-":
+                    error_ciclo(variable_control)
+                    return
+        elif condicion_terminacion[1] == ">":
+            valor_terminacion = condicion_terminacion[2]
             if valor_actual <= valor_terminacion:
                 error_ciclo(variable_control)
                 return
+            else:
+                if contador[1] == "+" and contador[2] == "+":
+                    error_ciclo(variable_control)
+                    return
+
     else:
         error_declaracion(variable_control)
 
 
 def error_ciclo(variable):
-    print(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta.")
+    print(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.")
     
 
 def p_contador(p):
@@ -405,7 +394,7 @@ def p_contador(p):
             variables[p[1]][0] += int(p[4])
     else:
         error_declaracion(p[1])
-
+    p[0] = [p[1]] + [p[2], p[3]]
 #----------------------------------------------------------
 #-----------------------Función anónima-----------------------------------
 def p_funcion_Anonima(p):
@@ -473,13 +462,13 @@ def error_tipo(p1, p2):
 #----------------------------------------------------------
 
 # Crear el directorio de logs si no existe
-'''
+
 log_dir = "logs_semantico"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
     
-# # Obtener la hora actual para los nombres de archivo de log
-# current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
+# Obtener la hora actual para los nombres de archivo de log
+current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 
 
 UsuariosGit = "rocaenca"
@@ -489,17 +478,17 @@ log_filename = f"semantico-{UsuariosGit}-{current_time}.txt"
 log_filepath = os.path.join(log_dir, log_filename)
 
 # Archivo de log para escribir
-log_file = open(log_filepath, 'w')'''
+log_file = open(log_filepath, 'w')
   
 # Error rule for syntax errors
 def p_error(p):
     if p:
         print(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
 
-        # log_file.write(f"Syntax error at '{p.value}'\n")
+        log_file.write(f"Syntax error at '{p.value}'\n")
     else:
         print("Error sintactico en el final del token")
-        # log_file.write("Syntax error at EOF\n")
+        log_file.write("Syntax error at EOF\n")
 
 
 # Build the parser
@@ -507,13 +496,12 @@ parser = yacc.yacc()
 
 def parse_input(input_string):
     result = parser.parse(input_string)
-    # log_file.write(f"Input: {input_string}\nResult: {result}\n\n")
+    log_file.write(f"Input: {input_string}\nResult: {result}\n\n")
 
     return result
 
 while True:
   try:
-      print(variables)
       s = input('lp > ')
   except EOFError:
       break

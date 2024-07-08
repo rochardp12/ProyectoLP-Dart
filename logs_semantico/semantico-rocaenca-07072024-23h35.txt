@@ -1,0 +1,34 @@
+Input: void mainaa(a,b) { print("hola"); return abc;} 
+Result: [None]
+
+Input: if ("hola"=="hola") { print ("igual");}
+Result: [None]
+
+Input: if ("hola"=="hola") { print ("v");} else { print ("hola");}
+Result: [None]
+
+Input: if ("hola"=="hola") { print("v");} else { print("hola");}
+Result: [None]
+
+Syntax error at EOF
+Input: int funcion(var1,var2)=>4+5
+Result: None
+
+Input: int funcion(var1,var2)=>4+5;
+Result: [None]
+
+Input: 4+(5-7)
+Result: [None]
+
+Input: 4+(5-d)
+Result: [None]
+
+Input: print("hola");
+Result: [None]
+
+Input: print(4+(5-7));
+Result: [None]
+
+Input: print(4+(5-d));
+Result: [None]
+

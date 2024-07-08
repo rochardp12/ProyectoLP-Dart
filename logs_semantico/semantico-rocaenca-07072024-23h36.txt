@@ -1,0 +1,12 @@
+Input: map<String, int> d = {"Roberto" : 21, "a": 2};
+Result: [None]
+
+Input: map<String, String> d = {"Roberto" : 21, "a": 2};
+Result: [None]
+
+Input: map<String, double> d = {"Roberto" : 21, "a": 2};
+Result: [None]
+
+Input: map<String, List> d = {"Roberto" : [1,2], "a": [3,1]};
+Result: [None]
+
