@@ -1,3 +1,0 @@
-Input: if ( a == b) { print();}
-Result: None
-

@@ -1,3 +1,0 @@
-Input: void mainaa(a,b) { print("hola"); print("a"); return 3}
-Result: [None]
-

@@ -1,0 +1,5 @@
+Syntax error at ','
+Syntax error at '}'
+Input: void mainaa(,b) { print("hola");}
+Result: None
+

@@ -27,7 +27,7 @@ def p_cuerpo(p):
               | RETURN 
               | RETURN valores'''
     p[0] = p[1]
-    
+       
 def p_estructuras_de_Control(p):
     '''estructuras_de_Control : sentencia_If
                             | sentencia_Switch
@@ -51,23 +51,47 @@ def p_impresion(p):
                  | PRINT LPAREN operacion RPAREN DOTCOMMA
                  | PRINT LPAREN RPAREN DOTCOMMA
     '''
-
+    p[0] = p.slice
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
-    ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE else
-                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE
+    ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE 
+                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE else
     '''
             
 def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
     """
+def obtener_tipo(valor):
+    if isinstance(valor, int):
+        return 'int'
+    elif isinstance(valor, float):
+        return 'float'
+    elif isinstance(valor, str):
+        return 'string'
+    elif isinstance(valor, bool):
+        return 'bool'
+    else:
+        return 'unknown'
+    
 def p_condicion(p):
     '''
     condicion : valor Comparador valor
             |   condicion conector condicion
             |   Bool
     ''' 
+    
+    if len(p) == 4:
+        tipo1 = obtener_tipo(p[1])
+        tipo2 = obtener_tipo(p[3])
+        if tipo1 != tipo2:
+            print(f"Error semántico: Tipos incompatibles en la comparación: {tipo1} y {tipo2}")
+        else:
+            p[0] = True 
+    elif len(p) == 3:
+        p[0] = p[1] and p[3] if p[2] == 'AND' else p[1] or p[3]
+    else:
+        p[0] = p[1]
     
 def p_conector(p):
     '''conector : AND
@@ -87,16 +111,11 @@ def p_funcion_Void(p):
     #Semantico - Katherine Tumbaco
     func_name = p[2]
     sin_retorno[func_name] = 'void'
-    
-    print("7",p[7])
-    print("8",p[8])
 
-    if len(p) == 8 and any('return' in item for item in p[7]):
-        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
-    elif len(p) == 7 and any('return' in item for item in p[6]):
-        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
-    elif len(p) == 6 and any('return' in item for item in p[5]):
-        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener una declaración de 'return'.")
+    if any('return' in item for item in p[7]):
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
+    elif any('return' in item for item in p[6]):
+        print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
     else:
         print(f"Función sin retorno '{func_name}' declarada correctamente.")
 
@@ -107,6 +126,8 @@ def p_Comparador(p):
                     | LANGLE EQUALS
                     | RANGLE EQUALS
                     | NEQ'''
+    #Semantico - Katherine Tumbaco 
+    p[0] = p[1] if len(p) == 2 else (p[1], p[2])
 
 def p_tupla(p):
     'tupla : LPAREN valores RPAREN'
@@ -117,6 +138,7 @@ def p_valores(p):
                | tipo VARIABLE
                | tipo VARIABLE COMMA valores'''
                
+    #Semantico - Katherine Tumbaco           
     if len(p) == 2:
         p[0] = [p[1]]
     elif len(p) == 3:
@@ -141,6 +163,8 @@ def p_valor(p):
             | operacion
             | tupla
     '''
+    #Semantico - Katherine Tumbaco 
+    p[0] = p[1] 
     
 def p_tipo(p):
     '''tipo : MAP

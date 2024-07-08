@@ -1,0 +1,15 @@
+Input: void mainaa(a) { return a }
+Result: [None]
+
+Input: void mainaa(a,b) { print("hola"); return abc}
+Result: [None]
+
+Input: void mainaa(a,b) { print("hola"); return abc}
+Result: [None]
+
+Input: void main() { print("hola"); return abc}
+Result: [None]
+
+Input: void mppppain() { print("hola"); return abc}
+Result: [None]
+

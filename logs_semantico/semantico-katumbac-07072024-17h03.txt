@@ -1,4 +1,0 @@
-Syntax error at 'return'
-Input: void main() { print('Hola, mundo!'); return }
-Result: None
-

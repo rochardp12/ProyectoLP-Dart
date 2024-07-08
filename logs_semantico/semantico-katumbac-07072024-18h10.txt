@@ -1,3 +1,0 @@
-Input: void main() { print("hola"); return a}
-Result: None
-

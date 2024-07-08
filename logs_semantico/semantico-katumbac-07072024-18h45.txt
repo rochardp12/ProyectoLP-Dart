@@ -1,0 +1,6 @@
+Input: void mainaa() { print("hola");}
+Result: [None]
+
+Input: void main() { print("hola");}
+Result: [None]
+
