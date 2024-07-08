@@ -61,6 +61,7 @@ def p_else(p):
     """
     else : ELSE LBRACE programa RBRACE
     """
+    
 def obtener_tipo(valor):
     if isinstance(valor, int):
         return 'int'
@@ -79,6 +80,7 @@ def p_condicion(p):
             |   condicion conector condicion
             |   Bool
     ''' 
+    
     #Semantica - If tener una condición que evalúe a un valor booleano. Katherine Tumbaco 
     if len(p) == 4:
         tipo1 = obtener_tipo(p[1])
@@ -125,6 +127,7 @@ def p_Comparador(p):
                     | LANGLE EQUALS
                     | RANGLE EQUALS
                     | NEQ'''
+                    
     #Semantico - Katherine Tumbaco 
     p[0] = p[1] if len(p) == 2 else (p[1], p[2])
 
