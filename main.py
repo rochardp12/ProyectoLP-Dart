@@ -51,7 +51,6 @@ def p_impresion(p):
                  | PRINT LPAREN operacion RPAREN DOTCOMMA
                  | PRINT LPAREN RPAREN DOTCOMMA
     '''
-    p[0] = p.slice
 # Estructura de control - If-else - Katherine Tumbaco
 def p_sentencia_If(p):
     ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE 

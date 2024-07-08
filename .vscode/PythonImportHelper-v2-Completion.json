@@ -1252,7 +1252,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def p_comentario(p):\n    '''comentario : COMMENTLINE\n                  | COMMENTBLOCK'''\ndef p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN operacion RPAREN DOTCOMMA\n                 | PRINT LPAREN RPAREN DOTCOMMA\n    '''\n    p[0] = p.slice\n# Estructura de control - If-else - Katherine Tumbaco",
+        "peekOfCode": "def p_comentario(p):\n    '''comentario : COMMENTLINE\n                  | COMMENTBLOCK'''\ndef p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN operacion RPAREN DOTCOMMA\n                 | PRINT LPAREN RPAREN DOTCOMMA\n    '''\n# Estructura de control - If-else - Katherine Tumbaco\ndef p_sentencia_If(p):",
         "detail": "main",
         "documentation": {}
     },
@@ -1261,7 +1261,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN operacion RPAREN DOTCOMMA\n                 | PRINT LPAREN RPAREN DOTCOMMA\n    '''\n    p[0] = p.slice\n# Estructura de control - If-else - Katherine Tumbaco\ndef p_sentencia_If(p):\n    ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE \n                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE else",
+        "peekOfCode": "def p_impresion(p):\n    '''impresion : PRINT LPAREN valores RPAREN DOTCOMMA\n                 | PRINT LPAREN operacion RPAREN DOTCOMMA\n                 | PRINT LPAREN RPAREN DOTCOMMA\n    '''\n# Estructura de control - If-else - Katherine Tumbaco\ndef p_sentencia_If(p):\n    ''' sentencia_If : IF LPAREN condicion RPAREN LBRACE cuerpo RBRACE \n                        | IF LPAREN condicion RPAREN LBRACE programa RBRACE else\n    '''",
         "detail": "main",
         "documentation": {}
     },
