@@ -1,15 +1,28 @@
-void sumaYMensaje(int a, int b) {
-  int suma = a + b;
-  
-  if (suma > 10) {
-    print("La suma es mayor que 10: $suma");
-  } else {
-    print("La suma es igual o menor que 10: $suma");
-  }
-}
-
 void main() {
-  int num1 = 5;
-  int num2 = 7;
-  sumaYMensaje(num1, num2);
+  int num1 = 10;
+  int num2 = 5;
+
+  // Operación de suma
+  int resultadoSuma = num1 + num2;
+  
+  // Operación de resta
+  int resultadoResta = num1 - num2;
+
+  // Verificación del resultado de la suma
+  if (resultadoSuma > 0) {
+    print("La suma de $num1 y $num2 es positiva: $resultadoSuma");
+  } else if (resultadoSuma < 0) {
+    print("La suma de $num1 y $num2 es negativa: $resultadoSuma");
+  } else {
+    print("La suma de $num1 y $num2 es cero.");
+  }
+
+  // Verificación del resultado de la resta
+  if (resultadoResta > 0) {
+    print("La resta de $num1 y $num2 es positiva: $resultadoResta");
+  } else if (resultadoResta < 0) {
+    print("La resta de $num1 y $num2 es negativa: $resultadoResta");
+  } else {
+    print("La resta de $num1 y $num2 es cero.");
+  }
 }

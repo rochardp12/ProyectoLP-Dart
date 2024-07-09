@@ -26,7 +26,6 @@ reserved = {
     'while':'WHILE',
     'if':'IF',
     'else':'ELSE',
-    'elif':'ELIF',
     'return':'RETURN',
     'try':'TRY',
     'catch':'CATCH',
@@ -48,7 +47,6 @@ reserved = {
     "case": "CASE",
     "default": "DEFAULT",
     #Katherine Tumbaco
-    "enum": "ENUM",
     "void": "VOID",
     "for": "FOR",
     "var": "VAR",
