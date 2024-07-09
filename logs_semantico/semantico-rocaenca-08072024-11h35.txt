@@ -1,0 +1,6 @@
+Input: int a = 0;
+Result: None
+
+Input: print(s);
+Result: None
+

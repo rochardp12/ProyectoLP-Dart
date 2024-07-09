@@ -1,0 +1,6 @@
+Input: map<int, var> m = {"Roberto": True, "A": [1,32], (1,3):3.2, "2":{3,2}, "a": 2};
+Result: [None]
+
+Input: map<var, var> m = {"Roberto": True, "A": [1,32], (1,3):3.2, "2":{3,2}, "a": 2};
+Result: [None]
+

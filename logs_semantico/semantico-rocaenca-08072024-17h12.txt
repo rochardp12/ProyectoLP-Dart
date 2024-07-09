@@ -1,0 +1,33 @@
+Input: void mainaa(a,b) { print("hola"); return abc;}
+Result: [None]
+
+Input: void mainaa(a,b) { print("hola");}
+Result: [None]
+
+Input: if ("hola"=="hola") { print ("igual");} 
+Result: [None]
+
+Input: if ("hola"=="hola") { print("v");} else { print("hola");}
+Result: [None]
+
+Input: print(a,b,c,d,e,f,g);
+Result: [None]
+
+Input: int a = 3;
+Result: ['a']
+
+Input: int b = 3;
+Result: ['b']
+
+Input: String c = 3;
+Result: [None]
+
+Input: int c = "hola";
+Result: [None]
+
+Input: int c = 12;
+Result: ['c']
+
+Input: print(a,b,c,d);
+Result: [None]
+

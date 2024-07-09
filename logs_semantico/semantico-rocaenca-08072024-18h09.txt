@@ -1,0 +1,18 @@
+Input: int funcion(1,2)=>print("hola");;
+Result: [None]
+
+Input: int funcion(var1,var2)=>print(v);;
+Result: [None]
+
+Input: var var1 = 3;
+Result: [None]
+
+Input: var var2 = 3;
+Result: [None]
+
+Input: var v = 3;
+Result: [None]
+
+Input: int funcion(var1,var2)=>print(v);;
+Result: [None]
+

@@ -1,0 +1,16 @@
+Syntax error at '4'
+Input: var 4 = 0;
+Result: None
+
+Input: var das = 0;
+Result: [None]
+
+Input: var das = [1,3];
+Result: [None]
+
+Input: map<var, var> m = {"Roberto": True, "A": [1,32], (1,3):3.2, "2":{3,2}, "a": 2};
+Result: [None]
+
+Input: map<int, var> m = {"Roberto": True, "A": [1,32], (1,3):3.2, "2":{3,2}, "a": 2};
+Result: [None]
+

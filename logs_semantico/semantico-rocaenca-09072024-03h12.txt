@@ -1,0 +1,46 @@
+Input: if ("hola"==3) { print ("igual");}  
+Result: [None]
+
+Input: if ("hola"=={2.34,43.2}) { print ("igual");}  
+Result: [None]
+
+Input: if ($a==$b) { print ("igual");}  
+Result: [None]
+
+Input: if ($a > $b) { print ("igual");}  
+Result: [None]
+
+Input: int a = 4;
+Result: [['int', 'a', 4]]
+
+Input: String b = "hola";
+Result: [['String', 'b', '"hola"']]
+
+Input: if ($a > $b) { print ("igual");}  
+Result: [None]
+
+Input: int b = $a;
+Result: [['int', 'b', ['$', 'a']]]
+
+Input: if ($a > $b) { print ("igual");}  
+Result: [None]
+
+Input: if ("hola"=="hola") { print("v");} else { print("hola");}
+Result: [None]
+
+Syntax error at 'var1'
+Input: int funcion(var1,var2)=>4+5
+Result: [None]
+
+Syntax error at 'var1'
+Input: int funcion(var1,var2)=>4+5
+Result: [None]
+
+Syntax error at 'var1'
+Syntax error at ';'
+Input: int funcion(var1,var2)=>4+5;
+Result: None
+
+Input: int funcion($var1,$var2)=>4+5;
+Result: [None]
+

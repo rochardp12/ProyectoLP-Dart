@@ -1,0 +1,78 @@
+Input: int gg = 2;
+Result: [None]
+
+Input: String gg = 2;
+Result: [None]
+
+Input: String gg = "gg";
+Result: [None]
+
+Input: int a = 3;
+Result: [None]
+
+Input: print(a,b);
+Result: [None]
+
+Syntax error at EOF
+Input: print(a,gg,b)
+Result: None
+
+Input: print(a,gg,b);
+Result: [None]
+
+Input: boolean b = True;
+Result: [None]
+
+Input: print(a,gg,b);
+Result: [None]
+
+Syntax error at EOF
+Input: int funcion(var1,var2)=>4+5
+Result: None
+
+Input: int funcion(var1,var2)=>4+5;
+Result: [None]
+
+Input: int funcion(var1,var2)=>print(v);;
+Result: [None]
+
+Input: int funcion(1,2)=>print(v);;
+Result: [None]
+
+Input: int funcion(1,2)=>print(b);;
+Result: [None]
+
+Input: int funcion()=>print(b);;
+Result: [None]
+
+Input: int funcion()=>print(v);;
+Result: [None]
+
+Input: int funcion(a,b)=>print(a,b);;
+Result: [None]
+
+Input: int funcion(a)=>print(a,b);;
+Result: [None]
+
+Syntax error at '='
+Input: gg = a;
+Result: None
+
+Input: int gg = a;
+Result: [None]
+
+Input: int b = 0;
+Result: [None]
+
+Syntax error at '='
+Input: a = b;
+Result: None
+
+Input: int a = b;
+Result: [None]
+
+Syntax error at 'var'
+Syntax error at ';'
+Input: map<String,var> d = {"a": 2, "b": "hola"};
+Result: None
+

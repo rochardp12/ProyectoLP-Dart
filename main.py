@@ -13,6 +13,7 @@ type_map = {
     'map': dict,
     'Set': set,
     'tuple': tuple,
+    'var': type(None)
 }
 
 #Katherine Tumbaco
@@ -27,7 +28,7 @@ def p_programa(p):
     if len(p) == 2:
         p[0] = [p[1]]
     else:
-        p[0] = [p[1]] + p[2]
+        p[0] = p[1] + [p[2]]
 
 def p_cuerpo(p):
     '''cuerpo : impresion
@@ -63,14 +64,17 @@ def p_impresion(p):
                  | PRINT LPAREN condiciones RPAREN DOTCOMMA
                  | PRINT LPAREN RPAREN DOTCOMMA
     '''
-    if len(p) == 5:
-        pass
-    else:
-        contenido = p[3]
-        if isinstance(contenido, list): 
-            for var in contenido:
+    contenido = p[3]
+    if contenido != None:
+        for variable in contenido:
+            if isinstance(variable, list) and variable[0] == '$':
+                var = variable[1]
                 if not existe_variable(var):
                     error_declaracion(var)
+                else:
+                    pass
+    else:
+        pass
 
     
     
@@ -87,12 +91,63 @@ def p_else(p):
     
 def p_condicion(p):
     'condicion : valor Comparador valor'
-    if type(p[1][0]) == type(p[3]):
-        pass
-    else:
-        error_tipo(p[1], p[3])
+    if not isinstance(p[1],list) and not isinstance(p[3],list):
+        if type(p[1]) == type(p[3]):
+            pass
+        else:
+            error_tipo(type(p[1]).__name__, p[3])
+            return
+        p[0] = [p[1], p[2], p[3]]
+    elif isinstance(p[1],list) and p[1][0] == '$' and not isinstance(p[3],list):
+        var1 = p[1][1]
+        if existe_variable(var1):
+            tipo_var1 = variables[var1][0]
+            if type(tipo_var1) == type(p[3]):
+                pass
+            else:
+                error_tipo(tipo_var1, p[3])
+                return
+        else:
+            error_declaracion(var1)
+            return
+        p[0] = [p[1], p[2], p[3]]
+    elif not isinstance(p[1],list) and isinstance(p[3],list) and p[3][0] == '$':
+        var2 = p[3][1]
+        if existe_variable(var2):
+            tipo_var2 = variables[var2][0]
+            if type(p[1]) == type(tipo_var2):
+                pass
+            else:
+                error_tipo(p[1], tipo_var2)
+                return
+        else:
+            error_declaracion(var2)
+            return
+        p[0] = [p[1], p[2], p[3]]
+    else:   
+        var1 = p[1][1]
+        var2 = p[3][1]
+        if existe_variable(var2) and existe_variable(var1):
+            tipo_var1 = variables[var1][0]
+            tipo_var2 = variables[var2][0]
+            if type(tipo_var1) == type(tipo_var2):
+                pass
+            else:
+                error_tipo(tipo_var1, tipo_var2)
+                return
+        elif not existe_variable(var2) and existe_variable(var1):
+            error_declaracion(var2)
+            return
+        elif existe_variable(var2) and not existe_variable(var1):
+            error_declaracion(var1)
+            return
+        else:
+            error_declaracion(var1)
+            error_declaracion(var2)
+            return
+        p[0] = [p[1], p[2], p[3]]
+    
 
-    p[0] = [p[1], p[2], p[3]]
 
 def p_condiciones(p):
     '''condiciones : condicion
@@ -107,6 +162,7 @@ def p_condiciones(p):
     else:
         p[0] = [p[1]] + p[3]
 
+
 def p_conector(p):
     '''conector : AND
                 | OR
@@ -118,15 +174,17 @@ def p_conector(p):
 def p_estructura_List(p):
     'estructura_List : LIST LANGLE tipo RANGLE VARIABLE EQUALS lista DOTCOMMA'
     tipo_elemento = type_map[p[3]]
-    lista_valores = []
-    for element in p[7]:
-        if isinstance(element, tipo_elemento):
-            lista_valores.append(element)
+    lista = p[7]
+    for element in lista:
+        if tipo_elemento == type(None):
+            variables[p[5]] = [lista, f"LIST<{p[3]}>"]
         else:
-            error_tipo(tipo_elemento.__name__, element)
-            return
-    
-    variables[p[5]] = [lista_valores, f"LIST<{p[3]}>"]
+            if isinstance(element, tipo_elemento):
+                pass
+            else:
+                error_tipo(tipo_elemento.__name__, element)
+                return
+    variables[p[5]] = [lista, f"LIST<{p[3]}>"]
 
 
 def p_lista(p):
@@ -142,17 +200,16 @@ def p_funcion_Void(p):
     #Semantico- no retorna un valor deben ser declaradas con el tipo void - Katherine Tumbaco
     func_name = p[2]
     sin_retorno[func_name] = 'void'
-
-    if any('return' in item for item in p[7]):
+    if len(p) == 9 and 'return' in p[7]:
         print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
-    elif any('return' in item for item in p[6]):
+    elif len(p) == 8 and 'return' in p[6]:
         print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
     else:
-        print(f"Función sin retorno '{func_name}' declarada correctamente.")
+        pass
 
 def p_return(p):
     'return : RETURN valor DOTCOMMA'
-    p[0] = [p[1], p[2]]
+    p[0] = p[1]
             
 
 def p_Comparador(p):
@@ -163,7 +220,10 @@ def p_Comparador(p):
                     | RANGLE EQUALS
                     | NEQ'''
     #Semantico - Katherine Tumbaco 
-    p[0] = p[1] if len(p) == 2 else (p[1], p[2])
+    if len(p) == 2:
+        p[0] = p[1]  
+    else:
+        p[0] = (p[1], p[2])
 
 def p_tupla(p):
     'tupla : LPAREN valores RPAREN'
@@ -177,7 +237,7 @@ def p_valores(p):
     if len(p) == 2:
         p[0] = [p[1]]
     else:
-        p[0] = [p[1]] + p[3]
+        p[0] =  [p[1]] + p[3]
 
         
 def p_Bool(p):
@@ -188,7 +248,7 @@ def p_Bool(p):
 
 def p_valor(p):
     '''
-    valor   : VARIABLE
+    valor   : variable
             | NUMBER
             | FLOAT
             | CHAINCHAR
@@ -198,11 +258,19 @@ def p_valor(p):
             | cuerpo_conjunto
             | cuerpo_Diccionario
     '''
+    p[0] = p[1]
 
-    if existe_variable(p[1]):
-        p[0] = variables[p[1]]
+def p_variables(p):
+    '''variables : variable
+                | variable COMMA variables'''
+    if len(p) == 2:
+        p[0] = [p[1], 'variable']
     else:
-        p[0] = p[1]
+        p[0] = [p[1]] + p[3]
+
+def p_variable(p):
+    'variable : DOLLAR VARIABLE'
+    p[0] = [p[1],p[2]]
 
 
 def p_tipo(p):
@@ -214,6 +282,7 @@ def p_tipo(p):
             | LIST
             | BOOLEAN
             | TUPLE
+            | VAR
     '''
     p[0] = p[1]
 
@@ -222,20 +291,32 @@ def p_tipo(p):
 def p_declaracion(p):
     """
     declaracion : tipo VARIABLE EQUALS valor DOTCOMMA
-                | VAR VARIABLE EQUALS valor DOTCOMMA
     """
-    if p[1] == "var":
-        variables[p[2]] = [p[4], "VAR"]
-    else:
-        tipo_variable = type_map[p[1]]
-        valor = p[4]
-
-        if isinstance(valor, tipo_variable):
+    
+    tipo_variable = type_map[p[1]]
+    valor = p[4]
+    if not isinstance(valor,list):
+        if tipo_variable == type(None):
             variables[p[2]] = [valor, p[1]]
         else:
-            error_tipo(tipo_variable.__name__, valor)
-            return
-    p[0] = p[2]
+            if isinstance(valor, tipo_variable):
+                variables[p[2]] = [valor, p[1]]
+            else:
+                error_tipo(tipo_variable.__name__, valor)
+                return
+    else:
+        var = valor[1]
+        if not existe_variable(var):
+            error_declaracion(var)
+        else:
+            tipo_var_declarada = variables[var][1]
+            if tipo_variable.__name__ == tipo_var_declarada:
+                variables[p[2]] = variables[var]
+            else:
+                error_tipo( tipo_variable.__name__, variables[var][0] )
+                return
+    p[0] = [p[1], p[2], p[4]]
+    
 
 def p_operacion(p):
     'operacion : valor operador expresion'
@@ -287,14 +368,16 @@ def p_caso(p):
 
 #----------------FUNCION FLECHA-----------------------------
 def p_funcion_flecha_param(p):
-    'funcion_flecha : tipo VARIABLE LPAREN valores RPAREN ARROWFUNCTION programa DOTCOMMA'
+    'funcion_flecha : tipo VARIABLE LPAREN valores RPAREN ARROWFUNCTION cuerpo DOTCOMMA'
     for valor in p[4]:
-        if not isinstance(valor,str) or not valor.isidentifier():
-            mensaje = f'Error semantico: Parametro "{valor}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n'
+        var = valor[1]
+        if not isinstance(var,str) or not var.isidentifier():
+            mensaje = f'Error semantico: Parametro "{var}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n'
             print(mensaje)
 
+
 def p_funcion_flecha_no_param(p):
-    'funcion_flecha : tipo VARIABLE LPAREN RPAREN ARROWFUNCTION programa DOTCOMMA'
+    'funcion_flecha : tipo VARIABLE LPAREN RPAREN ARROWFUNCTION cuerpo DOTCOMMA'
 #----------------------------------------------------------
 
 
@@ -303,27 +386,36 @@ def p_Conjunto(p):
     '''Conjunto : SET VARIABLE EQUALS cuerpo_conjunto DOTCOMMA
                     | SET LANGLE tipo RANGLE VARIABLE EQUALS cuerpo_conjunto DOTCOMMA'''
     if len(p) == 6:
-        conjunto = p[4]
-        variables[p[2]] = [conjunto, "SET"]
+        variables[p[2]] = [p[4], "SET"]
     else:
         tipo_elemento = type_map[p[3]]
         cuerpo_conjunto = p[7]
         
-        conjunto = set()
         for elemento in cuerpo_conjunto:
-            if isinstance(elemento, tipo_elemento):
-                conjunto.add(elemento)
+            if tipo_elemento == type(None):
+                if not isinstance(elemento, (int, float, str, tuple)):
+                    error_tipo_mutable(elemento)
+                    return
             else:
-                error_tipo(tipo_elemento.__name__, elemento )
-                return
+                if isinstance(elemento, tipo_elemento):
+                    pass
+                else:
+                    error_tipo(tipo_elemento.__name__, elemento )
+                    return
         
-        variables[p[5]] = [conjunto, f"SET<{p[3]}>"]
+        variables[p[5]] = [cuerpo_conjunto, f"SET<{p[3]}>"]
 
 def p_cuerpo_conjunto(p):
     '''cuerpo_conjunto : LBRACE valores RBRACE
                 | LBRACE RBRACE '''
+    
     if len(p) == 4:
-        p[0] = set(p[2])
+            p[0] = set()
+            for valor in p[2]:
+                try:
+                    p[0].add(valor)
+                except TypeError:
+                    error_tipo_mutable(valor)
     else:
         p[0] = set()
 #----------------------------------------------------------
@@ -342,7 +434,7 @@ def p_ciclo_for(p):
     ciclo_for : FOR LPAREN declaracion condicion DOTCOMMA contador RPAREN LBRACE programa RBRACE
     """
     # Obtenemos la variable de control
-    variable_control = p[3]
+    variable_control = p[3][1]
     # Obtenemos la condición de terminación
     condicion_terminacion = p[4]
     # Obtenemos el contador
@@ -380,21 +472,21 @@ def error_ciclo(variable):
     
 
 def p_contador(p):
-    '''contador : VARIABLE PLUS PLUS
-                | VARIABLE PLUS EQUALS valor
-                | VARIABLE MINUS MINUS
-                | VARIABLE MINUS EQUALS valor'''
-    if existe_variable(p[1]):
+    '''contador : variable PLUS PLUS
+                | variable PLUS EQUALS valor
+                | variable MINUS MINUS
+                | variable MINUS EQUALS valor'''
+    if existe_variable(p[1][1]):
         if len(p) == 4:
             if p[2] == "+" and p[3] == "+":
-                variables[p[1]][0] += 1
+                variables[p[1][1]][0] += 1
             else:
-                variables[p[1]][0] -= 1
+                variables[p[1][1]][0] -= 1
         else:
-            variables[p[1]][0] += int(p[4])
+            variables[p[1][1]][0] += int(p[4])
     else:
-        error_declaracion(p[1])
-    p[0] = [p[1]] + [p[2], p[3]]
+        error_declaracion(p[1][1])
+    p[0] = [p[1][1]] + [p[2], p[3]]
 #----------------------------------------------------------
 #-----------------------Función anónima-----------------------------------
 def p_funcion_Anonima(p):
@@ -413,15 +505,28 @@ def p_diccionario(p):
     tipo_clave = type_map[p[3]]
     tipo_valor = type_map[p[5]]
     # Validamos las duplas
+    
     for clave, valor in cuerpo_dic.items():
-        if not isinstance(clave, tipo_clave):
-            error_tipo(tipo_clave.__name__, clave)
-            return
-        if not isinstance(valor, tipo_valor):
-            error_tipo(tipo_valor.__name__, valor)
-            return
+        if  tipo_clave != type(None) and tipo_valor == type(None):
+            if not isinstance(clave, tipo_clave):
+                error_tipo(tipo_clave.__name__, clave)
+                return
+        elif tipo_clave == type(None) and tipo_valor != type(None):
+            if not isinstance(valor, tipo_valor):
+                error_tipo(tipo_valor.__name__, valor)
+                return
+        elif tipo_clave == type(None) and tipo_valor == type(None):
+            variables[p[7]] = [cuerpo_dic, f"MAP<{p[3]}, {p[5]}>"]
+        else:
+            if not isinstance(clave, tipo_clave):
+                error_tipo(tipo_clave.__name__, clave)
+                return
+            if not isinstance(valor, tipo_valor):
+                error_tipo(tipo_valor.__name__, valor)
+                return
         # Si todo es correcto, almacenamos el diccionario
     variables[p[7]] = [cuerpo_dic, f"MAP<{p[3]}, {p[5]}>"]
+    
 
 def p_cuerpo_Diccionario(p):
     """
@@ -440,17 +545,28 @@ def p_duplas(p):
     '''
     if len(p) == 2:
         p[0] = {}
-        p[0][p[1][0]] = p[1][1]
+        agregar_dupla(p[0], p[1])
     else:
         p[0] = {}
-        p[0][p[1][0]] = p[1][1]
+        agregar_dupla(p[0], p[1])
         p[0].update(p[3])
 
 def p_dupla(p):
     '''dupla : valor TWODOTS valor
     '''
-    p[0] = [p[1],p[3]]
+    p[0] = [p[1], p[3]]
 
+def agregar_dupla(diccionario, dupla):
+    clave, valor = dupla
+    try:
+        diccionario[clave] = valor
+    except TypeError:
+        error_tipo_mutable(clave)
+        return
+    
+def error_tipo_mutable(p):
+    print(f"Error semántico: Tipo mutable '{p}' no es válido.")
+    
 def error_declaracion(p):
     print(f"Error semántico: La variable '{p}' no ha sido declarada.")
 
@@ -502,6 +618,7 @@ def parse_input(input_string):
 
 while True:
   try:
+      print(variables)
       s = input('lp > ')
   except EOFError:
       break

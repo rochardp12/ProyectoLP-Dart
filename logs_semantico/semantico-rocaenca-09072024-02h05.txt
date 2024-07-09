@@ -1,0 +1,3 @@
+Input: print(1 > 3);
+Result: [None]
+

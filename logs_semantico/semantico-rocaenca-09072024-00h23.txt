@@ -1,0 +1,6 @@
+Input: Set<String> a= {f,a,e,r,s};
+Result: [None]
+
+Input: Set<String> a= {"a","v"};
+Result: [None]
+

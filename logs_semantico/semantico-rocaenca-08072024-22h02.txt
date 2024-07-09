@@ -1,0 +1,6 @@
+Input: var p = 2;
+Result: [None]
+
+Input: map<String, var> m = {"Roberto": 2, "A": "hola"};
+Result: [None]
+

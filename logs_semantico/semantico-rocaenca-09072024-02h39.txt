@@ -1,0 +1,13 @@
+Syntax error at '>'
+Input: $i > 0
+Result: None
+
+Input: print($i > 0);
+Result: [None]
+
+Input: int i= 3;
+Result: [['int', 'i', 3]]
+
+Input: print($i > 0);
+Result: [None]
+

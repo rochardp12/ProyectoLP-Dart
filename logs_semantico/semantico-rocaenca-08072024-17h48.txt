@@ -1,0 +1,17 @@
+Syntax error at EOF
+Input: int funcion(var1,var2)=>4+5
+Result: None
+
+Input: int funcion(var1,var2)=>4+5;
+Result: [None]
+
+Syntax error at EOF
+Input: int funcion(var1,var2)=>print(v);
+Result: None
+
+Input: int funcion(var1,var2)=>print(v);;
+Result: [None]
+
+Input: int funcion(1,2)=>print(v);;
+Result: [None]
+

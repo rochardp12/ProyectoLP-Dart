@@ -1,0 +1,9 @@
+Input: void mainaa($a,$b) { print("hola"); return $abc;}
+Result: [None]
+
+Input: void mainaa($a,$b) { print("hola");}
+Result: [None]
+
+Input: if ("hola"=="hola") { print ("igual");}  
+Result: [None]
+

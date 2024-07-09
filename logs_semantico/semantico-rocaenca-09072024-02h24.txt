@@ -1,0 +1,8 @@
+Syntax error at 'i'
+Syntax error at ';'
+Input: for(int i = 0; i < 3; i++){print("hola");}
+Result: None
+
+Input: for(int i = 0; $i < 3; i++){print("hola");}
+Result: [None]
+

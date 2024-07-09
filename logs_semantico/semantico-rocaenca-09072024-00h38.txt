@@ -1,0 +1,33 @@
+Input: Set m = {2,4,35,3, "32"};
+Result: [None]
+
+Input: Set<var> m = {2,4,35,3, "32"};
+Result: [None]
+
+Input: Set<var> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<var> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<var> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<var> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<var> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<var> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<String> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<int> m = {2,4,3.2,"foas",(12,2)};
+Result: [None]
+
+Input: Set<int> m = {2,4,3,"foas",(12,2)};
+Result: [None]
+

@@ -1,0 +1,15 @@
+Input: int b = 5;
+Result: [None]
+
+Input: int a = 4;
+Result: [None]
+
+Input: String b = $a;
+Result: [None]
+
+Input: int b = $a;
+Result: [None]
+
+Input: print($a, $b,$c);
+Result: [None]
+

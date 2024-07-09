@@ -1,0 +1,7 @@
+Input: map<var, var> m = {"Roberto": True, "A": [1,32], (1,3):3.2, "a": 2};
+Result: [None]
+
+Syntax error at '"c:/Users/rober/OneDrive/Escritorio/archivos/ESPOL/2024/PAO 1S/Lenguajes de Programación/Proyecto1P/ProyectoLP-Dart/main.py"'
+Input: & "C:/Program Files/Python310/python.exe" "c:/Users/rober/OneDrive/Escritorio/archivos/ESPOL/2024/PAO 1S/Lenguajes de Programación/Proyecto1P/ProyectoLP-Dart/main.py"
+Result: None
+

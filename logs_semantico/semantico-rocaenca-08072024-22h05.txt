@@ -1,0 +1,15 @@
+Input: map<String, var> m = {"Roberto": 2, "A": "hola"};
+Result: [None]
+
+Input: map<String, int> m = {"Roberto": 2, "A": "hola"};
+Result: [None]
+
+Input: map<String, int> m = {"Roberto": 2, "A": 1};
+Result: [None]
+
+Input: map<String, var> m = {"Roberto": 2, "A": 1};
+Result: [None]
+
+Input: map<var, var> m = {"Roberto": True, "A": [1,32], (1,3):3.2};
+Result: [None]
+

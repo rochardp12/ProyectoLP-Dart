@@ -1,0 +1,29 @@
+Input: int funcion($var1,$var2)=>4+5;
+Result: [None]
+
+Input: int funcion($var1,$var2)=>print(3+(3+1));;
+Result: [None]
+
+Input: 4+(5-7)
+Result: [None]
+
+Syntax error at 'd'
+Input: 4+(5-d)
+Result: None
+
+Syntax error at 'd'
+Input: int funcion($var1,$var2)=>print(3+(3+d));;
+Result: None
+
+Input: int funcion($var1,$var2)=>print(3+(3+$d));;
+Result: [None]
+
+Input: map<String, int> f = {"3": 3, "z":3};
+Result: [None]
+
+Input: map<var, int> f = {3: 3, "z":3};
+Result: [None]
+
+Input: map<var, var> f = {3: "3", "z":3, [12,2]:3};
+Result: [None]
+

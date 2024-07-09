@@ -1,0 +1,6 @@
+Input: int a = 0;
+Result: [None]
+
+Input: if ("hola"==$a) { print("v");} else { print("hola");}
+Result: [None]
+

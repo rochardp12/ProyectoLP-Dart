@@ -1,0 +1,15 @@
+Input: Set<String> a= {f,a,e,r,s};
+Result: [None]
+
+Input: Set<String> a= {"a","v"};
+Result: [None]
+
+Input: Set<String> a= {1,2};
+Result: [None]
+
+Input: Set<String> a= {"2",1,2};
+Result: [None]
+
+Input: Set<map> a= {"2",1,2};
+Result: [None]
+

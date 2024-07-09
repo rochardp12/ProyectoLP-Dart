@@ -1,0 +1,21 @@
+Syntax error at 'a'
+Syntax error at ';'
+Input: void mainaa(a,b) { print("hola"); return abc;}
+Result: None
+
+Syntax error at 'a'
+Syntax error at ';'
+Syntax error at '}'
+Input: void mainaa(a,b) { print("hola"); return $abc;}
+Result: None
+
+Input: void mainaa($a,$b) { print("hola"); return $abc;}
+Result: [None]
+
+Syntax error at 'abc'
+Input: void mainaa($a,$b) { print("hola"); return abc;}
+Result: None
+
+Input: void mainaa($a,$b) { print("hola");}
+Result: [None]
+

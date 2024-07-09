@@ -1,0 +1,6 @@
+Input: print($a, $b, $c);
+Result: [None]
+
+Input: print($a);
+Result: [None]
+

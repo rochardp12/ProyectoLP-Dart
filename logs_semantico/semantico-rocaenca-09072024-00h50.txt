@@ -1,0 +1,6 @@
+Input: List<map> f = [{3:3},{2:1}];
+Result: [None]
+
+Input: List<var> f = [{3:3},{2:1},3,"hola",(2,3),{1,3}];
+Result: [None]
+

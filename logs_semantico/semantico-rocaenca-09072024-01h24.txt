@@ -1,0 +1,32 @@
+Input: String b = $a;
+Result: [None]
+
+Input: int a = 3;
+Result: [None]
+
+Input: String b = $a;
+Result: [None]
+
+Input: int b = $a;
+Result: [None]
+
+Syntax error at 'a'
+Input: int b = a;
+Result: None
+
+Input: int b = $c;
+Result: [None]
+
+Input: int c = 4;
+Result: [None]
+
+Input: int b = $c;
+Result: [None]
+
+Input: print($b);
+Result: [None]
+
+Syntax error at '$'
+Input: print($b,$a);
+Result: None
+

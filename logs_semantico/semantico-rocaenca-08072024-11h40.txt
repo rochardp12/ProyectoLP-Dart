@@ -1,0 +1,11 @@
+Syntax error at '}'
+Input: void mainaa(a,b) { print("hola"); return abc}  
+Result: None
+
+Syntax error at ':'
+Input: void mainaa(a,b) { print("hola"); return abc:}  
+Result: None
+
+Input: void mainaa(a,b) { print("hola"); return abc;}  
+Result: [None]
+

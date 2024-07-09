@@ -1,0 +1,6 @@
+Input: int b = 5;
+Result: [None]
+
+Input: String b = $a;
+Result: [None]
+

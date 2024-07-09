@@ -1,0 +1,15 @@
+Syntax error at '$'
+Syntax error at ';'
+Input: for (int i = 0; $i > 1; $i++){print("hola");}
+Result: None
+
+Syntax error at 'i'
+Syntax error at ';'
+Input: for (int i = 0; i > 1; i++){print("hola");}
+Result: None
+
+Syntax error at '$'
+Syntax error at ';'
+Input: for (int i = 0; $i > 1; $i++){print("hola");}
+Result: None
+

@@ -1,0 +1,3 @@
+Input: Set<var> m = {2,4,3,"foas",(12,2),[12,3]};
+Result: [None]
+

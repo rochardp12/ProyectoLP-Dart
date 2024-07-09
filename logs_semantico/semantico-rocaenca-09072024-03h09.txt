@@ -1,0 +1,6 @@
+Input: if ("hola"==$a) { print ("igual");}  
+Result: [None]
+
+Input: if ("hola"==3) { print ("igual");}  
+Result: [None]
+

@@ -1,0 +1,20 @@
+Input: String c = $b;
+Result: [None]
+
+Input: int b = 3;
+Result: [None]
+
+Input: String c = $b;
+Result: [None]
+
+Input: int c = $b;
+Result: [None]
+
+Syntax error at 'a'
+Input: print(a,b);
+Result: None
+
+Syntax error at '$'
+Input: print($a,$b);
+Result: None
+

@@ -1,0 +1,18 @@
+Input: String c = $b;
+Result: [None]
+
+Syntax error at 'b'
+Input: String c = b;
+Result: None
+
+Syntax error at 'b'
+Input: String c = "b;
+Result: None
+
+Input: String c = "b";
+Result: [None]
+
+Syntax error at 'c'
+Input: String c = c;
+Result: None
+

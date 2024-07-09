@@ -1,0 +1,6 @@
+Input: print($a,$b);
+Result: [None]
+
+Input: print(1 > 3);
+Result: [None]
+

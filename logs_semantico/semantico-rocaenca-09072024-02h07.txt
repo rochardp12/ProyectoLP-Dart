@@ -1,0 +1,30 @@
+Input: print(1 > 3);
+Result: [None]
+
+Input: print(1,34,4);
+Result: [None]
+
+Input: print(1+(4+3));
+Result: [None]
+
+Input: print($a,$b);
+Result: [None]
+
+Input: int a = 3;
+Result: [None]
+
+Input: int b = 30;
+Result: [None]
+
+Input: String c = $b;
+Result: [None]
+
+Input: int c = $b;
+Result: [None]
+
+Input: print($a,$b);
+Result: [None]
+
+Input: print($a,$b);
+Result: [None]
+
