@@ -1,0 +1,27 @@
+Input: print($a,$b,$c);
+Result: [None]
+
+Input: print(1 > 4);
+Result: [None]
+
+Syntax error at ','
+Input: print(1 > 4, 4> 3);
+Result: None
+
+Input: print(1 > 4 && 4> 3);
+Result: [None]
+
+Syntax error at ','
+Input: print(1 > 4 && 4> 3, 4 >2);
+Result: None
+
+Syntax error at ')'
+Input: prin);
+Result: None
+
+Input: print();
+Result: [None]
+
+Input: print(214,243,45,2);
+Result: [None]
+
