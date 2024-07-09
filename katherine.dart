@@ -1,14 +1,15 @@
-void imprimirMensaje(String carrera) {
-  if (carrera=="Computacion") {
-    print("Es de la facultad de FIEC.");
+void sumaYMensaje(int a, int b) {
+  int suma = a + b;
+  
+  if (suma > 10) {
+    print("La suma es mayor que 10: $suma");
   } else {
-    print("No es de FIEC.");
+    print("La suma es igual o menor que 10: $suma");
   }
 }
 
 void main() {
-  String carrera1 = "Computacion";
-  String carrera2 = "Biologia";
-  imprimirMensaje(carrera1); 
-  imprimirMensaje(carrera2); 
+  int num1 = 5;
+  int num2 = 7;
+  sumaYMensaje(num1, num2);
 }

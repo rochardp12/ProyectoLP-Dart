@@ -1,0 +1,4 @@
+Syntax error at 'String'
+Syntax error at ';'
+Syntax error at ';'
+Syntax error at 'carrera1'
