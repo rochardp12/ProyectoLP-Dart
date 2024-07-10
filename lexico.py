@@ -85,7 +85,7 @@ t_RANGLE = r'>'
 t_DOLLAR = r'\$'
 t_OR = r'\|\|'
 t_AND = r'&&'
-t_COMMENTLINE = r'//.*'
+t_COMMENTLINE = r'\/\/[^\n\t\r]*'
 t_COMMENTBLOCK = r'/\*(.|\n)*?\*/'
 t_CHAINCHAR = r'(\'[^\']*\'|\"[^\"]*\")'
 #Richard Perez
@@ -201,13 +201,16 @@ This is a test for the block comment token.
 */
 
 // Line comment example
-void main {
+void main(){
     int number = 42;
     double decimalNumber = 3.14;
     boolean isValid = True;
     String CONSTANT_STRING = "Hello";
     List<int> myList = [1,3,2];
-    map<String, int> myMap = {"hola": 1, "adios": 2};
+    map<String, int> myMap = {
+        "hola": 1, 
+        "adios": 2
+        };
 
     void main() {
         var instance = "Hello, World!";
@@ -239,34 +242,39 @@ void main {
 
     }
 
-    void nullCheck($obj) {
-        if (obj == obj) {
+    void nullCheck() {
+        int obj1 = 1;
+        int obj2 = 2;
+        if ($obj1 == $obj2) {
             print("var is obj");
         }
     }
 
-    void thisCheck($obj) {
-        if (obj == obj) {
+    void thisCheck() {
+        int obj1 = 1;
+        int obj2 = 2;
+        if ($obj1 == $obj2) {
             print("This object");
         }
     }
 
-    void print($message) {
-        print(message);
+    void print() {
+        String message = "Hello, World!";
+        print($message);
     }
 }
 """
-algoritmos = [AlgoritmoRoberto , algoritmoRichard, algoritmoKatherine]
+algoritmos = [AlgoritmoRoberto]
 
 # Build the lexer
 lexer = lex.lex()
-"""
+
 #Generate logs
 log_dir = "logs"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
-UsuariosGit = ["katumbac", "rochardp12", "rocaenca"]
+UsuariosGit = ["rocaenca"]
 current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 
 
@@ -282,4 +290,3 @@ for i in range(len(algoritmos)):
             break      # No more input
         print(tok)
         log_file.write(f"{tok}\n")
-"""

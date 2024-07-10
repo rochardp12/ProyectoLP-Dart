@@ -2,24 +2,26 @@
 This is a test for the block comment token.
 */
 
-// Line comment example
-void main {
+void main(){
     int number = 42;
     double decimalNumber = 3.14;
     boolean isValid = True;
     String CONSTANT_STRING = "Hello";
     List<int> myList = [1,3,2];
-    map<String, int> myMap = {"hola": 1, "adios": 2};
+    map<String, int> myMap = {
+        "hola": 1, 
+        "adios": 2
+        };
 
     void main() {
         var instance = "Hello, World!";
-        instance.testMethod();
+        print($instance);
     }
 
     void testMethod() {
         int localVar = 10;
         double pi = 3.14;
-        boolean flag = false;
+        boolean flag = False;
         String greeting = "Hello, World!";
         String initial = "A";
         
@@ -41,19 +43,24 @@ void main {
 
     }
 
-    void nullCheck($obj) {
-        if (obj == obj) {
+    void nullCheck() {
+        int obj1 = 1;
+        int obj2 = 2;
+        if ($obj1 == $obj2) {
             print("var is obj");
         }
     }
 
-    void thisCheck($obj) {
-        if (obj == obj) {
+    void thisCheck() {
+        int obj1 = 1;
+        int obj2 = 2;
+        if ($obj1 == $obj2) {
             print("This object");
         }
     }
 
-    void print($message) {
-        print(message);
+    void impresion() {
+        String message = "Hello, World!";
+        print($message);
     }
 }

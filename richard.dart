@@ -10,23 +10,24 @@ void Pais() {
 
 
 void main() {
-  // Crear un conjunto de países
+
   Set<tuple> paises = {
     ('Brasil', True, 5),
     ('Argentina', True, 3),
     ('España', True, 1),
     ('Italia', True, 4),
     ('México', False, 0),
-    ('Japón', False, 0),
+    ('Japón', False, 0)
   };
-
-  // Recorrer el conjunto de países y aplicar el switch en ganoMundial
-  for (int i = 0; i < $paises; $i++) {
+  for (int i = 0; $i < $cantidad; $i++) {
+    String pais = "Argentina";
     switch ($pais) {
       case True:
         print('GANÓ: ', $pais);
+        break;
       case False:
         print('NO GANÓ:',  $pais);
+        break;
     }
   }
 }
