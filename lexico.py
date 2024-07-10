@@ -257,9 +257,10 @@ void main {
 }
 """
 algoritmos = [AlgoritmoRoberto , algoritmoRichard, algoritmoKatherine]
-"""
+
 # Build the lexer
 lexer = lex.lex()
+"""
 #Generate logs
 log_dir = "logs"
 if not os.path.exists(log_dir):
