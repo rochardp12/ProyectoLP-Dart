@@ -20,7 +20,7 @@ def procesar_archivo():
                 cajaconsole.insert(tk.END, f"No se encontró el archivo '{nombrecodigo}'")
     else:
         cajaconsole.delete("1.0", tk.END)
-        cajaconsole.insert(tk.END, "Error: El archivo debe tener extensión '.txt'")
+        cajaconsole.insert(tk.END, "Error: El archivo debe tener extensión '.dart'")
 
 def textoconsole():
     
@@ -718,18 +718,18 @@ titulo = tk.Label(ventana, text="DARTLSS\n Simple Dart Syntax Checker \n Elabora
                   font=("Courier", 12, "italic"), bg="black", fg="white", anchor="center")
 
 textocod = tk.Label(ventana, text="Write your syntax here",
-                    font=("Courier", 12), bg="black", fg="white")
+                    font=("Courier", 11), bg="black", fg="white")
 
 textoconsola = tk.Label(ventana, text="Console",
                         font=("Courier", 12), bg="black", fg="white")
 
-cajacodigo = tk.Text(ventana, width=45, height=15, bg='#515150', fg='white',
+cajacodigo = tk.Text(ventana, width=85, height=15, bg='#515150', fg='white',
                      font=('monospace', 12), insertbackground='white', bd=0, highlightthickness=0)
 
-linea_lp = tk.Text(ventana, width=1, height=1, bg='#515150', fg='white', 
+linea_lp = tk.Text(ventana, width=4, height=15, bg='#515150', fg='white', 
                       font=('monospace', 12), state='disabled', bd=0, highlightthickness=0)
 
-cajaconsole = tk.Text(ventana, width=45, height=15, bg='#293742', fg='white',
+cajaconsole = tk.Text(ventana, width=47, height=15, bg='#293742', fg='white',
                       font=('monospace', 12), insertbackground='white', bd=0, highlightthickness=0)
 
 cajafiles = tk.Text(ventana, width=15, height=2, bg='#ECEEF1', fg='black',
@@ -738,21 +738,21 @@ cajafiles = tk.Text(ventana, width=15, height=2, bg='#ECEEF1', fg='black',
 btcheck = tk.Button(ventana, text="Check", width=15, height=2, font=('sans-serif', 12, 'bold'),
                     command=lambda: textoconsole(), bg='#27AE60', fg='white')
 
-btfile = tk.Button(ventana, text="Open file", width=15, height=2, font=('sans-serif', 12, 'bold'),
+btfile = tk.Button(ventana, text="Open file", width=16, height=2, font=('sans-serif', 12, 'bold'),
                    command=procesar_archivo, bg='#27AE60', fg='white')
 
 # Disposición de widgets
-titulo.grid(row=0, column=0, columnspan=4, padx=10, pady=20, sticky='nsew')
+titulo.grid(row=0, column=0, columnspan=5, padx=(75,10), pady=20, sticky='nsew')
 
-btfile.grid(row=1, column=0, columnspan=2, sticky='w', pady=10, padx=15)
+btfile.grid(row=1, column=0, columnspan=2, sticky='n', pady=10, padx=20, )
 cajafiles.grid(row=1, column=2, columnspan=4, pady=10, padx=1, sticky='nsew')
 
-textocod.grid(row=2, column=0, columnspan=2, pady=5, padx=10, sticky='nsew')
-btcheck.grid(row=2, column=2, columnspan=1, pady=5, padx=10, sticky='nsew')
+textocod.grid(row=2, column=0, columnspan=2, pady=5, padx=(15,5), sticky='w')
+btcheck.grid(row=2, column=2, columnspan=1, pady=5, padx=(0,1), sticky='w')
 
-textoconsola.grid(row=2, column=3, columnspan=1, pady=5, sticky='nsew')
+textoconsola.grid(row=2, column=3, pady=5, padx=(15,1),sticky='w')
 
-linea_lp.grid(row=3, column=0,columnspan=1, pady=10,  padx=(15, 0), sticky='nsew')
+linea_lp.grid(row=3, column=0, pady=10, sticky='nse')
 cajacodigo.grid(row=3, column=1, columnspan=3, pady=10, sticky='nsew')
 cajaconsole.grid(row=3, column=3, columnspan=4, padx=10, pady=10, sticky='nsew')
 
