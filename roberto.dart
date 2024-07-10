@@ -3,87 +3,57 @@ This is a test for the block comment token.
 */
 
 // Line comment example
-public class TestClass {
-    private int number = 42;
-    public double decimalNumber = 3.14;
-    protected isValid = True;
-    static final String CONSTANT_STRING = "Hello";
-    private List<Integer> myList = new ArrayList<>();
-    private Map<String, Integer> myMap = new HashMap<>();
+void main {
+    int number = 42;
+    double decimalNumber = 3.14;
+    boolean isValid = True;
+    String CONSTANT_STRING = "Hello";
+    List<int> myList = [1,3,2];
+    map<String, int> myMap = {"hola": 1, "adios": 2};
 
-    public static void main(String[] args) {
-        TestClass instance = new TestClass();
+    void main() {
+        var instance = "Hello, World!";
         instance.testMethod();
     }
 
-    public void testMethod() {
+    void testMethod() {
         int localVar = 10;
         double pi = 3.14;
-        eanean flag = False;
+        boolean flag = false;
         String greeting = "Hello, World!";
-        char initial = 'A';
+        String initial = "A";
         
-        if (localVar > 5 && flag == False) {
+        if ($localVar > 5 && $flag == False) {
             print("localVar is greater than 5");
         } else {
             print("localVar is less than or equal to 5");
         }
 
-        for (int i = 0; i < 10; i++) {
-            myList.add(i);
+        for (int i = 0; $i < 10; $i++) {
+            print($i);
         }
 
-        while (localVar > 0) {
-            localVar--;
-        }
-
-        switch (localVar) {
+        switch ($localVar) {
             case 0:
                 print("localVar is zero");
                 break;
-            default:
-                print("localVar is not zero");
-                break;
         }
 
-        try {
-            int result = localVar / 0;
-        } catch (ArithmeticException e) {
-            print("Division by zero!");
-        } finally {
-            print("End of try-catch block");
-        }
-
-        number = (int) pi; // Casting
-        myMap.put("Key", 123);
-
-        // Check reserved words
-        nullCheck(null);
-        thisCheck(this);
-        superCheck(super.toString());
-
-        print(greeting + " " + initial + '!');
     }
 
-    private void nullCheck(Object obj) {
-        if (obj == null) {
-            print("Object is null");
+    void nullCheck($obj) {
+        if (obj == obj) {
+            print("var is obj");
         }
     }
 
-    private void thisCheck(TestClass obj) {
-        if (obj == this) {
+    void thisCheck($obj) {
+        if (obj == obj) {
             print("This object");
         }
     }
 
-    private void superCheck(String str) {
-        if (str != null) {
-            print("Super check passed");
-        }
-    }
-
-    private void print(String message) {
-        System.out.println(message);
+    void print($message) {
+        print(message);
     }
 }

@@ -225,12 +225,13 @@ def textoconsole():
         func_name = p[2]
         sin_retorno[func_name] = 'void'
         if len(p) == 9 and 'return' in p[7]:
-            print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
+            error_void(func_name)
         elif len(p) == 8 and 'return' in p[6]:
-            print(f"Error semántico: La función '{func_name}' declarada como 'void' no debe contener un retorno 'return'.")
+            error_void(func_name)
         else:
             pass
 
+    
     def p_return(p):
         'return : RETURN valor DOTCOMMA'
         p[0] = p[1]
@@ -346,8 +347,7 @@ def textoconsole():
         'operacion : valor operador expresion'
 
         if not isinstance(p[1],int) and not isinstance(p[1],float):
-            mensaje = 'Error semantico: El valor en la operacion debe ser numerico\n'
-            print(mensaje)
+            error_valor()
             
 
     def p_expresion(p):
@@ -357,11 +357,9 @@ def textoconsole():
             p[0] = p[1]    
         else:
             if not isinstance(p[2], (int, float)):
-                mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
-                print(mensaje)
+                error_expresion()
             elif not isinstance(p[4], (int, float)):
-                mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
-                print(mensaje)
+                error_expresion()
             elif p[3] == '+' and isinstance(p[2], type(p[4])):
                 p[0] = p[2] + p[4]
             elif p[3] == '-' and isinstance(p[2], type(p[4])):
@@ -371,8 +369,9 @@ def textoconsole():
             elif p[3] == '/' and isinstance(p[2], type(p[4])):
                 p[0] = p[2] / p[4]
             else:
-                mensaje = "Error semantico: Los valores en la expresion deben ser numericos"
-                print(mensaje)
+                error_expresion()
+
+    
 
     def p_funcion(p):
         'funcion : VARIABLE LPAREN valores RPAREN'
@@ -396,9 +395,9 @@ def textoconsole():
         for valor in p[4]:
             var = valor[1]
             if not isinstance(var,str) or not var.isidentifier():
-                mensaje = f'Error semantico: Parametro "{var}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n'
-                print(mensaje)
+                error_parametro(var)
 
+    
 
     def p_funcion_flecha_no_param(p):
         'funcion_flecha : tipo VARIABLE LPAREN RPAREN ARROWFUNCTION cuerpo DOTCOMMA'
@@ -491,9 +490,7 @@ def textoconsole():
             error_declaracion(variable_control)
 
 
-    def error_ciclo(variable):
-        print(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.")
-        
+    
 
     def p_contador(p):
         '''contador : variable PLUS PLUS
@@ -588,25 +585,57 @@ def textoconsole():
             error_tipo_mutable(clave)
             return
         
+
+    #---------------Funciones de Errores semánticos-------------------------------------------    
     def error_tipo_mutable(p):
         print(f"Error semántico: Tipo mutable '{p}' no es válido.")
         archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: Tipo mutable '{p}' no es válido.")
+        archivo.write(f"Error semántico: Tipo mutable '{p}' no es válido.\n")
         archivo.close()
         
     def error_declaracion(p):
         print(f"Error semántico: La variable '{p}' no ha sido declarada.")
         archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: La variable '{p}' no ha sido declarada.")
+        archivo.write(f"Error semántico: La variable '{p}' no ha sido declarada.\n")
         archivo.close()
 
     def existe_variable(p):
         return isinstance(p, str) and p in variables
 
     def error_tipo(p1, p2):
-        print(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.")
+        print(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
         archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.")
+        archivo.write(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
+        archivo.close()
+    
+    def error_ciclo(variable):
+        print(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
+        archivo = open("datos.txt", "a")
+        archivo.write(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
+        archivo.close()
+    
+    def error_expresion():
+        print()
+        archivo = open("datos.txt", "a")
+        archivo.write('Error semántico: Los valores en la expresion deben ser numérico\n')
+        archivo.close()
+
+    def error_valor():
+        print('Error semántico: El valor en la operacion debe ser numérico\n')
+        archivo = open("datos.txt", "a")
+        archivo.write('Error semántico: El valor en la operacion debe ser numérico\n')
+        archivo.close()
+
+    def error_void(p):
+        print(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.")
+        archivo = open("datos.txt", "a")
+        archivo.write(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.\n")
+        archivo.close()
+
+    def error_parametro(p):
+        print(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
+        archivo = open("datos.txt", "a")
+        archivo.write(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
         archivo.close()
     #----------------------------------------------------------
     # Crear el directorio de logs si no existe
@@ -627,14 +656,12 @@ def textoconsole():
     # Error rule for syntax errors
     def p_error(p):
         if p:
+            print(f"Error sintáctico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
             archivo = open("datos.txt", "a") #añadir errores
-            print(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
-            archivo.write(f"Syntax error at '{p.value}'\n")
+            archivo.write(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}\n")
             archivo.close()
         else:
-            archivo = open("datos.txt", "a")  #añadir errores
-            archivo.write("Syntax error at EOF\n")
-            archivo.close()
+            pass
 
     # Build the parser
     parser = yacc.yacc()

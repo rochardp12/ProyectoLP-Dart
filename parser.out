@@ -1,38 +1,5 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    ABSTRACT
-    ADMIRATION
-    AS
-    CATCH
-    CLASS
-    CONST
-    DEF
-    DEFAULT
-    DYNAMIC
-    EXTENDS
-    FINAL
-    FINALLY
-    IN
-    INTEGERDIVISION
-    INTERFACE
-    IS
-    METHOD
-    MOD
-    MODULE
-    NEW
-    NULL
-    PRIVATE
-    PROTECTED
-    PUBLIC
-    STATIC
-    SUPER
-    THIS
-    TRY
-    TYPEDEF
-    WHILE
-
 Grammar
 
 Rule 0     S' -> programa
@@ -144,43 +111,27 @@ Rule 105   dupla -> valor TWODOTS valor
 
 Terminals, with rules where they appear
 
-ABSTRACT             : 
-ADMIRATION           : 
 AND                  : 34
 ARROWFUNCTION        : 83 84
-AS                   : 
 BOOLEAN              : 71
 BREAK                : 81 82
 CASE                 : 81 82
-CATCH                : 
 CHAINCHAR            : 23 56
-CLASS                : 
 COMMA                : 50 63 100 104
 COMMENTBLOCK         : 21
 COMMENTLINE          : 20
-CONST                : 
-DEF                  : 
-DEFAULT              : 
 DIVIDE               : 92
 DOLLAR               : 64
 DOT                  : 79
 DOTCOMMA             : 22 23 24 25 26 36 41 74 79 81 82 83 84 85 86 93 98 99 100
 DOUBLE               : 66
-DYNAMIC              : 
 ELSE                 : 29
 EQUALS               : 36 42 42 45 46 74 85 86 95 97 98 100
-EXTENDS              : 
 FALSE                : 52
-FINAL                : 
-FINALLY              : 
 FLOAT                : 55
 FOR                  : 93
 IF                   : 27 28
-IN                   : 
 INT                  : 68
-INTEGERDIVISION      : 
-INTERFACE            : 
-IS                   : 
 LANGLE               : 36 43 45 86 100
 LBRACE               : 27 28 29 38 39 40 80 87 88 93 98 99 101 102
 LBRACKET             : 37
@@ -188,41 +139,27 @@ LIST                 : 36 70
 LPAREN               : 22 23 24 25 26 27 28 38 39 40 48 76 78 79 80 83 84 93
 MAIN                 : 40
 MAP                  : 65 100
-METHOD               : 
 MINUS                : 90 96 96 97
-MOD                  : 
-MODULE               : 
 NEQ                  : 47
-NEW                  : 
-NULL                 : 
 NUMBER               : 54
 OR                   : 35
 PLUS                 : 89 94 94 95
 PRINT                : 22 23 24 25 26
-PRIVATE              : 
-PROTECTED            : 
-PUBLIC               : 
 RANGLE               : 36 44 46 86 100
 RBRACE               : 27 28 29 38 39 40 80 87 88 93 98 99 101 102
 RBRACKET             : 37
 RETURN               : 41
 RPAREN               : 22 23 24 25 26 27 28 38 39 40 48 76 78 79 80 83 84 93
 SET                  : 69 85 86
-STATIC               : 
 STRING               : 67
-SUPER                : 
 SWITCH               : 80
-THIS                 : 
 TIMES                : 91
 TRUE                 : 51
-TRY                  : 
 TUPLE                : 72
 TWODOTS              : 81 82 105
-TYPEDEF              : 
 VAR                  : 73
 VARIABLE             : 36 38 39 64 74 78 79 79 83 84 85 86 98 100
 VOID                 : 38 39 40
-WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
