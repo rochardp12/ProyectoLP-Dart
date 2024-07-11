@@ -2,6 +2,7 @@
 This is a test for the block comment token.
 */
 
+//comment line example
 void main(){
     int number = 42;
     double decimalNumber = 3.14;

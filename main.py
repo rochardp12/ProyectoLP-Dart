@@ -1,5 +1,3 @@
-import os
-from datetime import datetime
 import ply.yacc as yacc
 from lexico import tokens
 
@@ -7,7 +5,7 @@ from lexico import tokens
 
 import tkinter as tk
 
-#---------------------------------------------- abrir archivo txt --------------------------------------------------
+#---------------------------------------------- abrir archivo dart o txt --------------------------------------------------
 def procesar_archivo():
     nombrecodigo = cajafiles.get("1.0",'end-1c')
     if nombrecodigo.endswith('.dart'):
@@ -30,7 +28,7 @@ def procesar_archivo():
                 cajaconsole.insert(tk.END, f"No se encontró el archivo '{nombrecodigo}'")
     else:
         cajaconsole.delete("1.0", tk.END)
-        cajaconsole.insert(tk.END, "Error: El archivo debe tener extensión '.txt'")
+        cajaconsole.insert(tk.END, "Error: El archivo debe tener extensión '.txt' o '.dart'")
 
 def textoconsole():
     
@@ -59,7 +57,7 @@ def textoconsole():
                     | programa cuerpo'''
         
         if len(p) == 2:
-            p[0] = [p[1]]
+            p[0] = [p[1]] + [None]
         else:
             p[0] = p[1] + [p[2]]
 
@@ -302,7 +300,8 @@ def textoconsole():
             p[0] = [p[1]] + p[3]
 
     def p_variable(p):
-        'variable : DOLLAR VARIABLE'
+        '''variable : DOLLAR VARIABLE
+                    | tipo VARIABLE'''
         p[0] = [p[1],p[2]]
 
 
@@ -656,12 +655,12 @@ def textoconsole():
     def error_tipo_mutable(p):
         print(f"Error semántico: Tipo mutable '{p}' no es válido.")
         with open("datos.txt", "a") as archivo:
-            archivo.write(f"Error semántico: Tipo mutable '{p}' no es válido.\n")
+            archivo.write(f"Error semántico: Tipo mutable '{p}' no es válido. ಥ_ಥ¯\_(ツ)_/¯\n")
         
     def error_declaracion(p):
         print(f"Error semántico: La variable '{p}' no ha sido declarada.")
         with open("datos.txt", "a") as archivo:
-            archivo.write(f"Error semántico: La variable '{p}' no ha sido declarada.\n")
+            archivo.write(f"Error semántico: La variable '{p}' no ha sido declarada. ಥ_ಥ¯\_(ツ)_/¯\n")
 
     def existe_variable(p):
         return isinstance(p, str) and p in variables
@@ -669,32 +668,32 @@ def textoconsole():
     def error_tipo(p1, p2):
         print(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
         with open("datos.txt", "a") as archivo:
-            archivo.write(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
+            archivo.write(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'. ಥ_ಥ¯\_(ツ)_/¯\n")
     
     def error_ciclo(variable):
         print(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
         with open("datos.txt", "a") as archivo:
-            archivo.write(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
+            archivo.write(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces. ಥ_ಥ¯\_(ツ)_/¯\n")
     
     def error_expresion():
         print('Error semántico: Los valores en la expresion deben ser numérico\n')
         with open("datos.txt", "a") as archivo:
-            archivo.write('Error semántico: Los valores en la expresion deben ser numérico\n')
+            archivo.write('Error semántico: Los valores en la expresion deben ser numérico ಥ_ಥ¯\_(ツ)_/¯\n')
 
     def error_valor():
         print('Error semántico: El valor en la operacion debe ser numérico\n')
         with open("datos.txt", "a") as archivo:
-            archivo.write('Error semántico: El valor en la operacion debe ser numérico\n')
+            archivo.write('Error semántico: El valor en la operacion debe ser numérico ಥ_ಥ¯\_(ツ)_/¯\n')
 
     def error_void(p):
         print(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.")
         with open("datos.txt", "a") as archivo:
-            archivo.write(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.\n")
+            archivo.write(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'. ಥ_ಥ¯\_(ツ)_/¯\n")
 
     def error_parametro(p):
         print(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
         with open("datos.txt", "a") as archivo:
-            archivo.write(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
+            archivo.write(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables ಥ_ಥ¯\_(ツ)_/¯\n')
     #----------------------------------------------------------
     # Crear el directorio de logs si no existe
     #log_dir = "logs_semantico"
@@ -714,9 +713,9 @@ def textoconsole():
     # Error rule for syntax errors
     def p_error(p):
         if p:
-            error_msg = f"Error sintáctico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}\n"
+            error_msg = f"Error sintáctico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos} ಥ_ಥ¯\_(ツ)_/¯\n"
         else:
-            error_msg = "Error sintáctico en el final del token\n"
+            error_msg = "Error sintáctico en el final del token ಥ_ಥ¯\_(ツ)_/¯\n"
         with open("datos.txt", "a") as archivo:
             archivo.write(error_msg)
 
@@ -751,7 +750,7 @@ def textoconsole():
     archivo = open('datos.txt','r')
     if len(archivo.readlines()) == 0: 
       cajaconsole.delete("1.0", tk.END)
-      cajaconsole.insert(tk.END,"Compile successfully :D")
+      cajaconsole.insert(tk.END,"Compile successfully (👉ﾟヮﾟ)👉💻💻🧑🏽‍💻🧑🏽‍💻")
     archivo.close()
 #---------------------  INTERFAZ -------------------------------------
 import tkinter as tk
@@ -777,18 +776,18 @@ titulo = tk.Label(ventana, text="DARTLSS\n Simple Dart Syntax Checker \n Elabora
                   font=("Courier", 12, "italic"), bg="black", fg="white", anchor="center")
 
 textocod = tk.Label(ventana, text="Write your syntax here",
-                    font=("Courier", 12), bg="black", fg="white")
+                    font=("Courier", 11), bg="black", fg="white")
 
 textoconsola = tk.Label(ventana, text="Console",
                         font=("Courier", 12), bg="black", fg="white")
 
-cajacodigo = tk.Text(ventana, width=45, height=15, bg='#515150', fg='white',
+cajacodigo = tk.Text(ventana, width=85, height=15, bg='#515150', fg='white',
                      font=('monospace', 12), insertbackground='white', bd=0, highlightthickness=0)
 
-linea_lp = tk.Text(ventana, width=1, height=1, bg='#515150', fg='white', 
+linea_lp = tk.Text(ventana, width=4, height=15, bg='#515150', fg='white', 
                       font=('monospace', 12), state='disabled', bd=0, highlightthickness=0)
 
-cajaconsole = tk.Text(ventana, width=45, height=15, bg='#293742', fg='white',
+cajaconsole = tk.Text(ventana, width=47, height=15, bg='#293742', fg='white',
                       font=('monospace', 12), insertbackground='white', bd=0, highlightthickness=0)
 
 cajafiles = tk.Text(ventana, width=15, height=2, bg='#ECEEF1', fg='black',
@@ -797,21 +796,21 @@ cajafiles = tk.Text(ventana, width=15, height=2, bg='#ECEEF1', fg='black',
 btcheck = tk.Button(ventana, text="Check", width=15, height=2, font=('sans-serif', 12, 'bold'),
                     command=lambda: textoconsole(), bg='#27AE60', fg='white')
 
-btfile = tk.Button(ventana, text="Open file", width=15, height=2, font=('sans-serif', 12, 'bold'),
+btfile = tk.Button(ventana, text="Open file", width=16, height=2, font=('sans-serif', 12, 'bold'),
                    command=procesar_archivo, bg='#27AE60', fg='white')
 
 # Disposición de widgets
-titulo.grid(row=0, column=0, columnspan=4, padx=10, pady=20, sticky='nsew')
+titulo.grid(row=0, column=0, columnspan=5, padx=(75,10), pady=20, sticky='nsew')
 
-btfile.grid(row=1, column=0, columnspan=2, sticky='w', pady=10, padx=15)
+btfile.grid(row=1, column=0, columnspan=2, sticky='n', pady=10, padx=20, )
 cajafiles.grid(row=1, column=2, columnspan=4, pady=10, padx=1, sticky='nsew')
 
-textocod.grid(row=2, column=0, columnspan=2, pady=5, padx=10, sticky='nsew')
-btcheck.grid(row=2, column=2, columnspan=1, pady=5, padx=10, sticky='nsew')
+textocod.grid(row=2, column=0, columnspan=2, pady=5, padx=(15,5), sticky='w')
+btcheck.grid(row=2, column=2, columnspan=1, pady=5, padx=(0,1), sticky='w')
 
-textoconsola.grid(row=2, column=3, columnspan=1, pady=5, sticky='nsew')
+textoconsola.grid(row=2, column=3, pady=5, padx=(15,1),sticky='w')
 
-linea_lp.grid(row=3, column=0,columnspan=1, pady=10,  padx=(15, 0), sticky='nsew')
+linea_lp.grid(row=3, column=0, pady=10, sticky='nse')
 cajacodigo.grid(row=3, column=1, columnspan=3, pady=10, sticky='nsew')
 cajaconsole.grid(row=3, column=3, columnspan=4, padx=10, pady=10, sticky='nsew')
 

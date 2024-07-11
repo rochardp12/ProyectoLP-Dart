@@ -119,7 +119,7 @@ t_ignore  = ' \t'
 
 # Error handling rule
 def t_error(t):
-  error_msg = f"Illegal character '{t.value[0]}' at line {t.lineno}, position {t.lexpos}\n"
+  error_msg = f"Illegal character '{t.value[0]}' at line {t.lineno}, position {t.lexpos} ಥ_ಥ¯\_(ツ)_/¯\n"
   with open("datos.txt", "a") as archivo:
       archivo.write(error_msg)
   print(error_msg)
