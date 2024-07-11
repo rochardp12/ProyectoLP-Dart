@@ -52,7 +52,6 @@ def textoconsole():
 
     #Katherine Tumbaco
     sin_retorno= {}
-    funciones = {}
     variables = {}
 
     def p_programa(p):
@@ -298,7 +297,7 @@ def textoconsole():
         '''variables : variable
                     | variable COMMA variables'''
         if len(p) == 2:
-            p[0] = [p[1], 'variable']
+            p[0] = [p[1]]
         else:
             p[0] = [p[1]] + p[3]
 
@@ -530,7 +529,6 @@ def textoconsole():
                             return
                 elif condicion_terminacion[1] == ('<', '='):
                     valor_terminacion = variables[condicion_terminacion[2][1]][0]
-                    print(valor_actual,valor_terminacion)
                     if valor_actual > valor_terminacion:
                         error_ciclo(variable_control)
                         return
@@ -657,54 +655,46 @@ def textoconsole():
     #---------------Funciones de Errores semánticos-------------------------------------------    
     def error_tipo_mutable(p):
         print(f"Error semántico: Tipo mutable '{p}' no es válido.")
-        archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: Tipo mutable '{p}' no es válido.\n")
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write(f"Error semántico: Tipo mutable '{p}' no es válido.\n")
         
     def error_declaracion(p):
         print(f"Error semántico: La variable '{p}' no ha sido declarada.")
-        archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: La variable '{p}' no ha sido declarada.\n")
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write(f"Error semántico: La variable '{p}' no ha sido declarada.\n")
 
     def existe_variable(p):
         return isinstance(p, str) and p in variables
 
     def error_tipo(p1, p2):
         print(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
-        archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write(f"Error semántico: Tipos incompatibles '{p1}' y '{type(p2).__name__}'.\n")
     
     def error_ciclo(variable):
         print(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
-        archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write(f"Error semántico: El ciclo for con la variable de control '{variable}' jamás se ejecuta o se ejecuta infinitas veces.\n")
     
     def error_expresion():
-        print()
-        archivo = open("datos.txt", "a")
-        archivo.write('Error semántico: Los valores en la expresion deben ser numérico\n')
-        archivo.close()
+        print('Error semántico: Los valores en la expresion deben ser numérico\n')
+        with open("datos.txt", "a") as archivo:
+            archivo.write('Error semántico: Los valores en la expresion deben ser numérico\n')
 
     def error_valor():
         print('Error semántico: El valor en la operacion debe ser numérico\n')
-        archivo = open("datos.txt", "a")
-        archivo.write('Error semántico: El valor en la operacion debe ser numérico\n')
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write('Error semántico: El valor en la operacion debe ser numérico\n')
 
     def error_void(p):
         print(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.")
-        archivo = open("datos.txt", "a")
-        archivo.write(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.\n")
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write(f"Error semántico: La función '{p}' declarada como 'void' no debe contener un retorno 'return'.\n")
 
     def error_parametro(p):
         print(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
-        archivo = open("datos.txt", "a")
-        archivo.write(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
-        archivo.close()
+        with open("datos.txt", "a") as archivo:
+            archivo.write(f'Error semantico: Parametro "{p}" incorrecto. Los parametros de la funcion flecha deben ser nombres de variables\n')
     #----------------------------------------------------------
     # Crear el directorio de logs si no existe
     #log_dir = "logs_semantico"
@@ -724,44 +714,45 @@ def textoconsole():
     # Error rule for syntax errors
     def p_error(p):
         if p:
-            print(f"Error sintáctico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}")
-            archivo = open("datos.txt", "a") #añadir errores
-            archivo.write(f"Error sintactico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}\n")
-            archivo.close()
+            error_msg = f"Error sintáctico en el token '{p.value}' en la linea {p.lineno}, posicion {p.lexpos}\n"
         else:
-            pass
+            error_msg = "Error sintáctico en el final del token\n"
+        with open("datos.txt", "a") as archivo:
+            archivo.write(error_msg)
 
     # Build the parser
     parser = yacc.yacc()
        
-    #------ Abrir archivos datos.txt (errores) ------------------------------
-    archivo = open("datos.txt", "r")
-    contenido = archivo.read()
-    archivo.close()
+    # Limpieza del archivo de errores anterior
+    with open("datos.txt", "w") as archivo:
+        archivo.write('')
 
-    cajaconsole.delete("1.0", tk.END)  # Limpiar el contenido 
-    cajaconsole.insert(tk.END, contenido)  # Insertar el contenido 
+    def parse_input(input_string):
+        result = parser.parse(input_string)
+        return result
 
-    archivo = open("datos.txt", "w")
-    archivo.write('')
-    archivo.close()
-    
-    cajaconsole.delete("1.0", tk.END)  # Limpiar el contenido actual 
-    cajaconsole.insert(tk.END, contenido)  # Insertar el contenido del archivo
+    with open('codigo.txt', 'r') as archiCodigo:
+        codAnalizar = archiCodigo.read()
 
-    #----------------------------------------------Procesamiento de datos --------------------------------------------------
-    archiCodigo = open('codigo.txt','r')
-    codAnalizar = ""
-    for lineaCodigo in archiCodigo:
-        codAnalizar = codAnalizar + " " +lineaCodigo.strip()
-    print(codAnalizar)
-    parser.parse(codAnalizar)
+    result = parse_input(codAnalizar)
+
+    with open('datos.txt', 'a') as archivo:
+        print(result)
+        if result and None not in result:
+            archivo.write(f"{result}")
+
+    with open('datos.txt', 'r') as archivo:
+        contenido = archivo.read()
+
+    cajaconsole.delete("1.0", tk.END)
+    cajaconsole.insert(tk.END, contenido)
+    ventana.update()
 
     archivo = open('datos.txt','r')
     if len(archivo.readlines()) == 0: 
       cajaconsole.delete("1.0", tk.END)
       cajaconsole.insert(tk.END,"Compile successfully :D")
-          
+    archivo.close()
 #---------------------  INTERFAZ -------------------------------------
 import tkinter as tk
 

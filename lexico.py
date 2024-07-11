@@ -119,8 +119,11 @@ t_ignore  = ' \t'
 
 # Error handling rule
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+  error_msg = f"Illegal character '{t.value[0]}' at line {t.lineno}, position {t.lexpos}\n"
+  with open("datos.txt", "a") as archivo:
+      archivo.write(error_msg)
+  print(error_msg)
+  t.lexer.skip(1)
 
 
 
@@ -258,7 +261,7 @@ void main(){
         }
     }
 
-    void print() {
+    @print() {
         String message = "Hello, World!";
         print($message);
     }
@@ -270,23 +273,28 @@ algoritmos = [AlgoritmoRoberto]
 lexer = lex.lex()
 
 #Generate logs
-log_dir = "logs"
+"""log_dir = "logs"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
 UsuariosGit = ["rocaenca"]
 current_time = datetime.now().strftime("%d%m%Y-%Hh%M")
 
-
 for i in range(len(algoritmos)):
   log_filename = f"lexico-{UsuariosGit[i]}-{current_time}.txt"
   log_filepath = os.path.join(log_dir, log_filename)
-  lexer.input(algoritmos[i])
-  # Tokenize
-  with open(log_filepath, 'w') as log_file:
-    while True:
-        tok = lexer.token()
-        if not tok: 
-            break      # No more input
-        print(tok)
-        log_file.write(f"{tok}\n")
+  lexer.input(algoritmos[i])"""
+
+
+# Tokenize
+with  open("codigo.txt", "r") as archivo:
+  codigo = archivo.read()
+  lexer.input(codigo)
+
+with open("datos.txt", "w") as error_file:
+  while True:
+      tok = lexer.token()
+      if not tok: 
+          break      # No more input
+      print(tok)
+      error_file.write(f"{tok}\n")
