@@ -29,7 +29,6 @@ def procesar_archivo():
     else:
         cajaconsole.delete("1.0", tk.END)
         cajaconsole.insert(tk.END, "Error: El archivo debe tener extensión '.txt' o '.dart'")
-
 def textoconsole():
     
     codigo = cajacodigo.get("1.0",'end-1c')
@@ -81,7 +80,8 @@ def textoconsole():
                                 | funcion_Void
                                 | funcion
                                 | funcion_Data
-                                | estructura_List'''
+                                | estructura_List
+                                | estructura_tupla'''
         
     def p_comentario(p):
         '''comentario : COMMENTLINE
@@ -258,6 +258,22 @@ def textoconsole():
             p[0] = p[1]  
         else:
             p[0] = (p[1], p[2])
+
+    def p_estructura_tupla(p):
+        'estructura_tupla : TUPLE LANGLE tipo RANGLE VARIABLE EQUALS tupla DOTCOMMA'
+        tipo_elemento = type_map[p[3]]
+        tupla = p[7]
+        for element in tupla:
+            if tipo_elemento == type(None):
+                variables[p[5]] = [tupla, f"TUPLE<{p[3]}>"]
+            else:
+                if isinstance(element, tipo_elemento):
+                    pass
+                else:
+                    error_tipo(tipo_elemento.__name__, element)
+                    return
+        variables[p[5]] = [tupla, f"TUPLE<{p[3]}>"]
+        
 
     def p_tupla(p):
         'tupla : LPAREN valores RPAREN'
@@ -797,7 +813,7 @@ cajacodigo = tk.Text(ventana, width=85, height=15, bg='#515150', fg='white',
 linea_lp = tk.Text(ventana, width=4, height=15, bg='#515150', fg='white', 
                       font=('monospace', 12), state='disabled', bd=0, highlightthickness=0)
 
-cajaconsole = tk.Text(ventana, width=47, height=15, bg='#293742', fg='white',
+cajaconsole = tk.Text(ventana, width=50, height=15, bg='#293742', fg='white',
                       font=('monospace', 12), insertbackground='white', bd=0, highlightthickness=0)
 
 cajafiles = tk.Text(ventana, width=15, height=2, bg='#ECEEF1', fg='black',

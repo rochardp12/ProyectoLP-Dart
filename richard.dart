@@ -1,7 +1,7 @@
 void Pais() {
   String nombre = "Ecuador";
   boolean ganoMundial = True;
-  int cantidad = 3
+  int cantidad = 3;
 
 
 
