@@ -121,61 +121,64 @@ def textoconsole():
         
     def p_condicion(p):
         'condicion : valor Comparador valor'
-        if not isinstance(p[1],list) and not isinstance(p[3],list):
-            if type(p[1]) == type(p[3]):
-                pass
-            else:
-                error_tipo(type(p[1]).__name__, p[3])
-                return
-            p[0] = [p[1], p[2], p[3]]
-        elif isinstance(p[1],list) and p[1][0] == '$' and not isinstance(p[3],list):
-            var1 = p[1][1]
-            if existe_variable(var1):
-                tipo_var1 = variables[var1][0]
-                if type(tipo_var1) == type(p[3]):
+        if p[1] != None and p[3] != None:
+            if not isinstance(p[1],list) and not isinstance(p[3],list):
+                if type(p[1]) == type(p[3]):
                     pass
                 else:
-                    error_tipo(type(tipo_var1).__name__, p[3])
+                    error_tipo(type(p[1]).__name__, p[3])
                     return
-            else:
-                error_declaracion(var1)
-                return
-            p[0] = [p[1], p[2], p[3]]
-        elif not isinstance(p[1],list) and isinstance(p[3],list) and p[3][0] == '$':
-            var2 = p[3][1]
-            if existe_variable(var2):
-                tipo_var2 = variables[var2][0]
-                if type(p[1]) == type(tipo_var2):
-                    pass
+                p[0] = [p[1], p[2], p[3]]
+            elif isinstance(p[1],list) and p[1][0] == '$' and not isinstance(p[3],list):
+                var1 = p[1][1]
+                if existe_variable(var1):
+                    tipo_var1 = variables[var1][0]
+                    if type(tipo_var1) == type(p[3]):
+                        pass
+                    else:
+                        error_tipo(type(tipo_var1).__name__, p[3])
+                        return
                 else:
-                    error_tipo(p[1], tipo_var2)
+                    error_declaracion(var1)
                     return
+                p[0] = [p[1], p[2], p[3]]
+            elif not isinstance(p[1],list) and isinstance(p[3],list) and p[3][0] == '$':
+                var2 = p[3][1]
+                if existe_variable(var2):
+                    tipo_var2 = variables[var2][0]
+                    if type(p[1]) == type(tipo_var2):
+                        pass
+                    else:
+                        error_tipo(p[1], tipo_var2)
+                        return
+                else:
+                    error_declaracion(var2)
+                    return
+                p[0] = [p[1], p[2], p[3]]
             else:
-                error_declaracion(var2)
-                return
-            p[0] = [p[1], p[2], p[3]]
+                var1 = p[1][1]
+                var2 = p[3][1]
+                if existe_variable(var2) and existe_variable(var1):
+                    tipo_var1 = variables[var1][0]
+                    tipo_var2 = variables[var2][0]
+                    if type(tipo_var1) == type(tipo_var2):
+                        pass
+                    else:
+                        error_tipo(type(tipo_var1).__name__, tipo_var2)
+                        return
+                elif not existe_variable(var2) and existe_variable(var1):
+                    error_declaracion(var2)
+                    return
+                elif existe_variable(var2) and not existe_variable(var1):
+                    error_declaracion(var1)
+                    return
+                else:
+                    error_declaracion(var1)
+                    error_declaracion(var2)
+                    return
+                p[0] = [p[1], p[2], p[3]]
         else:
-            var1 = p[1][1]
-            var2 = p[3][1]
-            if existe_variable(var2) and existe_variable(var1):
-                tipo_var1 = variables[var1][0]
-                tipo_var2 = variables[var2][0]
-                if type(tipo_var1) == type(tipo_var2):
-                    pass
-                else:
-                    error_tipo(type(tipo_var1).__name__, tipo_var2)
-                    return
-            elif not existe_variable(var2) and existe_variable(var1):
-                error_declaracion(var2)
-                return
-            elif existe_variable(var2) and not existe_variable(var1):
-                error_declaracion(var1)
-                return
-            else:
-                error_declaracion(var1)
-                error_declaracion(var2)
-                return
-            p[0] = [p[1], p[2], p[3]]
+            pass
         
 
 
@@ -473,90 +476,98 @@ def textoconsole():
         if existe_variable(variable_control):
             valor_actual = variables[variable_control][0]
             # Determinamos el valor de terminación de la condición
-            if not isinstance(condicion_terminacion[2], list):
-                if condicion_terminacion[1] == "<":
-                    valor_terminacion = condicion_terminacion[2]
-                    if valor_actual >= valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    else:
-                        if contador[1] == "-" and contador[2] == "-":
+            print(condicion_terminacion)
+            if condicion_terminacion!= None:
+                if not isinstance(condicion_terminacion[2], list):
+                    if condicion_terminacion[1] == "<":
+                        valor_terminacion = condicion_terminacion[2]
+                        if valor_actual >= valor_terminacion:
                             error_ciclo(variable_control)
                             return
                         else:
+                            if contador[1] == "-" and contador[2] == "-":
+                                error_ciclo(variable_control)
+                                return
+                            else:
+                                pass
+                    elif condicion_terminacion[1] == ('<', '='):
+                        valor_terminacion = condicion_terminacion[2]
+                        if valor_actual > valor_terminacion:
+                            error_ciclo(variable_control)
+                            return
+                        elif valor_actual == valor_terminacion:
                             pass
-                elif condicion_terminacion[1] == ('<', '='):
-                    valor_terminacion = condicion_terminacion[2]
-                    if valor_actual > valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    elif valor_actual == valor_terminacion:
-                        pass
-                    else:
-                        if contador[1] == "-" and contador[2] == "-":
+                        else:
+                            if contador[1] == "-" and contador[2] == "-":
+                                error_ciclo(variable_control)
+                                return
+                    elif condicion_terminacion[1] == ">":
+                        valor_terminacion = condicion_terminacion[2]
+                        if valor_actual <= valor_terminacion:
                             error_ciclo(variable_control)
                             return
-                elif condicion_terminacion[1] == ">":
-                    valor_terminacion = condicion_terminacion[2]
-                    if valor_actual <= valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    else:
-                        if contador[1] == "+" and contador[2] == "+":
+                        else:
+                            if contador[1] == "+" and contador[2] == "+":
+                                error_ciclo(variable_control)
+                                return
+                    elif condicion_terminacion[1] == ('>', '='):
+                        valor_terminacion = condicion_terminacion[2]
+                        if valor_actual < valor_terminacion:
                             error_ciclo(variable_control)
                             return
-                elif condicion_terminacion[1] == ('>', '='):
-                    valor_terminacion = condicion_terminacion[2]
-                    if valor_actual < valor_terminacion:
-                        error_ciclo(variable_control)
+                        elif valor_actual == valor_terminacion:
+                            pass
+                        else:
+                            if contador[1] == "+" and contador[2] == "+":
+                                error_ciclo(variable_control)
+                                return
+                else:
+                    if not existe_variable(condicion_terminacion[2][1]):
+                        error_declaracion(condicion_terminacion[2][1])
                         return
-                    elif valor_actual == valor_terminacion:
-                        pass
                     else:
-                        if contador[1] == "+" and contador[2] == "+":
-                            error_ciclo(variable_control)
-                            return
+                        if condicion_terminacion[1] == "<":
+                            valor_terminacion = variables[condicion_terminacion[2][1]][0]
+                            if valor_actual >= valor_terminacion:
+                                error_ciclo(variable_control)
+                                return
+                            else:
+                                if contador[1] == "-" and contador[2] == "-":
+                                    error_ciclo(variable_control)
+                                    return
+                        elif condicion_terminacion[1] == ('<', '='):
+                            valor_terminacion = variables[condicion_terminacion[2][1]][0]
+                            if valor_actual > valor_terminacion:
+                                error_ciclo(variable_control)
+                                return
+                            elif valor_actual == valor_terminacion:
+                                pass
+                            else:
+                                if contador[1] == "-" and contador[2] == "-":
+                                    error_ciclo(variable_control)
+                                    return
+                        elif condicion_terminacion[1] == ">":
+                            valor_terminacion = variables[condicion_terminacion[2][1]][0]
+                            if valor_actual <= valor_terminacion:
+                                error_ciclo(variable_control)
+                                return
+                            else:
+                                if contador[1] == "+" and contador[2] == "+":
+                                    error_ciclo(variable_control)
+                                    return
+                        elif condicion_terminacion[1] == ('>', '='):
+                            valor_terminacion = variables[condicion_terminacion[2][1]][0]
+                            if valor_actual < valor_terminacion:
+                                error_ciclo(variable_control)
+                                return
+                            elif valor_actual == valor_terminacion:
+                                pass
+                            else:
+                                if contador[1] == "+" and contador[2] == "+":
+                                    error_ciclo(variable_control)
+                                    return
             else:
-                if condicion_terminacion[1] == "<":
-                    valor_terminacion = variables[condicion_terminacion[2][1]][0]
-                    if valor_actual >= valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    else:
-                        if contador[1] == "-" and contador[2] == "-":
-                            error_ciclo(variable_control)
-                            return
-                elif condicion_terminacion[1] == ('<', '='):
-                    valor_terminacion = variables[condicion_terminacion[2][1]][0]
-                    if valor_actual > valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    elif valor_actual == valor_terminacion:
-                        pass
-                    else:
-                        if contador[1] == "-" and contador[2] == "-":
-                            error_ciclo(variable_control)
-                            return
-                elif condicion_terminacion[1] == ">":
-                    valor_terminacion = variables[condicion_terminacion[2][1]][0]
-                    if valor_actual <= valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    else:
-                        if contador[1] == "+" and contador[2] == "+":
-                            error_ciclo(variable_control)
-                            return
-                elif condicion_terminacion[1] == ('>', '='):
-                    valor_terminacion = variables[condicion_terminacion[2][1]][0]
-                    if valor_actual < valor_terminacion:
-                        error_ciclo(variable_control)
-                        return
-                    elif valor_actual == valor_terminacion:
-                        pass
-                    else:
-                        if contador[1] == "+" and contador[2] == "+":
-                            error_ciclo(variable_control)
-                            return
+                pass
         else:
             error_declaracion(variable_control)
 
@@ -742,10 +753,9 @@ def textoconsole():
 
     with open('datos.txt', 'r') as archivo:
         contenido = archivo.read()
-
-    cajaconsole.delete("1.0", tk.END)
-    cajaconsole.insert(tk.END, contenido)
-    ventana.update()
+        cajaconsole.delete("1.0", tk.END)
+        cajaconsole.insert(tk.END, contenido)
+        ventana.update()
 
     archivo = open('datos.txt','r')
     if len(archivo.readlines()) == 0: 
