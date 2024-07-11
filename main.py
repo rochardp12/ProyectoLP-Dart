@@ -156,26 +156,34 @@ def textoconsole():
                     return
                 p[0] = [p[1], p[2], p[3]]
             else:
-                var1 = p[1][1]
-                var2 = p[3][1]
-                if existe_variable(var2) and existe_variable(var1):
-                    tipo_var1 = variables[var1][0]
-                    tipo_var2 = variables[var2][0]
-                    if type(tipo_var1) == type(tipo_var2):
+                if(p[1][0] == '$' and p[3][0] == '$'):
+                    var1 = p[1][1]
+                    var2 = p[3][1]
+                    if existe_variable(var2) and existe_variable(var1):
+                        tipo_var1 = variables[var1][0]
+                        tipo_var2 = variables[var2][0]
+                        if type(tipo_var1) == type(tipo_var2):
+                            pass
+                        else:
+                            error_tipo(type(tipo_var1).__name__, tipo_var2)
+                            return
+                    elif not existe_variable(var2) and existe_variable(var1):
+                        error_declaracion(var2)
+                        return
+                    elif existe_variable(var2) and not existe_variable(var1):
+                        error_declaracion(var1)
+                        return
+                    else:
+                        error_declaracion(var1)
+                        error_declaracion(var2)
+                        return
+                    p[0] = [p[1], p[2], p[3]]
+                else:
+                    if type(p[1]) == type(p[3]):
                         pass
                     else:
-                        error_tipo(type(tipo_var1).__name__, tipo_var2)
+                        error_tipo(type(p[1]).__name__, p[3])
                         return
-                elif not existe_variable(var2) and existe_variable(var1):
-                    error_declaracion(var2)
-                    return
-                elif existe_variable(var2) and not existe_variable(var1):
-                    error_declaracion(var1)
-                    return
-                else:
-                    error_declaracion(var1)
-                    error_declaracion(var2)
-                    return
                 p[0] = [p[1], p[2], p[3]]
         else:
             pass
