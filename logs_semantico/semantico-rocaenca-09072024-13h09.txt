@@ -1,0 +1,5 @@
+Syntax error at ':'
+Syntax error at '"c:/Users/Katherine/Desktop/Proyecto LP/ProyectoLP-Dart/main.py"'
+Input: & C:/Users/Katherine/AppData/Local/Programs/Python/Python312/python.exe "c:/Users/Katherine/Desktop/Proyecto LP/ProyectoLP-Dart/main.py"
+Result: None
+
