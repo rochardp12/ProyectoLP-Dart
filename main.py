@@ -219,6 +219,25 @@ def textoconsole():
         for element in lista:
             if tipo_elemento == type(None):
                 variables[p[5]] = [lista, f"LIST<{p[3]}>"]
+            if isinstance(element, list):
+                if element[0] == '$':
+                    var = element[1]
+                    if not existe_variable(var):
+                        error_declaracion(var)
+                    else:
+                        valor = variables[var][0]
+                        print(valor,tipo_elemento, type(valor))
+                        if type(valor) == tipo_elemento:
+                            pass
+                        else:
+                            error_tipo(tipo_elemento.__name__, valor)
+                            return
+                else:
+                    if isinstance(element[0], tipo_elemento):
+                        pass
+                    else:
+                        error_tipo(tipo_elemento.__name__, element)
+                        return
             else:
                 if isinstance(element, tipo_elemento):
                     pass
@@ -388,19 +407,22 @@ def textoconsole():
         '''expresion : LPAREN valor operador expresion RPAREN
                         | valor '''
         if len(p) == 2:
-            p[0] = p[1]    
+            if not isinstance(p[1], int) and not isinstance(p[1], float):
+                error_valor()
+            else:
+                p[0] = p[1]    
         else:
             if not isinstance(p[2], (int, float)):
                 error_expresion()
             elif not isinstance(p[4], (int, float)):
                 error_expresion()
-            elif p[3] == '+' and isinstance(p[2], type(p[4])):
+            elif p[3] == '+':
                 p[0] = p[2] + p[4]
-            elif p[3] == '-' and isinstance(p[2], type(p[4])):
+            elif p[3] == '-':
                 p[0] = p[2] - p[4]
-            elif p[3] == '*' and isinstance(p[2], type(p[4])):
+            elif p[3] == '*' :
                 p[0] = p[2] * p[4]
-            elif p[3] == '/' and isinstance(p[2], type(p[4])):
+            elif p[3] == '/' :
                 p[0] = p[2] / p[4]
             else:
                 error_expresion()

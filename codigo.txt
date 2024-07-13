@@ -1,3 +1,2 @@
-if((12,12) == (12,1)){
-	print('hola');
-}
+String a = "e";
+List<int> d = [1,2,4,$a];
